@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>GoldMate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(145deg, #1a0f00 0%, #2c1a05 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+        }
+        .app-container {
+            max-width: 420px;
+            width: 100%;
+            background: linear-gradient(180deg, #faf3e0 0%, #f5e6c8 100%);
+            border-radius: 32px;
+            padding: 20px 16px 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 2px #b8860b inset, 0 0 0 4px #daa520 inset;
+            position: relative;
+            overflow: hidden;
+        }
+        .app-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .main-heading {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 800;
+            color: #7a5d2e;
+            text-shadow: 0 2px 4px rgba(255, 215, 0, 0.3);
+            letter-spacing: 2px;
+            padding-bottom: 12px;
+            border-bottom: 3px double #b8860b;
+            margin-bottom: 18px;
+        }
+        .main-heading span { color: #b8860b; }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin: 16px 0 10px;
+        }
+        .btn-gold {
+            flex: 1;
+            padding: 14px 8px;
+            border: none;
+            border-radius: 60px;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+            background: linear-gradient(145deg, #b8860b, #8b6914);
+            box-shadow: 0 6px 0 #5a3f0a, 0 8px 20px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition: all 0.08s ease;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+        .btn-gold:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #5a3f0a;
+        }
+        .btn-gold.active {
+            background: linear-gradient(145deg, #f5c842, #d4a017);
+            box-shadow: 0 6px 0 #7a5d1a, 0 0 30px rgba(255, 215, 0, 0.5);
+            color: #2c1a05;
+            text-shadow: none;
+        }
+
+        .page { display: none; animation: fadeIn 0.25s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-heading {
+            text-align: center;
+            font-size: 26px;
+            font-weight: 800;
+            color: #5a3f0a;
+            background: linear-gradient(90deg, #f5e6c8, #d4b48c, #f5e6c8);
+            padding: 8px 0;
+            border-radius: 60px;
+            margin: 6px 0 16px;
+            letter-spacing: 3px;
+            border: 1px solid #b8860b;
+        }
+
+        .rate-box {
+            background: #fffbf0;
+            border-radius: 60px;
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px solid #b8860b;
+            margin-bottom: 16px;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .rate-box label {
+            font-weight: 700;
+            color: #5a3f0a;
+            font-size: 18px;
+            white-space: nowrap;
+        }
+        .rate-box input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 22px;
+            font-weight: 700;
+            color: #3d2b06;
+            padding: 6px 0;
+            outline: none;
+            min-width: 0;
+        }
+        .rate-box input:focus {
+            border-bottom: 2px solid #b8860b;
+        }
+        .rate-box .rupee-symbol {
+            font-size: 22px;
+            font-weight: 700;
+            color: #7a5d2e;
+        }
+
+        .select-row {
+            display: flex;
+            gap: 10px;
+            background: #fffbf0;
+            padding: 12px 14px;
+            border-radius: 16px;
+            border: 2px solid #c9a05c;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+        .select-row .sel-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            min-width: 110px;
+        }
+        .select-row .sel-group label {
+            font-weight: 700;
+            color: #5a3f0a;
+            font-size: 15px;
+            white-space: nowrap;
+        }
+        .select-row .sel-group select {
+            flex: 1;
+            padding: 8px 6px;
+            border: 2px solid #b8860b;
+            border-radius: 10px;
+            background: #fffcf5;
+            font-weight: 700;
+            font-size: 16px;
+            color: #3d2b06;
+            outline: none;
+            cursor: pointer;
+            min-width: 60px;
+        }
+        .select-row .sel-group select:focus {
+            border-color: #daa520;
+            box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.3);
+        }
+
+        .result-card {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(145deg, #fffbf0, #f5e6c8);
+            border-radius: 20px;
+            padding: 16px 12px;
+            border: 2px solid #b8860b;
+            box-shadow: inset 0 2px 20px rgba(184, 134, 11, 0.08), 0 8px 24px rgba(0,0,0,0.08);
+            margin-top: 4px;
+            transition: all 0.3s ease;
+        }
+        .result-card.out-of-stock {
+            border-color: #cc0000;
+            background: linear-gradient(145deg, #fff0f0, #ffe0e0);
+            box-shadow: inset 0 2px 20px rgba(204, 0, 0, 0.1), 0 8px 24px rgba(204, 0, 0, 0.1);
+        }
+        .result-card .watermark {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-25deg);
+            font-size: 40px;
+            font-weight: 1000;
+            color: rgba(249, 5, 5, 0.997);
+            letter-spacing: 3px;
+            white-space: nowrap;
+            pointer-events: none;
+            animation: blinkWatermark 1s infinite;
+            z-index: 1;
+            text-transform: uppercase;
+        }
+        .result-card.out-of-stock .watermark {
+            display: block;
+        }
+        @keyframes blinkWatermark {
+            0%, 100% { opacity: 0.15; transform: translate(-50%, -50%) rotate(-25deg) scale(1); }
+            50% { opacity: 0.60; transform: translate(-50%, -50%) rotate(-25deg) scale(1.05); }
+        }
+        .result-card .result-row {
+            position: relative;
+            z-index: 2;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 4px;
+            border-bottom: 1px solid #e8d5b0;
+        }
+        .result-row:last-child {
+            border-bottom: none;
+        }
+        .result-row .label {
+            font-weight: 600;
+            color: #5a3f0a;
+            font-size: 16px;
+        }
+        .result-row .value {
+            font-weight: 800;
+            color: #3d2b06;
+            font-size: 20px;
+        }
+        .result-row .value.price {
+            color: #b8860b;
+            font-size: 24px;
+        }
+        .result-row .value.no-weight {
+            color: #999;
+            font-style: italic;
+            font-size: 16px;
+        }
+
+        /* ===== MELTING PAGE ===== */
+        .melting-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .melting-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            background: #fffbf0;
+            padding: 10px 14px;
+            border-radius: 16px;
+            border: 2px solid #c9a05c;
+        }
+        .melting-row label {
+            font-weight: 700;
+            color: #5a3f0a;
+            min-width: 80px;
+            font-size: 15px;
+        }
+        .melting-row input,
+        .melting-row select {
+            flex: 1;
+            min-width: 80px;
+            padding: 8px 10px;
+            border: 2px solid #d4b48c;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            background: #fffcf5;
+            color: #2c1a05;
+            outline: none;
+        }
+        .melting-row input:focus,
+        .melting-row select:focus {
+            border-color: #b8860b;
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2);
+        }
+
+        .melting-result {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 4px;
+        }
+        .melting-result .res-card {
+            background: linear-gradient(145deg, #f5e6c8, #e8d5b0);
+            border-radius: 16px;
+            padding: 12px 6px;
+            text-align: center;
+            border: 2px solid #b8860b;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .melting-result .res-card .label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #7a5d2e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .melting-result .res-card .value {
+            font-size: 20px;
+            font-weight: 800;
+            color: #3d2b06;
+            margin-top: 2px;
+        }
+
+        @media (max-width: 400px) {
+            .app-container { padding: 14px 10px 20px; }
+            .main-heading { font-size: 22px; }
+            .btn-gold { font-size: 17px; padding: 12px 6px; }
+            .page-heading { font-size: 21px; }
+            .select-row .sel-group select { font-size: 14px; padding: 6px 4px; }
+            .result-row .value { font-size: 17px; }
+            .result-row .value.price { font-size: 20px; }
+            .result-card .watermark { font-size: 24px; }
+            .melting-result { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+
+    <div class="main-heading">✨ GoldMate ✨</div>
+
+    <div class="btn-group">
+        <button class="btn-gold active" id="btnNath" onclick="showPage('nath')">NATH</button>
+        <button class="btn-gold" id="btnMelt" onclick="showPage('melting')">MELTING</button>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ====== PAGE 1: NATH ====== -->
+    <!-- ========================================================= -->
+    <div class="page active" id="pageNath">
+
+        <div class="page-heading">🔶 NATH 🔶</div>
+
+        <div class="rate-box">
+            <label>📊 Rate</label>
+            <span class="rupee-symbol">₹</span>
+            <input type="number" id="nathRate" value="16000" step="10" oninput="updateNathResult()" />
+            <span style="font-size:13px; color:#7a5d2e;">/gm</span>
+        </div>
+
+        <div class="select-row">
+            <div class="sel-group">
+                <label>🔢 No.</label>
+                <select id="selNumber" onchange="updateNathResult()">
+                    <option value="000">000</option>
+                    <option value="00">00</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2" selected>2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="sel-group">
+                <label>📂 Type</label>
+                <select id="selType" onchange="updateNathResult()">
+                    <option value="Regular">Regular</option>
+                    <option value="D.Tik">D.Tik</option>
+                    <option value="Jad Dandi">Jad Dandi</option>
+                    <option value="Puneri">Puneri</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="result-card" id="nathResult">
+            <div class="watermark">OUT OF STOCK</div>
+            <div class="result-row">
+                <span class="label">🔢 No.</span>
+                <span class="value" id="resultNumber">2</span>
+            </div>
+            <div class="result-row">
+                <span class="label">📂 Type</span>
+                <span class="value" id="resultType">Regular</span>
+            </div>
+            <div class="result-row">
+                <span class="label">⚖️ Weight (gm)</span>
+                <span class="value" id="resultWeight">0.500</span>
+            </div>
+            <div class="result-row">
+                <span class="label">💰 Price (₹)</span>
+                <span class="value price" id="resultPrice">₹ 3,450.00</span>
+            </div>
+        </div>
+
+        <div style="margin-top:12px; text-align:center; font-size:13px; color:#7a5d2e; font-weight:500; background:#fffbf0; padding:6px 12px; border-radius:60px; border:1px solid #d4b48c;">
+            ⚡ Select <strong>No.</strong> and <strong>Type</strong> to see the value
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ====== PAGE 2: MELTING ====== -->
+    <!-- ========================================================= -->
+    <div class="page" id="pageMelting">
+
+        <div class="page-heading">🔥 Melting Calculation 🔥</div>
+
+        <div class="melting-grid">
+
+            <!-- ===== TARGET % (वर) ===== -->
+            <div class="melting-row">
+                <label>🔸 Target %</label>
+                <select id="meltTarget" onchange="calculateMelting()">
+                    <option value="92">92%</option>
+                    <option value="84" selected>84%</option>
+                    <option value="75">75%</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="number" id="meltTargetOther" placeholder="Enter %" style="display:none; flex:0.8;" oninput="calculateMelting()" />
+            </div>
+
+            <!-- ===== SOURCE % (खाली) ===== -->
+            <div class="melting-row">
+                <label>🔹 Source %</label>
+                <select id="meltPercent" onchange="calculateMelting()">
+                    <option value="99.50">995</option>
+                    <option value="100">999</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="number" id="meltPercentOther" placeholder="Enter %" style="display:none; flex:0.8;" oninput="calculateMelting()" />
+            </div>
+
+            <!-- ===== FINE WEIGHT ===== -->
+            <div class="melting-row">
+                <label>⚖️ Fine Weight</label>
+                <input type="number" id="fineWeight" value="10" step="0.01" oninput="calculateMelting()" />
+                <span style="font-weight:600; color:#5a3f0a;">gm</span>
+            </div>
+
+            <div class="melting-result" id="meltingResult">
+                <div class="res-card">
+                    <div class="label">Total Weight</div>
+                    <div class="value" id="mTotalWeight">0.00</div>
+                </div>
+                <div class="res-card">
+                    <div class="label">Total Mixer</div>
+                    <div class="value" id="mTotalMixer">0.00</div>
+                </div>
+                <div class="res-card">
+                    <div class="label">Silver</div>
+                    <div class="value" id="mSilver">0.00</div>
+                </div>
+                <div class="res-card">
+                    <div class="label">Copper</div>
+                    <div class="value" id="mCopper">0.00</div>
+                </div>
+            </div>
+
+            <div style="margin-top:4px; text-align:center; font-size:13px; color:#7a5d2e; font-weight:500; background:#fffbf0; padding:8px; border-radius:60px; border:1px solid #d4b48c;">
+                Formula: (Fine Weight × Source%) / Target% = Total Weight
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // ================================================================
+    // 1. WEIGHT MAP - Type-wise weights per number
+    // ================================================================
+    const WEIGHT_MAP = {
+        '000|Regular': 0.340,
+        '000|D.Tik': 0.000,
+        '000|Jad Dandi': 0.000,
+        '000|Puneri': 0.000,
+
+        '00|Regular': 0.370,
+        '00|D.Tik': 0.000,
+        '00|Jad Dandi': 0.500,
+        '00|Puneri': 0.380,
+
+        '0|Regular': 0.400,
+        '0|D.Tik': 0.000,
+        '0|Jad Dandi': 0.520,
+        '0|Puneri': 0.410,
+
+        '1|Regular': 0.430,
+        '1|D.Tik': 0.000,
+        '1|Jad Dandi': 0.550,
+        '1|Puneri': 0.440,
+
+        '2|Regular': 0.460,
+        '2|D.Tik': 0.000,
+        '2|Jad Dandi': 0.610,
+        '2|Puneri': 0.470,
+
+        '3|Regular': 0.490,
+        '3|D.Tik': 0.000,
+        '3|Jad Dandi': 0.630,
+        '3|Puneri': 0.500,
+
+        '4|Regular': 0.520,
+        '4|D.Tik': 0.000,
+        '4|Jad Dandi': 0.660,
+        '4|Puneri': 0.530,
+
+        '5|Regular': 0.550,
+        '5|D.Tik': 0.000,
+        '5|Jad Dandi': 0.730,
+        '5|Puneri': 0.560
+    };
+
+    // ================================================================
+    // 2. OUT OF STOCK LIST
+    // ================================================================
+    const OUT_OF_STOCK = [
+        '000|D.Tik',
+        '00|D.Tik',
+        '3|Regular',
+        '4|Puneri',
+        '5|Jad Dandi'
+    ];
+
+    const SHOW_WEIGHT_FOR = ['Regular', 'Jad Dandi', 'Puneri'];
+
+    // ================================================================
+    // 3. Helper functions
+    // ================================================================
+    function getWeight(number, type) {
+        const key = number + '|' + type;
+        return WEIGHT_MAP[key] || 0;
+    }
+
+    function isOutOfStock(number, type) {
+        return OUT_OF_STOCK.includes(number + '|' + type);
+    }
+
+    // ================================================================
+    // 4. NATH - Calculate and display single row
+    // ================================================================
+
+    function calculateNathPrice(type, weight, rate, number) {
+        if (rate <= 0) return 0;
+        
+        let price = 0;
+        
+        if (type === 'Regular' || type === 'Jad Dandi' || type === 'Puneri') {
+            if (weight <= 0) return 0;
+            const base = weight * 0.88 * rate;
+            price = base + 150;
+            price = Math.round(price / 100) * 100;
+        } else if (type === 'D.Tik') {
+            const regWeight = getWeight(number, 'Regular');
+            if (regWeight <= 0) return 0;
+            const regBase = regWeight * 0.88 * rate;
+            const regPrice = regBase + 150;
+            const roundedRegPrice = Math.round(regPrice / 100) * 100;
+            price = roundedRegPrice + 150;
+        }
+        
+        return price;
+    }
+
+    function updateNathResult() {
+        const rate = parseFloat(document.getElementById('nathRate').value) || 0;
+        const number = document.getElementById('selNumber').value;
+        const type = document.getElementById('selType').value;
+        const weight = getWeight(number, type);
+
+        const outOfStock = isOutOfStock(number, type);
+        const price = calculateNathPrice(type, weight, rate, number);
+
+        const resultCard = document.getElementById('nathResult');
+
+        document.getElementById('resultNumber').textContent = number;
+        document.getElementById('resultType').textContent = type;
+
+        const weightEl = document.getElementById('resultWeight');
+        const priceEl = document.getElementById('resultPrice');
+
+        if (SHOW_WEIGHT_FOR.includes(type) && weight > 0) {
+            weightEl.textContent = weight.toFixed(3);
+            weightEl.className = 'value';
+        } else {
+            weightEl.textContent = '—';
+            weightEl.className = 'value no-weight';
+        }
+
+        if (outOfStock) {
+            resultCard.classList.add('out-of-stock');
+            priceEl.textContent = '₹ ' + price.toFixed(2);
+            priceEl.className = 'value price';
+        } else {
+            resultCard.classList.remove('out-of-stock');
+            priceEl.textContent = '₹ ' + price.toFixed(2);
+            priceEl.className = 'value price';
+        }
+    }
+
+    // ================================================================
+    // 5. MELTING - Logic with Source & Target
+    // ================================================================
+
+    function getPercentValue(selectId, otherId) {
+        const select = document.getElementById(selectId);
+        const other = document.getElementById(otherId);
+        
+        if (select.value === 'other') {
+            other.style.display = 'inline-block';
+            return parseFloat(other.value) || 0;
+        } else {
+            other.style.display = 'none';
+            return parseFloat(select.value) || 0;
+        }
+    }
+
+    function calculateMelting() {
+        // Target % (वरचा)
+        const targetPercent = getPercentValue('meltTarget', 'meltTargetOther');
+        // Source % (खालचा)
+        const sourcePercent = getPercentValue('meltPercent', 'meltPercentOther');
+        const fineWeight = parseFloat(document.getElementById('fineWeight').value) || 0;
+
+        if (sourcePercent <= 0 || targetPercent <= 0 || fineWeight <= 0) {
+            document.getElementById('mTotalWeight').textContent = '0.00';
+            document.getElementById('mTotalMixer').textContent = '0.00';
+            document.getElementById('mSilver').textContent = '0.00';
+            document.getElementById('mCopper').textContent = '0.00';
+            return;
+        }
+
+        // Total Weight = (Fine Weight × Source%) / Target%
+        const totalWeight = (fineWeight * sourcePercent) / targetPercent;
+        const totalMixer = totalWeight - fineWeight;
+        const silver = totalMixer / 3;
+        const copper = silver * 2;
+
+        document.getElementById('mTotalWeight').textContent = totalWeight.toFixed(3);
+        document.getElementById('mTotalMixer').textContent = totalMixer.toFixed(3);
+        document.getElementById('mSilver').textContent = silver.toFixed(3);
+        document.getElementById('mCopper').textContent = copper.toFixed(3);
+    }
+
+    // ================================================================
+    // 6. PAGE SWITCHING
+    // ================================================================
+
+    function showPage(page) {
+        document.getElementById('pageNath').classList.remove('active');
+        document.getElementById('pageMelting').classList.remove('active');
+
+        if (page === 'nath') {
+            document.getElementById('pageNath').classList.add('active');
+            document.getElementById('btnNath').classList.add('active');
+            document.getElementById('btnMelt').classList.remove('active');
+        } else {
+            document.getElementById('pageMelting').classList.add('active');
+            document.getElementById('btnMelt').classList.add('active');
+            document.getElementById('btnNath').classList.remove('active');
+            calculateMelting();
+        }
+    }
+
+    // ================================================================
+    // 7. INIT
+    // ================================================================
+
+    // Handle "Other" for Source %
+    document.getElementById('meltPercent').addEventListener('change', function() {
+        const otherInput = document.getElementById('meltPercentOther');
+        if (this.value === 'other') {
+            otherInput.style.display = 'inline-block';
+            otherInput.focus();
+        } else {
+            otherInput.style.display = 'none';
+        }
+        calculateMelting();
+    });
+
+    // Handle "Other" for Target %
+    document.getElementById('meltTarget').addEventListener('change', function() {
+        const otherInput = document.getElementById('meltTargetOther');
+        if (this.value === 'other') {
+            otherInput.style.display = 'inline-block';
+            otherInput.focus();
+        } else {
+            otherInput.style.display = 'none';
+        }
+        calculateMelting();
+    });
+
+    document.getElementById('fineWeight').addEventListener('input', calculateMelting);
+
+    document.getElementById('selNumber').value = '2';
+    document.getElementById('selType').value = 'Regular';
+
+    updateNathResult();
+    calculateMelting();
+
+    console.log('✅ GoldMate loaded!');
+    console.log('📦 Out of Stock items:', OUT_OF_STOCK);
+    console.log('📌 Target % (वर) → Source % (खाली)');
+    console.log('📌 Total Weight = (Fine Weight × Source%) / Target%');
+</script>
+
+</body>
+</html>
