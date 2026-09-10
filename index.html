@@ -4,6 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>GoldMate</title>
+
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>GoldMate</title>
+    
+    <!-- 🔹 PWA Manifest -->
+    <link rel="manifest" href="manifest.json" />
+    
+    <!-- 🔹 Theme Color -->
+    <meta name="theme-color" content="#b8860b" />
+    
+    <!-- 🔹 Apple iOS Support -->
+    <link rel="apple-touch-icon" href="images/logo-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="GoldMate" />
+    
+    <!-- 🔹 Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png" />
+    
+    <style>
+        /* ... तुमचा CSS ... */
+    </style>
+</head>
+
     <style>
         * {
             margin: 0;
@@ -20,7 +46,7 @@
             padding: 16px;
         }
         .app-container {
-            max-width: 420px;
+            max-width: 480px;
             width: 100%;
             background: linear-gradient(180deg, #faf3e0 0%, #f5e6c8 100%);
             border-radius: 32px;
@@ -51,28 +77,58 @@
             border-bottom: 3px double #b8860b;
             margin-bottom: 18px;
         }
+        .main-heading .heading-icons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .main-heading .heading-icons .icon-img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
         .main-heading span { color: #b8860b; }
+
+        .admin-link {
+            text-align: right;
+            margin-top: -8px;
+            margin-bottom: 8px;
+        }
+        .admin-link a {
+            color: #7a5d2e;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            background: #f5e6c8;
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1px solid #b8860b;
+            display: inline-block;
+        }
 
         .btn-group {
             display: flex;
-            gap: 16px;
+            gap: 8px;
             justify-content: center;
             margin: 16px 0 10px;
+            flex-wrap: wrap;
         }
         .btn-gold {
             flex: 1;
-            padding: 14px 8px;
+            padding: 10px 4px;
             border: none;
             border-radius: 60px;
-            font-size: 20px;
+            font-size: 15px;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             color: #fff;
             background: linear-gradient(145deg, #b8860b, #8b6914);
             box-shadow: 0 6px 0 #5a3f0a, 0 8px 20px rgba(0, 0, 0, 0.4);
             cursor: pointer;
             transition: all 0.08s ease;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+            min-width: 55px;
         }
         .btn-gold:active {
             transform: translateY(6px);
@@ -103,8 +159,18 @@
             margin: 6px 0 16px;
             letter-spacing: 3px;
             border: 1px solid #b8860b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .page-heading .icon-img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
         }
 
+        /* ===== NATH PAGE ===== */
         .rate-box {
             background: #fffbf0;
             border-radius: 60px;
@@ -328,16 +394,232 @@
             margin-top: 2px;
         }
 
+        /* ===== REPORT PAGE ===== */
+        .report-table-wrap {
+            background: #fffbf0;
+            border-radius: 16px;
+            padding: 8px 4px;
+            border: 2px solid #c9a05c;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .report-table-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 340px;
+    table-layout: fixed;
+}
+
+/* Cross button column ला योग्य जागा */
+.report-table-wrap table th:last-child,
+.report-table-wrap table td:last-child {
+    width: 50px;
+    min-width: 50px;
+    max-width: 50px;
+    padding: 4px 2px;
+}
+        .report-table-wrap table th {
+            background: linear-gradient(145deg, #b8860b, #9a7209);
+            color: #fff;
+            font-weight: 700;
+            padding: 8px 6px;
+            text-align: center;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            border: 1px solid #8b6914;
+            white-space: nowrap;
+        }
+        .report-table-wrap table td {
+            padding: 6px 4px;
+            text-align: center;
+            border-bottom: 1px solid #e8d5b0;
+            color: #2c1a05;
+            font-weight: 500;
+            vertical-align: middle;
+        }
+        .report-table-wrap table td input {
+            width: 100%;
+            padding: 6px 4px;
+            border: 1px solid #d4b48c;
+            border-radius: 6px;
+            background: #fffcf5;
+            font-weight: 600;
+            font-size: 14px;
+            color: #3d2b06;
+            outline: none;
+            text-align: center;
+        }
+        .report-table-wrap table td input:focus {
+            border-color: #b8860b;
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2);
+        }
+        .report-table-wrap table td input.readonly-fine {
+            background: #f5f0e0;
+            color: #b8860b;
+            font-weight: 700;
+            border-color: #d4b48c;
+            cursor: default;
+        }
+        .report-table-wrap table tr:nth-child(even) td {
+            background: #faf1e0;
+        }
+        .report-table-wrap table tr:hover td {
+            background: #f5e6c8;
+        }
+
+        .btn-remove-row {
+            padding: 4px 10px;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(145deg, #cc0000, #990000);
+            box-shadow: 0 3px 0 #660000;
+            cursor: pointer;
+            transition: all 0.08s ease;
+        }
+        .btn-remove-row:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #660000;
+        }
+
+        .btn-group-sm {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-gold-sm {
+            flex: 1;
+            padding: 10px 8px;
+            border: none;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #fff;
+            background: linear-gradient(145deg, #b8860b, #8b6914);
+            box-shadow: 0 4px 0 #5a3f0a, 0 4px 12px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.08s ease;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            min-width: 60px;
+        }
+        .btn-gold-sm:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #5a3f0a;
+        }
+        .btn-gold-sm.green {
+            background: linear-gradient(145deg, #2d7d46, #1e5a32);
+            box-shadow: 0 4px 0 #0f3a1e;
+        }
+        .btn-gold-sm.green:active {
+            box-shadow: 0 1px 0 #0f3a1e;
+        }
+        .btn-gold-sm.blue {
+            background: linear-gradient(145deg, #1a6a8a, #0f4a62);
+            box-shadow: 0 4px 0 #08303f;
+        }
+        .btn-gold-sm.blue:active {
+            box-shadow: 0 1px 0 #08303f;
+        }
+        .btn-gold-sm.red {
+            background: linear-gradient(145deg, #cc0000, #990000);
+            box-shadow: 0 4px 0 #660000;
+        }
+        .btn-gold-sm.red:active {
+            box-shadow: 0 1px 0 #660000;
+        }
+
+        .result-box {
+    background: #fffbf0;
+    border-radius: 16px;
+    padding: 12px 14px;
+    border: 2px solid #c9a05c;
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    justify-items: center;
+    align-items: center;
+}
+
+/* मोबाईल view मध्ये Average Report box मध्यभागी */
+@media (max-width: 400px) {
+    .result-box {
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+    }
+    .result-box .res-item.highlight {
+        grid-column: span 2;
+        width: 60%;
+        margin: 0 auto;
+        justify-self: center;
+    }
+}
+        .result-box .res-item {
+            text-align: center;
+            background: #f5e6c8;
+            border-radius: 10px;
+            padding: 8px 4px;
+            border: 1px solid #d4b48c;
+        }
+        .result-box .res-item .label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #7a5d2e;
+            text-transform: uppercase;
+        }
+        .result-box .res-item .value {
+            font-size: 20px;
+            font-weight: 800;
+            color: #b8860b;
+        }
+        .result-box .res-item.highlight {
+            background: linear-gradient(145deg, #2d7d46, #1e5a32);
+            border-color: #0f3a1e;
+            box-shadow: 0 4px 16px rgba(45, 125, 70, 0.4);
+        }
+        .result-box .res-item.highlight .label {
+            color: #fff;
+        }
+        .result-box .res-item.highlight .value {
+            color: #fff;
+            font-size: 24px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .status-msg {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: #2d7d46;
+            margin-top: 6px;
+            min-height: 24px;
+        }
+        .status-msg.error {
+            color: #cc0000;
+        }
+
         @media (max-width: 400px) {
             .app-container { padding: 14px 10px 20px; }
             .main-heading { font-size: 22px; }
-            .btn-gold { font-size: 17px; padding: 12px 6px; }
-            .page-heading { font-size: 21px; }
-            .select-row .sel-group select { font-size: 14px; padding: 6px 4px; }
+            .main-heading .heading-icons .icon-img { width: 28px; height: 28px; }
+            .btn-gold { font-size: 13px; padding: 8px 3px; }
+            .page-heading { font-size: 21px; gap: 8px; }
+            .page-heading .icon-img { width: 24px; height: 24px; }
+            .select-row .sel-group select { font-size: 13px; padding: 6px 4px; }
             .result-row .value { font-size: 17px; }
             .result-row .value.price { font-size: 20px; }
             .result-card .watermark { font-size: 24px; }
             .melting-result { grid-template-columns: 1fr 1fr; }
+            .result-box { grid-template-columns: 1fr 1fr; }
+            .result-box .res-item.highlight .value { font-size: 20px; }
+            .btn-gold-sm { font-size: 13px; padding: 8px 4px; }
+            .report-table-wrap table { font-size: 11px; min-width: 300px; }
         }
     </style>
 </head>
@@ -345,11 +627,25 @@
 
 <div class="app-container">
 
-    <div class="main-heading">✨ GoldMate ✨</div>
+    <!-- ===== MAIN HEADING ===== -->
+    <div class="main-heading">
+        <div class="heading-icons">
+            <img src="images/left-icon.png" class="icon-img" alt="icon" />
+             Gold<span>Mate</span> 
+            <img src="images/right-icon.png" class="icon-img" alt="icon" />
+        </div>
+    </div>
 
+    <!-- ===== ADMIN LINK ===== -->
+    <div class="admin-link">
+        <a href="admin.html">🔐 Admin</a>
+    </div>
+
+    <!-- ===== BUTTONS ===== -->
     <div class="btn-group">
         <button class="btn-gold active" id="btnNath" onclick="showPage('nath')">NATH</button>
         <button class="btn-gold" id="btnMelt" onclick="showPage('melting')">MELTING</button>
+        <button class="btn-gold" id="btnReport" onclick="showPage('report')">REPORT</button>
     </div>
 
     <!-- ========================================================= -->
@@ -357,7 +653,11 @@
     <!-- ========================================================= -->
     <div class="page active" id="pageNath">
 
-        <div class="page-heading">🔶 NATH 🔶</div>
+        <div class="page-heading">
+            <img src="images/nath-icon.png" class="icon-img" alt="nath" />
+            NATH
+            <img src="images/nath-icon-2.png" class="icon-img" alt="nath" />
+        </div>
 
         <div class="rate-box">
             <label>📊 Rate</label>
@@ -370,15 +670,15 @@
             <div class="sel-group">
                 <label>🔢 No.</label>
                 <select id="selNumber" onchange="updateNathResult()">
-                    <option value="000">000</option>
-                    <option value="00">00</option>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2" selected>2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+    <option value="000" selected>000</option>
+    <option value="00">00</option>
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+</select>
             </div>
             <div class="sel-group">
                 <label>📂 Type</label>
@@ -421,11 +721,14 @@
     <!-- ========================================================= -->
     <div class="page" id="pageMelting">
 
-        <div class="page-heading">🔥 Melting Calculation 🔥</div>
+        <div class="page-heading">
+            <img src="images/melt-icon.png" class="icon-img" alt="melting" />
+            Melting Calculation
+            <img src="images/melt-icon-2.png" class="icon-img" alt="melting" />
+        </div>
 
         <div class="melting-grid">
 
-            <!-- ===== TARGET % (वर) ===== -->
             <div class="melting-row">
                 <label>🔸 Target %</label>
                 <select id="meltTarget" onchange="calculateMelting()">
@@ -437,18 +740,16 @@
                 <input type="number" id="meltTargetOther" placeholder="Enter %" style="display:none; flex:0.8;" oninput="calculateMelting()" />
             </div>
 
-            <!-- ===== SOURCE % (खाली) ===== -->
             <div class="melting-row">
                 <label>🔹 Source %</label>
                 <select id="meltPercent" onchange="calculateMelting()">
-                    <option value="99.50">995</option>
-                    <option value="100">999</option>
+                    <option value="99.50">99.50%</option>
+                    <option value="100">100%</option>
                     <option value="other">Other</option>
                 </select>
                 <input type="number" id="meltPercentOther" placeholder="Enter %" style="display:none; flex:0.8;" oninput="calculateMelting()" />
             </div>
 
-            <!-- ===== FINE WEIGHT ===== -->
             <div class="melting-row">
                 <label>⚖️ Fine Weight</label>
                 <input type="number" id="fineWeight" value="10" step="0.01" oninput="calculateMelting()" />
@@ -465,11 +766,11 @@
                     <div class="value" id="mTotalMixer">0.00</div>
                 </div>
                 <div class="res-card">
-                    <div class="label">Silver</div>
+                    <div class="label">Silver(चांदी)</div>
                     <div class="value" id="mSilver">0.00</div>
                 </div>
                 <div class="res-card">
-                    <div class="label">Copper</div>
+                    <div class="label">Copper(तांबे)</div>
                     <div class="value" id="mCopper">0.00</div>
                 </div>
             </div>
@@ -477,6 +778,62 @@
             <div style="margin-top:4px; text-align:center; font-size:13px; color:#7a5d2e; font-weight:500; background:#fffbf0; padding:8px; border-radius:60px; border:1px solid #d4b48c;">
                 Formula: (Fine Weight × Source%) / Target% = Total Weight
             </div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ====== PAGE 3: REPORT ====== -->
+    <!-- ========================================================= -->
+    <div class="page" id="pageReport">
+
+        <div class="page-heading">
+            <img src="images/report-icon.png" class="icon-img" alt="report" />
+            Average Report
+            <img src="images/report-icon-2.png" class="icon-img" alt="report" />
+        </div>
+        <div style="text-align:center; font-size:14px; font-weight:600; color:#5a3f0a; margin-bottom:12px;">Weight × Report% = Fine</div>
+
+        <div class="report-table-wrap">
+            <table id="reportTable">
+                <thead>
+                    <tr>
+                        <th style="width:30px;">#</th>
+                        <th>Weight (gm)</th>
+                        <th>Report (%)</th>
+                        <th>Fine (gm)</th>
+                        <th style="width:40px;">✕</th>
+                    </tr>
+                </thead>
+                <tbody id="reportBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="btn-group-sm">
+            <button class="btn-gold-sm green" onclick="saveReportData()">💾 Save</button>
+            <button class="btn-gold-sm blue" onclick="loadReportPrevious()">⬅️ Previous</button>
+            <button class="btn-gold-sm red" onclick="clearReportAll()">🗑️ Clear</button>
+        </div>
+
+        <div class="status-msg" id="reportStatusMsg"></div>
+
+        <div class="result-box" id="reportResultBox">
+            <div class="res-item">
+                <div class="label">Total Weight</div>
+                <div class="value" id="reportTotalWeight">0.00</div>
+            </div>
+            <div class="res-item">
+                <div class="label">Total Fine</div>
+                <div class="value" id="reportTotalFine">0.00</div>
+            </div>
+            <div class="res-item highlight">
+                <div class="label">Average Report</div>
+                <div class="value" id="reportAvgReport">0.00%</div>
+            </div>
+        </div>
+
+        <div style="margin-top:8px; text-align:center; font-size:12px; color:#7a5d2e; background:#fffbf0; padding:6px; border-radius:30px; border:1px solid #d4b48c;">
+            Average Report = (Total Fine ÷ Total Weight) × 100
         </div>
     </div>
 
@@ -529,15 +886,37 @@
     };
 
     // ================================================================
-    // 2. OUT OF STOCK LIST
+    // 2. OUT OF STOCK LIST - Load from localStorage (Admin sync)
     // ================================================================
-    const OUT_OF_STOCK = [
-        '000|D.Tik',
-        '00|D.Tik',
-        '3|Regular',
-        '4|Puneri',
-        '5|Jad Dandi'
-    ];
+    const STORAGE_KEY = 'goldmate_out_of_stock';
+
+    function getOutOfStockList() {
+        try {
+            const data = localStorage.getItem(STORAGE_KEY);
+            if (data) {
+                return JSON.parse(data);
+            }
+        } catch (e) {}
+        return [];
+    }
+
+    function getDefaultOutOfStock() {
+        return [
+            '000|D.Tik',
+            '00|D.Tik',
+            '3|Regular',
+            '4|Puneri',
+            '5|Jad Dandi'
+        ];
+    }
+
+    let OUT_OF_STOCK = getOutOfStockList();
+    if (OUT_OF_STOCK.length === 0) {
+        OUT_OF_STOCK = getDefaultOutOfStock();
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(OUT_OF_STOCK));
+        } catch (e) {}
+    }
 
     const SHOW_WEIGHT_FOR = ['Regular', 'Jad Dandi', 'Puneri'];
 
@@ -554,7 +933,29 @@
     }
 
     // ================================================================
-    // 4. NATH - Calculate and display single row
+    // 4. Admin Changes Auto-Sync (Check every 2 seconds)
+    // ================================================================
+    function checkAdminChanges() {
+        try {
+            const changed = localStorage.getItem('goldmate_admin_changed');
+            if (changed) {
+                const newList = getOutOfStockList();
+                if (newList.length > 0) {
+                    OUT_OF_STOCK = newList;
+                } else {
+                    OUT_OF_STOCK = getDefaultOutOfStock();
+                }
+                localStorage.removeItem('goldmate_admin_changed');
+                updateNathResult();
+                console.log('🔄 Admin changes applied! Out of Stock updated.');
+            }
+        } catch (e) {}
+    }
+
+    setInterval(checkAdminChanges, 2000);
+
+    // ================================================================
+    // 5. NATH - Calculate and display single row
     // ================================================================
 
     function calculateNathPrice(type, weight, rate, number) {
@@ -616,7 +1017,7 @@
     }
 
     // ================================================================
-    // 5. MELTING - Logic with Source & Target
+    // 6. MELTING - Logic
     // ================================================================
 
     function getPercentValue(selectId, otherId) {
@@ -633,9 +1034,7 @@
     }
 
     function calculateMelting() {
-        // Target % (वरचा)
         const targetPercent = getPercentValue('meltTarget', 'meltTargetOther');
-        // Source % (खालचा)
         const sourcePercent = getPercentValue('meltPercent', 'meltPercentOther');
         const fineWeight = parseFloat(document.getElementById('fineWeight').value) || 0;
 
@@ -647,7 +1046,6 @@
             return;
         }
 
-        // Total Weight = (Fine Weight × Source%) / Target%
         const totalWeight = (fineWeight * sourcePercent) / targetPercent;
         const totalMixer = totalWeight - fineWeight;
         const silver = totalMixer / 3;
@@ -660,27 +1058,308 @@
     }
 
     // ================================================================
-    // 6. PAGE SWITCHING
+    // 7. PAGE SWITCHING
     // ================================================================
 
     function showPage(page) {
         document.getElementById('pageNath').classList.remove('active');
         document.getElementById('pageMelting').classList.remove('active');
+        document.getElementById('pageReport').classList.remove('active');
+
+        document.getElementById('btnNath').classList.remove('active');
+        document.getElementById('btnMelt').classList.remove('active');
+        document.getElementById('btnReport').classList.remove('active');
 
         if (page === 'nath') {
             document.getElementById('pageNath').classList.add('active');
             document.getElementById('btnNath').classList.add('active');
-            document.getElementById('btnMelt').classList.remove('active');
-        } else {
+        } else if (page === 'melting') {
             document.getElementById('pageMelting').classList.add('active');
             document.getElementById('btnMelt').classList.add('active');
-            document.getElementById('btnNath').classList.remove('active');
             calculateMelting();
+        } else if (page === 'report') {
+            document.getElementById('pageReport').classList.add('active');
+            document.getElementById('btnReport').classList.add('active');
+            calculateReportData();
         }
     }
 
     // ================================================================
-    // 7. INIT
+    // 8. REPORT (Average Report) - Data Store
+    // ================================================================
+
+    const MAX_BACKUPS = 5;
+    let backupList = [];
+    let currentBackupIndex = -1;
+    let rowCounter = 0;
+
+    function loadBackupsFromStorage() {
+        try {
+            const saved = localStorage.getItem('avgReportBackups');
+            if (saved) {
+                backupList = JSON.parse(saved);
+                if (!Array.isArray(backupList)) backupList = [];
+                while (backupList.length > MAX_BACKUPS) {
+                    backupList.shift();
+                }
+            }
+        } catch (e) {
+            backupList = [];
+        }
+        currentBackupIndex = backupList.length > 0 ? backupList.length - 1 : -1;
+    }
+
+    function saveBackupsToStorage() {
+        try {
+            localStorage.setItem('avgReportBackups', JSON.stringify(backupList));
+        } catch (e) {}
+    }
+
+    loadBackupsFromStorage();
+
+    // ================================================================
+    // 9. REPORT - Row Management
+    // ================================================================
+
+    function addReportRow(weight = '', report = '', focusField = 'weight') {
+        rowCounter++;
+        const tbody = document.getElementById('reportBody');
+        const tr = document.createElement('tr');
+        tr.id = 'report-row-' + rowCounter;
+
+        tr.innerHTML = `
+            <td style="font-weight:700; color:#7a5d2e;">${rowCounter}</td>
+            <td><input type="number" class="report-weight-input" value="${weight}" step="0.01" data-row="${rowCounter}" /></td>
+            <td><input type="number" class="report-report-input" value="${report}" step="0.01" data-row="${rowCounter}" /></td>
+            <td><input type="text" class="report-fine-output readonly-fine" readonly value="0.000" /></td>
+            <td><button class="btn-remove-row" onclick="removeReportRow('${tr.id}')">✕</button></td>
+        `;
+
+        tbody.appendChild(tr);
+
+        const weightInput = tr.querySelector('.report-weight-input');
+        const reportInput = tr.querySelector('.report-report-input');
+
+        weightInput.addEventListener('input', function() { updateReportFine(this); });
+        reportInput.addEventListener('input', function() { updateReportFine(this); });
+
+        weightInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const nextInput = this.closest('tr').querySelector('.report-report-input');
+                if (nextInput) nextInput.focus();
+            }
+        });
+
+        reportInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const currentRow = this.closest('tr');
+                const nextRow = currentRow.nextElementSibling;
+                if (nextRow) {
+                    const nextWeight = nextRow.querySelector('.report-weight-input');
+                    if (nextWeight) nextWeight.focus();
+                } else {
+                    addReportRow('', '', 'weight');
+                    const newRow = document.querySelector('#reportBody tr:last-child');
+                    const newWeight = newRow.querySelector('.report-weight-input');
+                    if (newWeight) newWeight.focus();
+                }
+            }
+        });
+
+        if (weight && report) {
+            updateReportFine(weightInput);
+        }
+
+        if (focusField === 'weight') {
+            setTimeout(() => weightInput.focus(), 50);
+        }
+
+        setTimeout(calculateReportData, 50);
+    }
+
+    function removeReportRow(rowId) {
+        const row = document.getElementById(rowId);
+        if (row && document.querySelectorAll('#reportBody tr').length > 1) {
+            row.remove();
+            renumberReportRows();
+            calculateReportData();
+            showReportStatus('Row removed', '');
+        } else {
+            showReportStatus('किमान १ row ठेवा!', 'error');
+        }
+    }
+
+    function renumberReportRows() {
+        const rows = document.querySelectorAll('#reportBody tr');
+        rows.forEach((row, index) => {
+            row.id = 'report-row-' + (index + 1);
+            row.querySelector('td:first-child').textContent = index + 1;
+            const btn = row.querySelector('.btn-remove-row');
+            btn.setAttribute('onclick', `removeReportRow('report-row-${index + 1}')`);
+            const weightInput = row.querySelector('.report-weight-input');
+            const reportInput = row.querySelector('.report-report-input');
+            if (weightInput) weightInput.dataset.row = index + 1;
+            if (reportInput) reportInput.dataset.row = index + 1;
+        });
+        rowCounter = rows.length;
+    }
+
+    // ================================================================
+    // 10. REPORT - Calculation
+    // ================================================================
+
+    function updateReportFine(input) {
+        const row = input.closest('tr');
+        const weightInput = row.querySelector('.report-weight-input');
+        const reportInput = row.querySelector('.report-report-input');
+        const fineOutput = row.querySelector('.report-fine-output');
+
+        const weight = parseFloat(weightInput.value) || 0;
+        const report = parseFloat(reportInput.value) || 0;
+
+        const fine = (weight * report) / 100;
+        fineOutput.value = fine.toFixed(3);
+
+        calculateReportData();
+    }
+
+    function calculateReportData() {
+        const rows = document.querySelectorAll('#reportBody tr');
+        let totalWeight = 0;
+        let totalFine = 0;
+
+        rows.forEach(row => {
+            const weight = parseFloat(row.querySelector('.report-weight-input').value) || 0;
+            const fine = parseFloat(row.querySelector('.report-fine-output').value) || 0;
+            totalWeight += weight;
+            totalFine += fine;
+        });
+
+        const avgReport = totalWeight > 0 ? (totalFine / totalWeight) * 100 : 0;
+
+        document.getElementById('reportTotalWeight').textContent = totalWeight.toFixed(3);
+        document.getElementById('reportTotalFine').textContent = totalFine.toFixed(3);
+        document.getElementById('reportAvgReport').textContent = avgReport.toFixed(2) + '%';
+    }
+
+    // ================================================================
+    // 11. REPORT - Load Data
+    // ================================================================
+
+    function loadReportDataIntoTable(data) {
+        const tbody = document.getElementById('reportBody');
+        tbody.innerHTML = '';
+        rowCounter = 0;
+
+        if (!data || data.length === 0) {
+            addReportRow();
+            return;
+        }
+
+        data.forEach(item => {
+            addReportRow(item.weight, item.report);
+        });
+    }
+
+    // ================================================================
+    // 12. REPORT - Save / Previous / Clear
+    // ================================================================
+
+    function getCurrentReportData() {
+        const rows = document.querySelectorAll('#reportBody tr');
+        const data = [];
+        rows.forEach(row => {
+            const weight = row.querySelector('.report-weight-input').value || '';
+            const report = row.querySelector('.report-report-input').value || '';
+            data.push({ weight: weight, report: report });
+        });
+        return data;
+    }
+
+    function saveReportData() {
+        const data = getCurrentReportData();
+        
+        backupList.push(data);
+        
+        while (backupList.length > MAX_BACKUPS) {
+            backupList.shift();
+        }
+        
+        currentBackupIndex = backupList.length - 1;
+        
+        saveBackupsToStorage();
+        
+        showReportStatus(`✅ Data Saved! (${backupList.length}/${MAX_BACKUPS} backups)`, '');
+    }
+
+    function loadReportPrevious() {
+        if (backupList.length === 0) {
+            showReportStatus('❌ No backup data found!', 'error');
+            return;
+        }
+
+        if (currentBackupIndex < 0 || currentBackupIndex >= backupList.length) {
+            currentBackupIndex = backupList.length - 1;
+        }
+
+        const data = backupList[currentBackupIndex];
+        
+        if (!data || data.length === 0) {
+            showReportStatus('❌ Backup data is empty!', 'error');
+            currentBackupIndex--;
+            if (currentBackupIndex < 0) currentBackupIndex = backupList.length - 1;
+            return;
+        }
+
+        loadReportDataIntoTable(data);
+        
+        const displayIndex = currentBackupIndex + 1;
+        showReportStatus(`⬅️ Loaded backup ${displayIndex}/${backupList.length}`, '');
+        
+        currentBackupIndex--;
+        if (currentBackupIndex < 0) {
+            currentBackupIndex = backupList.length - 1;
+        }
+        
+        calculateReportData();
+    }
+
+    function clearReportAll() {
+        const tbody = document.getElementById('reportBody');
+        tbody.innerHTML = '';
+        rowCounter = 0;
+
+        addReportRow();
+
+        document.getElementById('reportTotalWeight').textContent = '0.00';
+        document.getElementById('reportTotalFine').textContent = '0.00';
+        document.getElementById('reportAvgReport').textContent = '0.00%';
+
+        showReportStatus('🗑️ All rows cleared!', '');
+    }
+
+    // ================================================================
+    // 13. REPORT - Status Message
+    // ================================================================
+
+    function showReportStatus(msg, type = '') {
+        const el = document.getElementById('reportStatusMsg');
+        el.textContent = msg;
+        el.className = 'status-msg' + (type === 'error' ? ' error' : '');
+        if (msg) {
+            setTimeout(() => {
+                if (el.textContent === msg) {
+                    el.textContent = '';
+                    el.className = 'status-msg';
+                }
+            }, 4000);
+        }
+    }
+
+    // ================================================================
+    // 14. INIT
     // ================================================================
 
     // Handle "Other" for Source %
@@ -709,16 +1388,20 @@
 
     document.getElementById('fineWeight').addEventListener('input', calculateMelting);
 
-    document.getElementById('selNumber').value = '2';
+    document.getElementById('selNumber').value = '000';
     document.getElementById('selType').value = 'Regular';
+
+    // REPORT Init
+    addReportRow();
+    addReportRow();
+    addReportRow();
 
     updateNathResult();
     calculateMelting();
 
     console.log('✅ GoldMate loaded!');
-    console.log('📦 Out of Stock items:', OUT_OF_STOCK);
-    console.log('📌 Target % (वर) → Source % (खाली)');
-    console.log('📌 Total Weight = (Fine Weight × Source%) / Target%');
+    console.log('📦 Out of Stock items (from localStorage):', OUT_OF_STOCK);
+    console.log('📌 Admin Panel changes auto-sync every 2 seconds');
 </script>
 
 </body>

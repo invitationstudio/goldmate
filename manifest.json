@@ -1,0 +1,25 @@
+{
+  "name": "GoldMate - Gold Calculator",
+  "short_name": "GoldMate",
+  "description": "Gold jewellery calculator for Nath and Melting",
+  "theme_color": "#b8860b",
+  "background_color": "#faf3e0",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "./index.html",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "images/logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
