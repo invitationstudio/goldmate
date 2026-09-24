@@ -1,42 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>GoldMate</title>
-
-    <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="google" content="notranslate" />
     <title>GoldMate</title>
     
-    <!-- 🔹 PWA Manifest -->
     <link rel="manifest" href="manifest.json" />
-    
-    <!-- 🔹 Theme Color -->
     <meta name="theme-color" content="#b8860b" />
-    
-    <!-- 🔹 Apple iOS Support -->
     <link rel="apple-touch-icon" href="images/logo-192.png" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="GoldMate" />
-    
-    <!-- 🔹 Favicon -->
     <link rel="icon" type="image/png" href="images/logo.png" />
     
     <style>
-        /* ... तुमचा CSS ... */
-    </style>
-</head>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body {
             background: linear-gradient(145deg, #1a0f00 0%, #2c1a05 100%);
             min-height: 100vh;
@@ -46,100 +25,65 @@
             padding: 16px;
         }
         .app-container {
-            max-width: 480px;
-            width: 100%;
+            max-width: 480px; width: 100%;
             background: linear-gradient(180deg, #faf3e0 0%, #f5e6c8 100%);
-            border-radius: 32px;
-            padding: 20px 16px 30px;
+            border-radius: 32px; padding: 20px 16px 30px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 2px #b8860b inset, 0 0 0 4px #daa520 inset;
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
         }
         .app-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
             background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.06) 0%, transparent 60%);
             pointer-events: none;
         }
-
         .main-heading {
-            text-align: center;
-            font-size: 28px;
-            font-weight: 800;
-            color: #7a5d2e;
-            text-shadow: 0 2px 4px rgba(255, 215, 0, 0.3);
-            letter-spacing: 2px;
-            padding-bottom: 12px;
-            border-bottom: 3px double #b8860b;
-            margin-bottom: 18px;
+            text-align: center; font-size: 28px; font-weight: 800;
+            color: #5a3f0a; letter-spacing: 2px;
+            padding-bottom: 12px; border-bottom: 3px double #b8860b;
+            margin-bottom: 12px;
         }
-        .main-heading .heading-icons {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
+        .main-heading span { color: #8b6914; }
+        .user-info {
+            display: flex; justify-content: space-between; align-items: center;
+            background: #fffbf0; padding: 6px 12px; border-radius: 30px;
+            margin-bottom: 10px; border: 1px solid #d4b48c;
+            font-size: 12px; color: #3d2b06;
+            font-weight: 600;
         }
-        .main-heading .heading-icons .icon-img {
-            width: 36px;
-            height: 36px;
-            object-fit: contain;
+        .user-info .logout-btn {
+            background: linear-gradient(145deg, #cc0000, #990000);
+            color: #fff; border: none; padding: 4px 12px;
+            border-radius: 20px; font-size: 11px; font-weight: 700;
+            cursor: pointer; box-shadow: 0 2px 0 #660000;
         }
-        .main-heading span { color: #b8860b; }
-
         .admin-link {
-            text-align: right;
-            margin-top: -8px;
-            margin-bottom: 8px;
+            text-align: right; margin-bottom: 8px;
         }
         .admin-link a {
-            color: #7a5d2e;
-            font-size: 13px;
-            font-weight: 600;
-            text-decoration: none;
-            background: #f5e6c8;
-            padding: 4px 14px;
-            border-radius: 20px;
-            border: 1px solid #b8860b;
-            display: inline-block;
+            color: #5a3f0a; font-size: 13px; font-weight: 700;
+            text-decoration: none; background: #f5e6c8;
+            padding: 4px 14px; border-radius: 20px;
+            border: 1px solid #b8860b; display: inline-block;
         }
-
         .btn-group {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            margin: 16px 0 10px;
-            flex-wrap: wrap;
+            display: flex; gap: 8px; justify-content: center;
+            margin: 16px 0 10px; flex-wrap: wrap;
         }
         .btn-gold {
-            flex: 1;
-            padding: 10px 4px;
-            border: none;
-            border-radius: 60px;
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            color: #fff;
-            background: linear-gradient(145deg, #b8860b, #8b6914);
+            flex: 1; padding: 10px 4px; border: none;
+            border-radius: 60px; font-size: 15px; font-weight: 700;
+            color: #fff; background: linear-gradient(145deg, #b8860b, #8b6914);
             box-shadow: 0 6px 0 #5a3f0a, 0 8px 20px rgba(0, 0, 0, 0.4);
-            cursor: pointer;
+            cursor: pointer; min-width: 55px;
             transition: all 0.08s ease;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-            min-width: 55px;
         }
-        .btn-gold:active {
-            transform: translateY(6px);
-            box-shadow: 0 2px 0 #5a3f0a;
-        }
+        .btn-gold:active { transform: translateY(6px); box-shadow: 0 2px 0 #5a3f0a; }
         .btn-gold.active {
             background: linear-gradient(145deg, #f5c842, #d4a017);
-            box-shadow: 0 6px 0 #7a5d1a, 0 0 30px rgba(255, 215, 0, 0.5);
-            color: #2c1a05;
-            text-shadow: none;
+            box-shadow: 0 6px 0 #7a5d1a; color: #2c1a05;
         }
+        .btn-gold:disabled { opacity: 0.3; cursor: not-allowed; }
 
         .page { display: none; animation: fadeIn 0.25s ease; }
         .page.active { display: block; }
@@ -147,538 +91,734 @@
             0% { opacity: 0; transform: translateY(10px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-
         .page-heading {
-            text-align: center;
-            font-size: 26px;
-            font-weight: 800;
-            color: #5a3f0a;
-            background: linear-gradient(90deg, #f5e6c8, #d4b48c, #f5e6c8);
-            padding: 8px 0;
-            border-radius: 60px;
-            margin: 6px 0 16px;
-            letter-spacing: 3px;
-            border: 1px solid #b8860b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-        .page-heading .icon-img {
-            width: 30px;
-            height: 30px;
-            object-fit: contain;
-        }
-
-        /* ===== NATH PAGE ===== */
-        .rate-box {
-            background: #fffbf0;
-            border-radius: 60px;
-            padding: 8px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 2px solid #b8860b;
-            margin-bottom: 16px;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.06);
-        }
-        .rate-box label {
-            font-weight: 700;
-            color: #5a3f0a;
-            font-size: 18px;
-            white-space: nowrap;
-        }
-        .rate-box input {
-            flex: 1;
-            border: none;
-            background: transparent;
-            font-size: 22px;
-            font-weight: 700;
+            text-align: center; font-size: 26px; font-weight: 800;
             color: #3d2b06;
-            padding: 6px 0;
-            outline: none;
-            min-width: 0;
+            background: linear-gradient(90deg, #f5e6c8, #d4b48c, #f5e6c8);
+            padding: 8px 0; border-radius: 60px; margin: 6px 0 16px;
+            letter-spacing: 3px; border: 1px solid #b8860b;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
         }
-        .rate-box input:focus {
-            border-bottom: 2px solid #b8860b;
+        .page-heading .icon-img { width: 30px; height: 30px; object-fit: contain; }
+
+        /* NATH */
+        .rate-box {
+            background: #fffbf0; border-radius: 60px;
+            padding: 8px 20px; display: flex; align-items: center;
+            gap: 12px; border: 2px solid #b8860b;
+            margin-bottom: 16px;
         }
-        .rate-box .rupee-symbol {
-            font-size: 22px;
-            font-weight: 700;
-            color: #7a5d2e;
+        .rate-box label { font-weight: 700; color: #3d2b06; font-size: 18px; white-space: nowrap; }
+        .rate-box input {
+            flex: 1; border: none; background: transparent;
+            font-size: 22px; font-weight: 800; color: #2c1a05;
+            padding: 6px 0; outline: none; min-width: 0;
         }
+        .rate-box .rupee-symbol { font-size: 22px; font-weight: 800; color: #5a3f0a; }
 
         .select-row {
-            display: flex;
-            gap: 10px;
-            background: #fffbf0;
-            padding: 12px 14px;
-            border-radius: 16px;
-            border: 2px solid #c9a05c;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
+            display: flex; gap: 10px; background: #fffbf0;
+            padding: 12px 14px; border-radius: 16px;
+            border: 2px solid #c9a05c; margin-bottom: 16px;
+            flex-wrap: wrap; align-items: center; justify-content: center;
         }
         .select-row .sel-group {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex: 1;
-            min-width: 110px;
+            display: flex; align-items: center; gap: 6px;
+            flex: 1; min-width: 110px;
         }
-        .select-row .sel-group label {
-            font-weight: 700;
-            color: #5a3f0a;
-            font-size: 15px;
-            white-space: nowrap;
-        }
+        .select-row .sel-group label { font-weight: 700; color: #3d2b06; font-size: 15px; white-space: nowrap; }
         .select-row .sel-group select {
-            flex: 1;
-            padding: 8px 6px;
-            border: 2px solid #b8860b;
-            border-radius: 10px;
-            background: #fffcf5;
-            font-weight: 700;
-            font-size: 16px;
-            color: #3d2b06;
-            outline: none;
-            cursor: pointer;
-            min-width: 60px;
-        }
-        .select-row .sel-group select:focus {
-            border-color: #daa520;
-            box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.3);
+            flex: 1; padding: 8px 6px;
+            border: 2px solid #b8860b; border-radius: 10px;
+            background: #fffcf5; font-weight: 700;
+            font-size: 16px; color: #2c1a05;
+            outline: none; cursor: pointer; min-width: 60px;
         }
 
         .result-card {
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
             background: linear-gradient(145deg, #fffbf0, #f5e6c8);
-            border-radius: 20px;
-            padding: 16px 12px;
-            border: 2px solid #b8860b;
-            box-shadow: inset 0 2px 20px rgba(184, 134, 11, 0.08), 0 8px 24px rgba(0,0,0,0.08);
-            margin-top: 4px;
+            border-radius: 20px; padding: 16px 12px;
+            border: 2px solid #b8860b; margin-top: 4px;
             transition: all 0.3s ease;
         }
         .result-card.out-of-stock {
             border-color: #cc0000;
             background: linear-gradient(145deg, #fff0f0, #ffe0e0);
-            box-shadow: inset 0 2px 20px rgba(204, 0, 0, 0.1), 0 8px 24px rgba(204, 0, 0, 0.1);
         }
         .result-card .watermark {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
+            display: none; position: absolute;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%) rotate(-25deg);
-            font-size: 40px;
-            font-weight: 1000;
+            font-size: 40px; font-weight: 1000;
             color: rgba(249, 5, 5, 0.997);
-            letter-spacing: 3px;
-            white-space: nowrap;
+            letter-spacing: 3px; white-space: nowrap;
             pointer-events: none;
-            animation: blinkWatermark 1s infinite;
-            z-index: 1;
-            text-transform: uppercase;
+            animation: blinkWatermark 1s infinite; z-index: 1;
         }
-        .result-card.out-of-stock .watermark {
-            display: block;
-        }
+        .result-card.out-of-stock .watermark { display: block; }
         @keyframes blinkWatermark {
             0%, 100% { opacity: 0.15; transform: translate(-50%, -50%) rotate(-25deg) scale(1); }
             50% { opacity: 0.60; transform: translate(-50%, -50%) rotate(-25deg) scale(1.05); }
         }
-        .result-card .result-row {
-            position: relative;
-            z-index: 2;
-        }
-
+        .result-card .result-row { position: relative; z-index: 2; }
         .result-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 4px;
+            display: flex; justify-content: space-between;
+            align-items: center; padding: 10px 4px;
             border-bottom: 1px solid #e8d5b0;
         }
-        .result-row:last-child {
-            border-bottom: none;
-        }
-        .result-row .label {
-            font-weight: 600;
-            color: #5a3f0a;
-            font-size: 16px;
-        }
-        .result-row .value {
-            font-weight: 800;
-            color: #3d2b06;
-            font-size: 20px;
-        }
-        .result-row .value.price {
-            color: #b8860b;
-            font-size: 24px;
-        }
-        .result-row .value.no-weight {
-            color: #999;
-            font-style: italic;
-            font-size: 16px;
-        }
+        .result-row:last-child { border-bottom: none; }
+        .result-row .label { font-weight: 700; color: #3d2b06; font-size: 16px; }
+        .result-row .value { font-weight: 800; color: #2c1a05; font-size: 20px; }
+        .result-row .value.price { color: #8b6914; font-size: 24px; }
+        .result-row .value.no-weight { color: #666; font-style: italic; font-size: 16px; }
 
-        /* ===== MELTING PAGE ===== */
-        .melting-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
+        /* MELTING */
+        .melting-grid { display: flex; flex-direction: column; gap: 14px; }
         .melting-row {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 10px;
-            background: #fffbf0;
-            padding: 10px 14px;
-            border-radius: 16px;
+            display: flex; flex-wrap: wrap; align-items: center;
+            gap: 10px; background: #fffbf0;
+            padding: 10px 14px; border-radius: 16px;
             border: 2px solid #c9a05c;
         }
-        .melting-row label {
-            font-weight: 700;
-            color: #5a3f0a;
-            min-width: 80px;
-            font-size: 15px;
+        .melting-row label { font-weight: 700; color: #3d2b06; min-width: 80px; font-size: 15px; }
+        .melting-row input, .melting-row select {
+            flex: 1; min-width: 80px; padding: 8px 10px;
+            border: 2px solid #d4b48c; border-radius: 12px;
+            font-size: 16px; font-weight: 700;
+            background: #fffcf5; color: #2c1a05; outline: none;
         }
-        .melting-row input,
-        .melting-row select {
-            flex: 1;
-            min-width: 80px;
-            padding: 8px 10px;
-            border: 2px solid #d4b48c;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            background: #fffcf5;
-            color: #2c1a05;
-            outline: none;
-        }
-        .melting-row input:focus,
-        .melting-row select:focus {
-            border-color: #b8860b;
-            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2);
-        }
-
-        .melting-result {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 4px;
-        }
+        .melting-result { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
         .melting-result .res-card {
             background: linear-gradient(145deg, #f5e6c8, #e8d5b0);
-            border-radius: 16px;
-            padding: 12px 6px;
-            text-align: center;
-            border: 2px solid #b8860b;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 16px; padding: 12px 6px;
+            text-align: center; border: 2px solid #b8860b;
         }
         .melting-result .res-card .label {
-            font-size: 11px;
-            font-weight: 600;
-            color: #7a5d2e;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-size: 11px; font-weight: 700;
+            color: #3d2b06; text-transform: uppercase;
         }
         .melting-result .res-card .value {
-            font-size: 20px;
-            font-weight: 800;
-            color: #3d2b06;
-            margin-top: 2px;
+            font-size: 20px; font-weight: 800;
+            color: #2c1a05; margin-top: 2px;
         }
 
-        /* ===== REPORT PAGE ===== */
+        /* REPORT */
         .report-table-wrap {
-            background: #fffbf0;
-            border-radius: 16px;
-            padding: 8px 4px;
-            border: 2px solid #c9a05c;
-            overflow-x: auto;
-            max-height: 400px;
-            overflow-y: auto;
+            background: #fffbf0; border-radius: 16px;
+            padding: 8px 4px; border: 2px solid #c9a05c;
+            overflow-x: auto; max-height: 400px; overflow-y: auto;
         }
         .report-table-wrap table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-    min-width: 340px;
-    table-layout: fixed;
-}
-
-/* Cross button column ला योग्य जागा */
-.report-table-wrap table th:last-child,
-.report-table-wrap table td:last-child {
-    width: 50px;
-    min-width: 50px;
-    max-width: 50px;
-    padding: 4px 2px;
-}
+            width: 100%; border-collapse: collapse;
+            font-size: 13px; min-width: 340px; table-layout: fixed;
+        }
         .report-table-wrap table th {
             background: linear-gradient(145deg, #b8860b, #9a7209);
-            color: #fff;
-            font-weight: 700;
-            padding: 8px 6px;
-            text-align: center;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            border: 1px solid #8b6914;
-            white-space: nowrap;
+            color: #fff; font-weight: 700;
+            padding: 8px 6px; text-align: center;
+            font-size: 13px; border: 1px solid #8b6914;
         }
         .report-table-wrap table td {
-            padding: 6px 4px;
-            text-align: center;
+            padding: 6px 4px; text-align: center;
             border-bottom: 1px solid #e8d5b0;
-            color: #2c1a05;
-            font-weight: 500;
-            vertical-align: middle;
+            color: #2c1a05; vertical-align: middle;
+            font-weight: 600;
         }
         .report-table-wrap table td input {
-            width: 100%;
-            padding: 6px 4px;
-            border: 1px solid #d4b48c;
-            border-radius: 6px;
-            background: #fffcf5;
-            font-weight: 600;
-            font-size: 14px;
-            color: #3d2b06;
-            outline: none;
-            text-align: center;
-        }
-        .report-table-wrap table td input:focus {
-            border-color: #b8860b;
-            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2);
+            width: 100%; padding: 6px 4px;
+            border: 1px solid #d4b48c; border-radius: 6px;
+            background: #fffcf5; font-weight: 700;
+            font-size: 14px; color: #2c1a05;
+            outline: none; text-align: center;
         }
         .report-table-wrap table td input.readonly-fine {
-            background: #f5f0e0;
-            color: #b8860b;
-            font-weight: 700;
-            border-color: #d4b48c;
-            cursor: default;
+            background: #f5f0e0; color: #8b6914;
+            font-weight: 800; cursor: default;
         }
-        .report-table-wrap table tr:nth-child(even) td {
-            background: #faf1e0;
+        .report-table-wrap table th:last-child,
+        .report-table-wrap table td:last-child {
+            width: 45px; min-width: 45px; max-width: 45px;
         }
-        .report-table-wrap table tr:hover td {
-            background: #f5e6c8;
-        }
-
         .btn-remove-row {
-            padding: 4px 10px;
-            border: none;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            color: #fff;
+            padding: 4px 8px; border: none; border-radius: 50%;
+            font-size: 11px; font-weight: 700; color: #fff;
             background: linear-gradient(145deg, #cc0000, #990000);
-            box-shadow: 0 3px 0 #660000;
-            cursor: pointer;
-            transition: all 0.08s ease;
+            box-shadow: 0 3px 0 #660000; cursor: pointer;
+            width: 26px; height: 26px;
+            display: flex; align-items: center;
+            justify-content: center; margin: 0 auto;
         }
-        .btn-remove-row:active {
-            transform: translateY(3px);
-            box-shadow: 0 1px 0 #660000;
-        }
-
-        .btn-group-sm {
-            display: flex;
-            gap: 10px;
-            margin-top: 8px;
-            flex-wrap: wrap;
-        }
+        .btn-group-sm { display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
         .btn-gold-sm {
-            flex: 1;
-            padding: 10px 8px;
-            border: none;
-            border-radius: 30px;
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            color: #fff;
-            background: linear-gradient(145deg, #b8860b, #8b6914);
-            box-shadow: 0 4px 0 #5a3f0a, 0 4px 12px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            transition: all 0.08s ease;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-            min-width: 60px;
+            flex: 1; padding: 10px 8px; border: none;
+            border-radius: 30px; font-size: 15px; font-weight: 700;
+            color: #fff; background: linear-gradient(145deg, #b8860b, #8b6914);
+            box-shadow: 0 4px 0 #5a3f0a; cursor: pointer; min-width: 60px;
         }
-        .btn-gold-sm:active {
-            transform: translateY(4px);
-            box-shadow: 0 1px 0 #5a3f0a;
-        }
-        .btn-gold-sm.green {
-            background: linear-gradient(145deg, #2d7d46, #1e5a32);
-            box-shadow: 0 4px 0 #0f3a1e;
-        }
-        .btn-gold-sm.green:active {
-            box-shadow: 0 1px 0 #0f3a1e;
-        }
-        .btn-gold-sm.blue {
-            background: linear-gradient(145deg, #1a6a8a, #0f4a62);
-            box-shadow: 0 4px 0 #08303f;
-        }
-        .btn-gold-sm.blue:active {
-            box-shadow: 0 1px 0 #08303f;
-        }
-        .btn-gold-sm.red {
-            background: linear-gradient(145deg, #cc0000, #990000);
-            box-shadow: 0 4px 0 #660000;
-        }
-        .btn-gold-sm.red:active {
-            box-shadow: 0 1px 0 #660000;
-        }
+        .btn-gold-sm:active { transform: translateY(4px); box-shadow: 0 1px 0 #5a3f0a; }
+        .btn-gold-sm.green { background: linear-gradient(145deg, #2d7d46, #1e5a32); box-shadow: 0 4px 0 #0f3a1e; }
+        .btn-gold-sm.blue { background: linear-gradient(145deg, #1a6a8a, #0f4a62); box-shadow: 0 4px 0 #08303f; }
+        .btn-gold-sm.red { background: linear-gradient(145deg, #cc0000, #990000); box-shadow: 0 4px 0 #660000; }
 
         .result-box {
-    background: #fffbf0;
-    border-radius: 16px;
-    padding: 12px 14px;
-    border: 2px solid #c9a05c;
-    margin-top: 12px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 8px;
-    justify-items: center;
-    align-items: center;
-}
-
-/* मोबाईल view मध्ये Average Report box मध्यभागी */
-@media (max-width: 400px) {
-    .result-box {
-        grid-template-columns: 1fr 1fr;
-        justify-items: center;
-    }
-    .result-box .res-item.highlight {
-        grid-column: span 2;
-        width: 60%;
-        margin: 0 auto;
-        justify-self: center;
-    }
-}
+            background: #fffbf0; border-radius: 16px;
+            padding: 12px 14px; border: 2px solid #c9a05c;
+            margin-top: 12px; display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px; justify-items: center;
+        }
         .result-box .res-item {
-            text-align: center;
-            background: #f5e6c8;
-            border-radius: 10px;
-            padding: 8px 4px;
-            border: 1px solid #d4b48c;
+            text-align: center; background: #f5e6c8;
+            border-radius: 10px; padding: 8px 4px;
+            border: 1px solid #d4b48c; width: 100%;
         }
         .result-box .res-item .label {
-            font-size: 11px;
-            font-weight: 600;
-            color: #7a5d2e;
-            text-transform: uppercase;
+            font-size: 11px; font-weight: 700;
+            color: #3d2b06; text-transform: uppercase;
         }
-        .result-box .res-item .value {
-            font-size: 20px;
-            font-weight: 800;
-            color: #b8860b;
-        }
+        .result-box .res-item .value { font-size: 20px; font-weight: 800; color: #8b6914; }
         .result-box .res-item.highlight {
             background: linear-gradient(145deg, #2d7d46, #1e5a32);
             border-color: #0f3a1e;
-            box-shadow: 0 4px 16px rgba(45, 125, 70, 0.4);
         }
-        .result-box .res-item.highlight .label {
-            color: #fff;
+        .result-box .res-item.highlight .label { color: #fff; }
+        .result-box .res-item.highlight .value { color: #fff; font-size: 24px; }
+
+        .status-msg { text-align: center; font-size: 13px; font-weight: 700; color: #1e5a32; margin-top: 6px; min-height: 24px; }
+        .status-msg.error { color: #990000; }
+
+        /* ===== ATTRACTIVE CUSTOMER LOGIN MODAL WITH LAMP ===== */
+        .modal-overlay {
+            display: none; position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 30%, rgba(184, 134, 11, 0.25) 0%, rgba(0,0,0,0.97) 70%);
+            z-index: 1000; justify-content: center; align-items: center;
+            padding: 16px;
+            backdrop-filter: blur(8px);
+            overflow-y: auto;
+            transition: background 0.4s ease;
         }
-        .result-box .res-item.highlight .value {
-            color: #fff;
-            font-size: 24px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        .modal-overlay.active { display: flex; }
+
+        .login-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
         }
 
-        .status-msg {
+        .lamp-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .lamp-wrapper {
+            position: relative;
+            width: 180px;
+            height: 180px;
+        }
+
+        .lamp {
+            position: relative;
+            width: 180px;
+            display: block;
+            margin: auto;
+            cursor: pointer;
+            z-index: 5;
+            transition: 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            outline: none;
+            filter: drop-shadow(0 10px 30px rgba(255, 200, 80, 0.2));
+        }
+        .lamp:hover {
+            transform: scale(1.08);
+            filter: drop-shadow(0 15px 40px rgba(255, 200, 80, 0.5));
+        }
+
+        .lamp-glow {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                rgba(255, 225, 120, 0.7) 0%,
+                rgba(255, 200, 80, 0.3) 30%,
+                rgba(255, 180, 50, 0.1) 55%,
+                transparent 75%);
+            filter: blur(30px);
+            opacity: 0;
+            transition: 0.4s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            color: #ffd700;
+            font-size: 14px;
+            opacity: 0;
+            pointer-events: none;
+            animation: sparkleFloat 3s ease-in-out infinite;
+            z-index: 6;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+        .sparkle.s1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .sparkle.s2 { top: 20%; right: 15%; animation-delay: 0.6s; font-size: 10px; }
+        .sparkle.s3 { bottom: 20%; left: 20%; animation-delay: 1.2s; font-size: 12px; }
+        .sparkle.s4 { bottom: 10%; right: 10%; animation-delay: 1.8s; font-size: 16px; }
+
+        @keyframes sparkleFloat {
+            0%, 100% { opacity: 0; transform: translateY(0) scale(0.6); }
+            50% { opacity: 1; transform: translateY(-15px) scale(1); }
+        }
+
+        .lamp-section.light-on .sparkle { opacity: 1; }
+
+        .login-box {
+            background: linear-gradient(180deg, #faf3e0 0%, #f0ddb8 100%);
+            border-radius: 28px; padding: 30px 24px 24px;
+            max-width: 380px; width: 100%;
+            position: relative;
+            box-shadow:
+                0 0 0 2px #b8860b inset,
+                0 0 0 5px #daa520 inset,
+                0 25px 70px rgba(0, 0, 0, 0.9),
+                0 0 60px rgba(218, 165, 32, 0.35);
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.96);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .login-box.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .login-box::before {
+            content: '';
+            position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .login-logo {
+            text-align: center;
+            font-size: 46px;
+            margin-bottom: 6px;
+            animation: lockBounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 6px 12px rgba(184, 134, 11, 0.5));
+        }
+        @keyframes lockBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(-5deg); }
+        }
+
+        .login-box h3 {
+            text-align: center;
+            background: linear-gradient(90deg, #8b6914, #b8860b, #8b6914);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            padding-bottom: 12px;
+            position: relative;
+        }
+        .login-box h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg, transparent, #8b6914, transparent);
+            border-radius: 2px;
+        }
+
+        .login-subtitle {
             text-align: center;
             font-size: 13px;
-            font-weight: 600;
-            color: #2d7d46;
-            margin-top: 6px;
-            min-height: 24px;
+            color: #3d2b06;
+            font-weight: 800;
+            margin-bottom: 22px;
+            letter-spacing: 1.5px;
         }
-        .status-msg.error {
-            color: #cc0000;
+
+        .input-group {
+            position: relative;
+            margin-bottom: 14px;
+        }
+        .input-group .input-icon {
+            position: absolute;
+            left: 16px; top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            z-index: 2;
+            opacity: 0.85;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 14px 16px 14px 44px;
+            border: 2px solid #d4b48c;
+            border-radius: 14px;
+            background: #fffcf5;
+            font-size: 15px;
+            font-weight: 700;
+            color: #2c1a05;
+            outline: none;
+            transition: all 0.25s ease;
+            box-shadow: inset 0 2px 6px rgba(184, 134, 11, 0.08);
+        }
+        .login-box input::placeholder {
+            color: #a89668;
+            font-weight: 600;
+        }
+        .login-box input:focus {
+            border-color: #8b6914;
+            background: #fff;
+            box-shadow:
+                0 0 0 4px rgba(218, 165, 32, 0.25),
+                inset 0 2px 6px rgba(184, 134, 11, 0.05);
+            transform: translateY(-1px);
+        }
+
+        .login-box .login-btn {
+            width: 100%; padding: 14px;
+            background: linear-gradient(145deg, #b8860b, #8b6914, #5a3f0a);
+            background-size: 200% 200%;
+            color: #fff; border: none;
+            border-radius: 30px; font-weight: 900;
+            font-size: 16px; cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow:
+                0 5px 0 #3d2b06,
+                0 8px 20px rgba(90, 63, 10, 0.5);
+            margin-bottom: 12px;
+            margin-top: 4px;
+            transition: all 0.15s ease;
+            animation: shimmer 3s ease infinite;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .login-box .login-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 1px 0 #3d2b06;
+        }
+        .login-box .login-btn:hover {
+            filter: brightness(1.1);
+        }
+
+        .login-box .signup-btn {
+            width: 100%; padding: 12px;
+            background: transparent;
+            color: #3d2b06;
+            border: 2px dashed #8b6914;
+            border-radius: 30px; font-weight: 800;
+            font-size: 14px; cursor: pointer;
+            margin-bottom: 6px;
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
+        }
+        .login-box .signup-btn:hover {
+            background: rgba(139, 105, 20, 0.1);
+            border-style: solid;
+            transform: translateY(-1px);
+        }
+        .login-box .signup-btn:active {
+            transform: translateY(1px);
+        }
+
+        .login-error {
+            color: #990000;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 800;
+            min-height: 20px;
+            margin-top: 10px;
+            padding: 6px 8px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .login-error:not(:empty) {
+            background: rgba(204, 0, 0, 0.1);
+            border: 1px solid rgba(204, 0, 0, 0.3);
+        }
+
+        .login-footer {
+            text-align: center;
+            font-size: 11px;
+            color: #5a3f0a;
+            margin-top: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            .login-wrapper {
+                flex-direction: column;
+                gap: 0;
+                padding: 20px 0;
+                max-width: 100%;
+                min-height: 100vh;
+                justify-content: center;
+                align-items: center;
+                overflow-y: auto;
+            }
+
+            .lamp-section {
+                margin-top: 10px;
+                margin-bottom: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .lamp-wrapper {
+                width: 155px !important;
+                height: 155px !important;
+            }
+
+            .lamp {
+                width: 150px !important;
+                max-width: 150px !important;
+            }
+
+            .lamp-glow {
+                width: 320px !important;
+                height: 320px !important;
+                filter: blur(30px) !important;
+            }
+
+            #lampHint {
+                font-size: 13px !important;
+                margin-top: 40px !important;
+                align-self: center !important;
+            }
+
+            .sparkle {
+                font-size: 10px;
+            }
+            .sparkle.s1 { top: 5%; left: 5%; }
+            .sparkle.s2 { top: 10%; right: 8%; font-size: 8px; }
+            .sparkle.s3 { bottom: 10%; left: 10%; font-size: 9px; }
+            .sparkle.s4 { bottom: 5%; right: 5%; font-size: 11px; }
+
+                        .login-box {
+                padding: 16px 14px 12px;
+                max-width: 300px;
+                width: 90%;
+                border-radius: 20px;
+                margin-bottom: 15px;
+            }
+
+            .login-logo {
+                font-size: 30px;
+                margin-bottom: 2px;
+            }
+
+            .login-box h3 {
+                font-size: 19px;
+                margin-bottom: 3px;
+                padding-bottom: 6px;
+            }
+
+            .login-box h3::after {
+                width: 40px;
+                height: 2px;
+            }
+
+            .login-subtitle {
+                font-size: 10px;
+                margin-bottom: 12px;
+                letter-spacing: 1px;
+            }
+
+            .input-group {
+                margin-bottom: 8px;
+            }
+
+            .input-group .input-icon {
+                font-size: 12px;
+                left: 10px;
+            }
+
+            .login-box input {
+                padding: 9px 10px 9px 32px;
+                font-size: 12px;
+                border-radius: 11px;
+            }
+
+            .login-box .login-btn {
+                padding: 10px;
+                font-size: 13px;
+                border-radius: 22px;
+                margin-bottom: 8px;
+                box-shadow: 0 3px 0 #3d2b06, 0 5px 12px rgba(90, 63, 10, 0.4);
+            }
+
+            .login-box .signup-btn {
+                padding: 9px;
+                font-size: 11px;
+                border-radius: 22px;
+            }
+
+            .login-error {
+                font-size: 10px;
+                margin-top: 6px;
+                padding: 4px 5px;
+            }
+
+            .login-footer {
+                font-size: 9px;
+                margin-top: 8px;
+            }
+
         }
 
         @media (max-width: 400px) {
             .app-container { padding: 14px 10px 20px; }
             .main-heading { font-size: 22px; }
-            .main-heading .heading-icons .icon-img { width: 28px; height: 28px; }
             .btn-gold { font-size: 13px; padding: 8px 3px; }
-            .page-heading { font-size: 21px; gap: 8px; }
-            .page-heading .icon-img { width: 24px; height: 24px; }
-            .select-row .sel-group select { font-size: 13px; padding: 6px 4px; }
-            .result-row .value { font-size: 17px; }
-            .result-row .value.price { font-size: 20px; }
-            .result-card .watermark { font-size: 24px; }
-            .melting-result { grid-template-columns: 1fr 1fr; }
+            .page-heading { font-size: 21px; }
             .result-box { grid-template-columns: 1fr 1fr; }
-            .result-box .res-item.highlight .value { font-size: 20px; }
-            .btn-gold-sm { font-size: 13px; padding: 8px 4px; }
-            .report-table-wrap table { font-size: 11px; min-width: 300px; }
+            .result-box .res-item.highlight {
+                grid-column: span 2; width: 65%; max-width: 220px;
+                margin: 0 auto; justify-self: center;
+            }
         }
+
+        /* 🔔 Update Toast */
+        .update-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(145deg, #2d7d46, #1e5a32);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .update-toast.show { opacity: 1; }
     </style>
 </head>
 <body>
 
-<div class="app-container">
+<!-- ===== ATTRACTIVE CUSTOMER LOGIN MODAL WITH LAMP ===== -->
+<div class="modal-overlay active" id="loginModal">
+    <div class="login-wrapper">
+        <!-- Lamp Section -->
+        <div class="lamp-section" id="lampSection">
+            <div class="lamp-wrapper">
+                <div class="lamp-glow"></div>
+                <span class="sparkle s1">✨</span>
+                <span class="sparkle s2">✨</span>
+                <span class="sparkle s3">✨</span>
+                <span class="sparkle s4">✨</span>
+                <img src="assets/images/lamp.png" class="lamp" id="lamp" alt="Lamp" 
+                     onerror="this.style.display='none'; document.getElementById('lampFallback').style.display='block';" />
+                <div id="lampFallback" style="display:none; font-size:90px; text-align:center; cursor:pointer;">💡</div>
+            </div>
+            <div style="text-align:center; color:#ffd700; font-size:13px; font-weight:800; margin-top:-10px; text-shadow: 0 0 10px rgba(255,215,0,0.6);" id="lampHint">👆 Tap the Lamp</div>
+        </div>
 
-    <!-- ===== MAIN HEADING ===== -->
+        <!-- Login Card -->
+        <div class="login-box" id="loginBox">
+            <div class="login-logo">🔐</div>
+            <h3>GoldMate</h3>
+            <div class="login-subtitle">CUSTOMER LOGIN</div>
+
+            <div class="input-group">
+                <span class="input-icon">📧</span>
+                <input type="email" id="loginEmail" placeholder="Enter your Email" />
+            </div>
+
+            <div class="input-group">
+                <span class="input-icon">🔑</span>
+                <input type="password" id="loginPassword" placeholder="Enter your Password" />
+            </div>
+
+            <button class="login-btn" onclick="doLogin()">✨ LOGIN ✨</button>
+            <button class="signup-btn" onclick="doSignup()">➕ Create New Account</button>
+            <div class="login-error" id="loginError"></div>
+            <div class="login-footer">© GoldMate • Secure Customer Access</div>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN APP -->
+<div class="app-container" id="mainApp" style="display:none;">
+
     <div class="main-heading">
-        <div class="heading-icons">
-            <img src="images/left-icon.png" class="icon-img" alt="icon" />
-             Gold<span>Mate</span> 
-            <img src="images/right-icon.png" class="icon-img" alt="icon" />
+        <div style="display:flex; align-items:center; justify-content:center; gap:12px;">
+            <img src="images/left-icon.png" style="width:36px; height:36px; object-fit:contain;" />
+            ✨ Gold<span>Mate</span> ✨
+            <img src="images/right-icon.png" style="width:36px; height:36px; object-fit:contain;" />
         </div>
     </div>
 
-    <!-- ===== ADMIN LINK ===== -->
-    <div class="admin-link">
-        <a href="admin.html">🔐 Admin</a>
+    <div class="user-info">
+        <span id="userEmailDisplay">-</span>
+        <button class="logout-btn" onclick="doLogout()">Logout</button>
     </div>
 
-    <!-- ===== BUTTONS ===== -->
+    <div class="admin-link">
+        <a href="login.html">🔐 Admin Login</a>
+    </div>
+
     <div class="btn-group">
-        <button class="btn-gold active" id="btnNath" onclick="showPage('nath')">NATH</button>
+        <button class="btn-gold" id="btnNath" onclick="showPage('nath')">NATH</button>
         <button class="btn-gold" id="btnMelt" onclick="showPage('melting')">MELTING</button>
         <button class="btn-gold" id="btnReport" onclick="showPage('report')">REPORT</button>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- ====== PAGE 1: NATH ====== -->
-    <!-- ========================================================= -->
-    <div class="page active" id="pageNath">
-
-        <div class="page-heading">
-            <img src="images/nath-icon.png" class="icon-img" alt="nath" />
-            NATH
-            <img src="images/nath-icon-2.png" class="icon-img" alt="nath" />
-        </div>
+    <!-- NATH PAGE -->
+    <div class="page" id="pageNath">
+        <div class="page-heading" id="headingNath">🔶 NATH 🔶</div>
 
         <div class="rate-box">
             <label>📊 Rate</label>
             <span class="rupee-symbol">₹</span>
             <input type="number" id="nathRate" value="16000" step="10" oninput="updateNathResult()" />
-            <span style="font-size:13px; color:#7a5d2e;">/gm</span>
+            <span style="font-size:13px; color:#5a3f0a; font-weight: 700;">/gm</span>
         </div>
 
         <div class="select-row">
             <div class="sel-group">
                 <label>🔢 No.</label>
                 <select id="selNumber" onchange="updateNathResult()">
-    <option value="000" selected>000</option>
-    <option value="00">00</option>
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-</select>
+                    <option value="000" selected>000</option>
+                    <option value="00">00</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
             </div>
             <div class="sel-group">
                 <label>📂 Type</label>
@@ -695,7 +835,7 @@
             <div class="watermark">OUT OF STOCK</div>
             <div class="result-row">
                 <span class="label">🔢 No.</span>
-                <span class="value" id="resultNumber">2</span>
+                <span class="value" id="resultNumber">000</span>
             </div>
             <div class="result-row">
                 <span class="label">📂 Type</span>
@@ -703,32 +843,19 @@
             </div>
             <div class="result-row">
                 <span class="label">⚖️ Weight (gm)</span>
-                <span class="value" id="resultWeight">0.500</span>
+                <span class="value" id="resultWeight">0.340</span>
             </div>
             <div class="result-row">
                 <span class="label">💰 Price (₹)</span>
-                <span class="value price" id="resultPrice">₹ 3,450.00</span>
+                <span class="value price" id="resultPrice">₹ 0.00</span>
             </div>
-        </div>
-
-        <div style="margin-top:12px; text-align:center; font-size:13px; color:#7a5d2e; font-weight:500; background:#fffbf0; padding:6px 12px; border-radius:60px; border:1px solid #d4b48c;">
-            ⚡ Select <strong>No.</strong> and <strong>Type</strong> to see the value
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- ====== PAGE 2: MELTING ====== -->
-    <!-- ========================================================= -->
+    <!-- MELTING PAGE -->
     <div class="page" id="pageMelting">
-
-        <div class="page-heading">
-            <img src="images/melt-icon.png" class="icon-img" alt="melting" />
-            Melting Calculation
-            <img src="images/melt-icon-2.png" class="icon-img" alt="melting" />
-        </div>
-
+        <div class="page-heading" id="headingMelting">🔥 Melting 🔥</div>
         <div class="melting-grid">
-
             <div class="melting-row">
                 <label>🔸 Target %</label>
                 <select id="meltTarget" onchange="calculateMelting()">
@@ -737,9 +864,8 @@
                     <option value="75">75%</option>
                     <option value="other">Other</option>
                 </select>
-                <input type="number" id="meltTargetOther" placeholder="Enter %" style="display:none; flex:0.8;" oninput="calculateMelting()" />
+                <input type="number" id="meltTargetOther" placeholder="Enter %" style="display:none;" oninput="calculateMelting()" />
             </div>
-
             <div class="melting-row">
                 <label>🔹 Source %</label>
                 <select id="meltPercent" onchange="calculateMelting()">
@@ -747,16 +873,14 @@
                     <option value="100">100%</option>
                     <option value="other">Other</option>
                 </select>
-                <input type="number" id="meltPercentOther" placeholder="Enter %" style="display:none; flex:0.8;" oninput="calculateMelting()" />
+                <input type="number" id="meltPercentOther" placeholder="Enter %" style="display:none;" oninput="calculateMelting()" />
             </div>
-
             <div class="melting-row">
                 <label>⚖️ Fine Weight</label>
                 <input type="number" id="fineWeight" value="10" step="0.01" oninput="calculateMelting()" />
-                <span style="font-weight:600; color:#5a3f0a;">gm</span>
+                <span style="font-weight:700; color:#3d2b06;">gm</span>
             </div>
-
-            <div class="melting-result" id="meltingResult">
+            <div class="melting-result">
                 <div class="res-card">
                     <div class="label">Total Weight</div>
                     <div class="value" id="mTotalWeight">0.00</div>
@@ -774,50 +898,38 @@
                     <div class="value" id="mCopper">0.00</div>
                 </div>
             </div>
-
-            <div style="margin-top:4px; text-align:center; font-size:13px; color:#7a5d2e; font-weight:500; background:#fffbf0; padding:8px; border-radius:60px; border:1px solid #d4b48c;">
-                Formula: (Fine Weight × Source%) / Target% = Total Weight
-            </div>
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- ====== PAGE 3: REPORT ====== -->
-    <!-- ========================================================= -->
+    <!-- REPORT PAGE -->
     <div class="page" id="pageReport">
-
-        <div class="page-heading">
-            <img src="images/report-icon.png" class="icon-img" alt="report" />
-            Average Report
-            <img src="images/report-icon-2.png" class="icon-img" alt="report" />
-        </div>
-        <div style="text-align:center; font-size:14px; font-weight:600; color:#5a3f0a; margin-bottom:12px;">Weight × Report% = Fine</div>
+        <div class="page-heading" id="headingReport">📊 Average Report</div>
+        <div style="text-align:center; font-size:14px; font-weight:700; color:#3d2b06; margin-bottom:12px;">Weight × Report% = Fine</div>
 
         <div class="report-table-wrap">
             <table id="reportTable">
                 <thead>
                     <tr>
-                        <th style="width:30px;">#</th>
-                        <th>Weight (gm)</th>
-                        <th>Report (%)</th>
-                        <th>Fine (gm)</th>
-                        <th style="width:40px;">✕</th>
+                        <th>#</th>
+                        <th>Weight</th>
+                        <th>Report%</th>
+                        <th>Fine</th>
+                        <th>✕</th>
                     </tr>
                 </thead>
-                <tbody id="reportBody">
-                </tbody>
+                <tbody id="reportBody"></tbody>
             </table>
         </div>
 
         <div class="btn-group-sm">
             <button class="btn-gold-sm green" onclick="saveReportData()">💾 Save</button>
-            <button class="btn-gold-sm blue" onclick="loadReportPrevious()">⬅️ Previous</button>
+            <button class="btn-gold-sm blue" onclick="loadReportPrevious()">⬅️ Prev</button>
             <button class="btn-gold-sm red" onclick="clearReportAll()">🗑️ Clear</button>
         </div>
 
         <div class="status-msg" id="reportStatusMsg"></div>
 
-        <div class="result-box" id="reportResultBox">
+        <div class="result-box">
             <div class="res-item">
                 <div class="label">Total Weight</div>
                 <div class="value" id="reportTotalWeight">0.00</div>
@@ -827,142 +939,349 @@
                 <div class="value" id="reportTotalFine">0.00</div>
             </div>
             <div class="res-item highlight">
-                <div class="label">Average Report</div>
+                <div class="label">Avg Report</div>
                 <div class="value" id="reportAvgReport">0.00%</div>
             </div>
-        </div>
-
-        <div style="margin-top:8px; text-align:center; font-size:12px; color:#7a5d2e; background:#fffbf0; padding:6px; border-radius:30px; border:1px solid #d4b48c;">
-            Average Report = (Total Fine ÷ Total Weight) × 100
         </div>
     </div>
 
 </div>
 
-<script>
-    // ================================================================
-    // 1. WEIGHT MAP - Type-wise weights per number
-    // ================================================================
-    const WEIGHT_MAP = {
-        '000|Regular': 0.340,
-        '000|D.Tik': 0.000,
-        '000|Jad Dandi': 0.000,
-        '000|Puneri': 0.000,
+<!-- 🔔 Update Toast -->
+<div class="update-toast" id="updateToast">✨ New version available! Refreshing...</div>
 
-        '00|Regular': 0.370,
-        '00|D.Tik': 0.000,
-        '00|Jad Dandi': 0.500,
-        '00|Puneri': 0.380,
+<!-- FIREBASE SDK -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        '0|Regular': 0.400,
-        '0|D.Tik': 0.000,
-        '0|Jad Dandi': 0.520,
-        '0|Puneri': 0.410,
-
-        '1|Regular': 0.430,
-        '1|D.Tik': 0.000,
-        '1|Jad Dandi': 0.550,
-        '1|Puneri': 0.440,
-
-        '2|Regular': 0.460,
-        '2|D.Tik': 0.000,
-        '2|Jad Dandi': 0.610,
-        '2|Puneri': 0.470,
-
-        '3|Regular': 0.490,
-        '3|D.Tik': 0.000,
-        '3|Jad Dandi': 0.630,
-        '3|Puneri': 0.500,
-
-        '4|Regular': 0.520,
-        '4|D.Tik': 0.000,
-        '4|Jad Dandi': 0.660,
-        '4|Puneri': 0.530,
-
-        '5|Regular': 0.550,
-        '5|D.Tik': 0.000,
-        '5|Jad Dandi': 0.730,
-        '5|Puneri': 0.560
+    const firebaseConfig = {
+        apiKey: "AIzaSyC_Lzy7_WLyiRdR0O6u2CDRnyHcd1FT7Kc",
+        authDomain: "goldmate-app.firebaseapp.com",
+        projectId: "goldmate-app",
+        storageBucket: "goldmate-app.firebasestorage.app",
+        messagingSenderId: "1017053283285",
+        appId: "1:1017053283285:web:6473485d041cfee8e0335c"
     };
 
-    // ================================================================
-    // 2. OUT OF STOCK LIST - Load from localStorage (Admin sync)
-    // ================================================================
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    window.fbAuth = auth;
+    window.fbDB = db;
+    window.fbSignIn = signInWithEmailAndPassword;
+    window.fbSignUp = createUserWithEmailAndPassword;
+    window.fbSignOut = signOut;
+    window.fbDoc = doc;
+    window.fbGetDoc = getDoc;
+    window.fbSetDoc = setDoc;
+
+    console.log('🔥 Firebase initialized');
+
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            console.log('✅ Logged in:', user.email);
+            document.getElementById('loginModal').classList.remove('active');
+            document.getElementById('mainApp').style.display = 'block';
+            document.getElementById('userEmailDisplay').textContent = '👤 ' + user.email;
+
+            try {
+                const userDocRef = doc(db, 'users', user.uid);
+                const userDoc = await getDoc(userDocRef);
+                
+                if (userDoc.exists()) {
+                    const data = userDoc.data();
+                    window.userPermissions = {
+                        nath: true,
+                        melting: data.melting === true,
+                        report: data.report === true,
+                        isAdmin: data.isAdmin === true
+                    };
+                    console.log('Permissions:', window.userPermissions);
+                    applyPermissions();
+                } else {
+                    await setDoc(doc(db, 'users', user.uid), {
+                        email: user.email,
+                        name: user.email.split('@')[0],
+                        nath: true,
+                        melting: false,
+                        report: false,
+                        isAdmin: false,
+                        createdAt: new Date().toISOString()
+                    });
+                    window.userPermissions = { nath: true, melting: false, report: false, isAdmin: false };
+                    applyPermissions();
+                }
+            } catch (error) {
+                console.error('Error loading permissions:', error);
+            }
+        } else {
+            console.log('❌ Logged out');
+            document.getElementById('loginModal').classList.add('active');
+            document.getElementById('mainApp').style.display = 'none';
+            window.userPermissions = null;
+            const lampSection = document.getElementById('lampSection');
+            const lampBox = document.getElementById('loginBox');
+            const glow = document.querySelector('.lamp-glow');
+            if (lampSection) lampSection.classList.remove('light-on');
+            if (lampBox) lampBox.classList.remove('show');
+            if (glow) {
+                glow.style.opacity = '0';
+                glow.style.transform = 'translate(-50%, -50%) scale(1)';
+            }
+            lampLightOn = false;
+        }
+    });
+</script>
+
+<!-- MAIN LOGIC -->
+<script>
+    // ============================================================
+    // LAMP - Click to show/hide Login Card
+    // ============================================================
+    let lampLightOn = false;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const lamp = document.getElementById('lamp');
+        const lampFallback = document.getElementById('lampFallback');
+        const glow = document.querySelector('.lamp-glow');
+        const loginBox = document.getElementById('loginBox');
+        const lampSection = document.getElementById('lampSection');
+        const loginModal = document.getElementById('loginModal');
+        const lampHint = document.getElementById('lampHint');
+
+        function toggleLamp() {
+            lampLightOn = !lampLightOn;
+
+            if (lampLightOn) {
+                loginModal.style.background = 'radial-gradient(circle at 30% 50%, rgba(255, 200, 80, 0.2) 0%, rgba(0,0,0,0.97) 70%)';
+                glow.style.opacity = '1';
+                glow.style.transform = 'translate(-50%, -50%) scale(1.25)';
+                loginBox.classList.add('show');
+                lampSection.classList.add('light-on');
+                if (lamp && lamp.style.display !== 'none') {
+                    lamp.style.transform = 'scale(1.08)';
+                }
+                if (lampHint) lampHint.textContent = '👆 Tap to Close';
+            } else {
+                loginModal.style.background = 'radial-gradient(circle at 50% 30%, rgba(184, 134, 11, 0.25) 0%, rgba(0,0,0,0.97) 70%)';
+                glow.style.opacity = '0';
+                glow.style.transform = 'translate(-50%, -50%) scale(1)';
+                loginBox.classList.remove('show');
+                lampSection.classList.remove('light-on');
+                if (lamp && lamp.style.display !== 'none') {
+                    lamp.style.transform = 'scale(1)';
+                }
+                if (lampHint) lampHint.textContent = '👆 Tap the Lamp';
+            }
+        }
+
+        if (lamp) lamp.addEventListener('click', toggleLamp);
+        if (lampFallback) lampFallback.addEventListener('click', toggleLamp);
+    });
+
+    // ============================================================
+    // LOGIN / SIGNUP / LOGOUT
+    // ============================================================
+    async function doLogin() {
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const errorEl = document.getElementById('loginError');
+        errorEl.style.color = '#990000';
+
+        if (!email && !password) {
+            errorEl.textContent = '⚠️ Please enter Email and Password';
+            return;
+        }
+        if (!email) {
+            errorEl.textContent = '⚠️ Please enter Email';
+            return;
+        }
+        if (!password) {
+            errorEl.textContent = '⚠️ Please enter Password';
+            return;
+        }
+
+        try {
+            await window.fbSignIn(window.fbAuth, email, password);
+            errorEl.textContent = '';
+        } catch (error) {
+            console.error(error.code);
+            let msg = 'Something went wrong. Please try again.';
+            
+            if (error.code === 'auth/invalid-credential' || 
+                error.code === 'auth/wrong-password' || 
+                error.code === 'auth/user-not-found') {
+                msg = '❌ Invalid Email or Password';
+            } else if (error.code === 'auth/invalid-email') {
+                msg = '❌ Invalid Email format';
+            } else if (error.code === 'auth/too-many-requests') {
+                msg = '⏳ Too many attempts. Please try again later';
+            } else if (error.code === 'auth/network-request-failed') {
+                msg = '📡 Network error. Check your internet';
+            } else if (error.code === 'auth/user-disabled') {
+                msg = '🚫 This account has been disabled';
+            }
+            
+            errorEl.textContent = msg;
+        }
+    }
+
+    async function doSignup() {
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const errorEl = document.getElementById('loginError');
+        errorEl.style.color = '#990000';
+
+        if (!email && !password) {
+            errorEl.textContent = '⚠️ Please enter Email and Password';
+            return;
+        }
+        if (!email) {
+            errorEl.textContent = '⚠️ Please enter Email';
+            return;
+        }
+        if (!password) {
+            errorEl.textContent = '⚠️ Please enter Password';
+            return;
+        }
+        if (password.length < 6) {
+            errorEl.textContent = '⚠️ Password must be at least 6 characters';
+            return;
+        }
+
+        try {
+            const userCred = await window.fbSignUp(window.fbAuth, email, password);
+            const user = userCred.user;
+
+            await window.fbSetDoc(window.fbDoc(window.fbDB, 'users', user.uid), {
+                email: email,
+                name: email.split('@')[0],
+                nath: true,
+                melting: false,
+                report: false,
+                isAdmin: false,
+                createdAt: new Date().toISOString()
+            });
+
+            errorEl.style.color = '#1e5a32';
+            errorEl.textContent = '✅ Account created! You can use NATH now.';
+        } catch (error) {
+            console.error(error.code);
+            errorEl.style.color = '#990000';
+            let msg = 'Something went wrong. Please try again.';
+            
+            if (error.code === 'auth/email-already-in-use') {
+                msg = '❌ This Email is already registered. Please Login';
+            } else if (error.code === 'auth/invalid-email') {
+                msg = '❌ Invalid Email format';
+            } else if (error.code === 'auth/weak-password') {
+                msg = '⚠️ Password is too weak (minimum 6 characters)';
+            } else if (error.code === 'auth/network-request-failed') {
+                msg = '📡 Network error. Check your internet';
+            } else if (error.code === 'auth/operation-not-allowed') {
+                msg = '🚫 Email/Password signup is disabled';
+            }
+            
+            errorEl.textContent = msg;
+        }
+    }
+
+    async function doLogout() {
+        if (confirm('Logout?')) {
+            await window.fbSignOut(window.fbAuth);
+        }
+    }
+
+    // ============================================================
+    // PERMISSIONS
+    // ============================================================
+    function applyPermissions() {
+        const perms = window.userPermissions || { nath: true, melting: false, report: false, isAdmin: false };
+        
+        const btnNath = document.getElementById('btnNath');
+        const btnMelt = document.getElementById('btnMelt');
+        const btnReport = document.getElementById('btnReport');
+
+        btnNath.style.display = 'block';
+        document.getElementById('headingNath').style.display = 'flex';
+
+        btnMelt.style.display = perms.melting ? 'block' : 'none';
+        btnReport.style.display = perms.report ? 'block' : 'none';
+
+        document.getElementById('headingMelting').style.display = perms.melting ? 'flex' : 'none';
+        document.getElementById('headingReport').style.display = perms.report ? 'flex' : 'none';
+
+        const adminLink = document.querySelector('.admin-link');
+        if (adminLink) {
+            adminLink.style.display = perms.isAdmin ? 'block' : 'none';
+        }
+
+        showPage('nath');
+    }
+
+    // ============================================================
+    // NATH
+    // ============================================================
+    const WEIGHT_MAP = {
+        '000|Regular': 0.340, '000|D.Tik': 0.000, '000|Jad Dandi': 0.000, '000|Puneri': 0.000,
+        '00|Regular': 0.370, '00|D.Tik': 0.000, '00|Jad Dandi': 0.500, '00|Puneri': 0.380,
+        '0|Regular': 0.400, '0|D.Tik': 0.000, '0|Jad Dandi': 0.520, '0|Puneri': 0.410,
+        '1|Regular': 0.430, '1|D.Tik': 0.000, '1|Jad Dandi': 0.550, '1|Puneri': 0.440,
+        '2|Regular': 0.460, '2|D.Tik': 0.000, '2|Jad Dandi': 0.610, '2|Puneri': 0.470,
+        '3|Regular': 0.490, '3|D.Tik': 0.000, '3|Jad Dandi': 0.630, '3|Puneri': 0.500,
+        '4|Regular': 0.520, '4|D.Tik': 0.000, '4|Jad Dandi': 0.660, '4|Puneri': 0.530,
+        '5|Regular': 0.550, '5|D.Tik': 0.000, '5|Jad Dandi': 0.730, '5|Puneri': 0.560
+    };
+
     const STORAGE_KEY = 'goldmate_out_of_stock';
 
     function getOutOfStockList() {
         try {
             const data = localStorage.getItem(STORAGE_KEY);
-            if (data) {
-                return JSON.parse(data);
-            }
+            if (data) return JSON.parse(data);
         } catch (e) {}
         return [];
     }
 
     function getDefaultOutOfStock() {
-        return [
-            '000|D.Tik',
-            '00|D.Tik',
-            '3|Regular',
-            '4|Puneri',
-            '5|Jad Dandi'
-        ];
+        return ['000|D.Tik', '00|D.Tik', '3|Regular', '4|Puneri', '5|Jad Dandi'];
     }
 
     let OUT_OF_STOCK = getOutOfStockList();
     if (OUT_OF_STOCK.length === 0) {
         OUT_OF_STOCK = getDefaultOutOfStock();
-        try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(OUT_OF_STOCK));
-        } catch (e) {}
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(OUT_OF_STOCK)); } catch (e) {}
     }
 
     const SHOW_WEIGHT_FOR = ['Regular', 'Jad Dandi', 'Puneri'];
 
-    // ================================================================
-    // 3. Helper functions
-    // ================================================================
     function getWeight(number, type) {
-        const key = number + '|' + type;
-        return WEIGHT_MAP[key] || 0;
+        return WEIGHT_MAP[number + '|' + type] || 0;
     }
 
     function isOutOfStock(number, type) {
         return OUT_OF_STOCK.includes(number + '|' + type);
     }
 
-    // ================================================================
-    // 4. Admin Changes Auto-Sync (Check every 2 seconds)
-    // ================================================================
     function checkAdminChanges() {
         try {
             const changed = localStorage.getItem('goldmate_admin_changed');
             if (changed) {
                 const newList = getOutOfStockList();
-                if (newList.length > 0) {
-                    OUT_OF_STOCK = newList;
-                } else {
-                    OUT_OF_STOCK = getDefaultOutOfStock();
-                }
+                OUT_OF_STOCK = newList.length > 0 ? newList : getDefaultOutOfStock();
                 localStorage.removeItem('goldmate_admin_changed');
                 updateNathResult();
-                console.log('🔄 Admin changes applied! Out of Stock updated.');
             }
         } catch (e) {}
     }
-
     setInterval(checkAdminChanges, 2000);
-
-    // ================================================================
-    // 5. NATH - Calculate and display single row
-    // ================================================================
 
     function calculateNathPrice(type, weight, rate, number) {
         if (rate <= 0) return 0;
-        
         let price = 0;
-        
         if (type === 'Regular' || type === 'Jad Dandi' || type === 'Puneri') {
             if (weight <= 0) return 0;
             const base = weight * 0.88 * rate;
@@ -976,7 +1295,6 @@
             const roundedRegPrice = Math.round(regPrice / 100) * 100;
             price = roundedRegPrice + 150;
         }
-        
         return price;
     }
 
@@ -985,17 +1303,15 @@
         const number = document.getElementById('selNumber').value;
         const type = document.getElementById('selType').value;
         const weight = getWeight(number, type);
-
         const outOfStock = isOutOfStock(number, type);
         const price = calculateNathPrice(type, weight, rate, number);
-
-        const resultCard = document.getElementById('nathResult');
 
         document.getElementById('resultNumber').textContent = number;
         document.getElementById('resultType').textContent = type;
 
         const weightEl = document.getElementById('resultWeight');
         const priceEl = document.getElementById('resultPrice');
+        const resultCard = document.getElementById('nathResult');
 
         if (SHOW_WEIGHT_FOR.includes(type) && weight > 0) {
             weightEl.textContent = weight.toFixed(3);
@@ -1007,23 +1323,18 @@
 
         if (outOfStock) {
             resultCard.classList.add('out-of-stock');
-            priceEl.textContent = '₹ ' + price.toFixed(2);
-            priceEl.className = 'value price';
         } else {
             resultCard.classList.remove('out-of-stock');
-            priceEl.textContent = '₹ ' + price.toFixed(2);
-            priceEl.className = 'value price';
         }
+        priceEl.textContent = '₹ ' + price.toFixed(2);
     }
 
-    // ================================================================
-    // 6. MELTING - Logic
-    // ================================================================
-
+    // ============================================================
+    // MELTING
+    // ============================================================
     function getPercentValue(selectId, otherId) {
         const select = document.getElementById(selectId);
         const other = document.getElementById(otherId);
-        
         if (select.value === 'other') {
             other.style.display = 'inline-block';
             return parseFloat(other.value) || 0;
@@ -1057,15 +1368,19 @@
         document.getElementById('mCopper').textContent = copper.toFixed(3);
     }
 
-    // ================================================================
-    // 7. PAGE SWITCHING
-    // ================================================================
-
+    // ============================================================
+    // PAGE SWITCHING
+    // ============================================================
     function showPage(page) {
+        const perms = window.userPermissions || { nath: true, melting: false, report: false };
+        
+        if (page === 'nath' && !perms.nath) return;
+        if (page === 'melting' && !perms.melting) return;
+        if (page === 'report' && !perms.report) return;
+
         document.getElementById('pageNath').classList.remove('active');
         document.getElementById('pageMelting').classList.remove('active');
         document.getElementById('pageReport').classList.remove('active');
-
         document.getElementById('btnNath').classList.remove('active');
         document.getElementById('btnMelt').classList.remove('active');
         document.getElementById('btnReport').classList.remove('active');
@@ -1084,10 +1399,9 @@
         }
     }
 
-    // ================================================================
-    // 8. REPORT (Average Report) - Data Store
-    // ================================================================
-
+    // ============================================================
+    // REPORT
+    // ============================================================
     const MAX_BACKUPS = 5;
     let backupList = [];
     let currentBackupIndex = -1;
@@ -1099,27 +1413,17 @@
             if (saved) {
                 backupList = JSON.parse(saved);
                 if (!Array.isArray(backupList)) backupList = [];
-                while (backupList.length > MAX_BACKUPS) {
-                    backupList.shift();
-                }
+                while (backupList.length > MAX_BACKUPS) backupList.shift();
             }
-        } catch (e) {
-            backupList = [];
-        }
+        } catch (e) { backupList = []; }
         currentBackupIndex = backupList.length > 0 ? backupList.length - 1 : -1;
     }
 
     function saveBackupsToStorage() {
-        try {
-            localStorage.setItem('avgReportBackups', JSON.stringify(backupList));
-        } catch (e) {}
+        try { localStorage.setItem('avgReportBackups', JSON.stringify(backupList)); } catch (e) {}
     }
 
     loadBackupsFromStorage();
-
-    // ================================================================
-    // 9. REPORT - Row Management
-    // ================================================================
 
     function addReportRow(weight = '', report = '', focusField = 'weight') {
         rowCounter++;
@@ -1128,13 +1432,12 @@
         tr.id = 'report-row-' + rowCounter;
 
         tr.innerHTML = `
-            <td style="font-weight:700; color:#7a5d2e;">${rowCounter}</td>
-            <td><input type="number" class="report-weight-input" value="${weight}" step="0.01" data-row="${rowCounter}" /></td>
-            <td><input type="number" class="report-report-input" value="${report}" step="0.01" data-row="${rowCounter}" /></td>
+            <td style="font-weight:700; color:#3d2b06;">${rowCounter}</td>
+            <td><input type="number" class="report-weight-input" value="${weight}" step="0.01" /></td>
+            <td><input type="number" class="report-report-input" value="${report}" step="0.01" /></td>
             <td><input type="text" class="report-fine-output readonly-fine" readonly value="0.000" /></td>
             <td><button class="btn-remove-row" onclick="removeReportRow('${tr.id}')">✕</button></td>
         `;
-
         tbody.appendChild(tr);
 
         const weightInput = tr.querySelector('.report-weight-input');
@@ -1146,36 +1449,24 @@
         weightInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
-                const nextInput = this.closest('tr').querySelector('.report-report-input');
-                if (nextInput) nextInput.focus();
+                this.closest('tr').querySelector('.report-report-input').focus();
             }
         });
-
         reportInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
-                const currentRow = this.closest('tr');
-                const nextRow = currentRow.nextElementSibling;
+                const nextRow = this.closest('tr').nextElementSibling;
                 if (nextRow) {
-                    const nextWeight = nextRow.querySelector('.report-weight-input');
-                    if (nextWeight) nextWeight.focus();
+                    nextRow.querySelector('.report-weight-input').focus();
                 } else {
                     addReportRow('', '', 'weight');
-                    const newRow = document.querySelector('#reportBody tr:last-child');
-                    const newWeight = newRow.querySelector('.report-weight-input');
-                    if (newWeight) newWeight.focus();
+                    document.querySelector('#reportBody tr:last-child .report-weight-input').focus();
                 }
             }
         });
 
-        if (weight && report) {
-            updateReportFine(weightInput);
-        }
-
-        if (focusField === 'weight') {
-            setTimeout(() => weightInput.focus(), 50);
-        }
-
+        if (weight && report) updateReportFine(weightInput);
+        if (focusField === 'weight') setTimeout(() => weightInput.focus(), 50);
         setTimeout(calculateReportData, 50);
     }
 
@@ -1185,9 +1476,8 @@
             row.remove();
             renumberReportRows();
             calculateReportData();
-            showReportStatus('Row removed', '');
         } else {
-            showReportStatus('किमान १ row ठेवा!', 'error');
+            showReportStatus('At least 1 row required!', 'error');
         }
     }
 
@@ -1198,100 +1488,56 @@
             row.querySelector('td:first-child').textContent = index + 1;
             const btn = row.querySelector('.btn-remove-row');
             btn.setAttribute('onclick', `removeReportRow('report-row-${index + 1}')`);
-            const weightInput = row.querySelector('.report-weight-input');
-            const reportInput = row.querySelector('.report-report-input');
-            if (weightInput) weightInput.dataset.row = index + 1;
-            if (reportInput) reportInput.dataset.row = index + 1;
         });
         rowCounter = rows.length;
     }
 
-    // ================================================================
-    // 10. REPORT - Calculation
-    // ================================================================
-
     function updateReportFine(input) {
         const row = input.closest('tr');
-        const weightInput = row.querySelector('.report-weight-input');
-        const reportInput = row.querySelector('.report-report-input');
-        const fineOutput = row.querySelector('.report-fine-output');
-
-        const weight = parseFloat(weightInput.value) || 0;
-        const report = parseFloat(reportInput.value) || 0;
-
-        const fine = (weight * report) / 100;
-        fineOutput.value = fine.toFixed(3);
-
+        const weight = parseFloat(row.querySelector('.report-weight-input').value) || 0;
+        const report = parseFloat(row.querySelector('.report-report-input').value) || 0;
+        row.querySelector('.report-fine-output').value = ((weight * report) / 100).toFixed(3);
         calculateReportData();
     }
 
     function calculateReportData() {
         const rows = document.querySelectorAll('#reportBody tr');
-        let totalWeight = 0;
-        let totalFine = 0;
-
+        let totalWeight = 0, totalFine = 0;
         rows.forEach(row => {
-            const weight = parseFloat(row.querySelector('.report-weight-input').value) || 0;
-            const fine = parseFloat(row.querySelector('.report-fine-output').value) || 0;
-            totalWeight += weight;
-            totalFine += fine;
+            totalWeight += parseFloat(row.querySelector('.report-weight-input').value) || 0;
+            totalFine += parseFloat(row.querySelector('.report-fine-output').value) || 0;
         });
-
         const avgReport = totalWeight > 0 ? (totalFine / totalWeight) * 100 : 0;
-
         document.getElementById('reportTotalWeight').textContent = totalWeight.toFixed(3);
         document.getElementById('reportTotalFine').textContent = totalFine.toFixed(3);
         document.getElementById('reportAvgReport').textContent = avgReport.toFixed(2) + '%';
     }
 
-    // ================================================================
-    // 11. REPORT - Load Data
-    // ================================================================
-
     function loadReportDataIntoTable(data) {
         const tbody = document.getElementById('reportBody');
         tbody.innerHTML = '';
         rowCounter = 0;
-
-        if (!data || data.length === 0) {
-            addReportRow();
-            return;
-        }
-
-        data.forEach(item => {
-            addReportRow(item.weight, item.report);
-        });
+        if (!data || data.length === 0) { addReportRow(); return; }
+        data.forEach(item => addReportRow(item.weight, item.report));
     }
 
-    // ================================================================
-    // 12. REPORT - Save / Previous / Clear
-    // ================================================================
-
     function getCurrentReportData() {
-        const rows = document.querySelectorAll('#reportBody tr');
         const data = [];
-        rows.forEach(row => {
-            const weight = row.querySelector('.report-weight-input').value || '';
-            const report = row.querySelector('.report-report-input').value || '';
-            data.push({ weight: weight, report: report });
+        document.querySelectorAll('#reportBody tr').forEach(row => {
+            data.push({
+                weight: row.querySelector('.report-weight-input').value || '',
+                report: row.querySelector('.report-report-input').value || ''
+            });
         });
         return data;
     }
 
     function saveReportData() {
-        const data = getCurrentReportData();
-        
-        backupList.push(data);
-        
-        while (backupList.length > MAX_BACKUPS) {
-            backupList.shift();
-        }
-        
+        backupList.push(getCurrentReportData());
+        while (backupList.length > MAX_BACKUPS) backupList.shift();
         currentBackupIndex = backupList.length - 1;
-        
         saveBackupsToStorage();
-        
-        showReportStatus(`✅ Data Saved! (${backupList.length}/${MAX_BACKUPS} backups)`, '');
+        showReportStatus(`✅ Data Saved! (${backupList.length}/${MAX_BACKUPS})`, '');
     }
 
     function loadReportPrevious() {
@@ -1299,109 +1545,110 @@
             showReportStatus('❌ No backup data found!', 'error');
             return;
         }
-
         if (currentBackupIndex < 0 || currentBackupIndex >= backupList.length) {
             currentBackupIndex = backupList.length - 1;
         }
-
         const data = backupList[currentBackupIndex];
-        
         if (!data || data.length === 0) {
             showReportStatus('❌ Backup data is empty!', 'error');
-            currentBackupIndex--;
-            if (currentBackupIndex < 0) currentBackupIndex = backupList.length - 1;
             return;
         }
-
         loadReportDataIntoTable(data);
-        
-        const displayIndex = currentBackupIndex + 1;
-        showReportStatus(`⬅️ Loaded backup ${displayIndex}/${backupList.length}`, '');
-        
+        showReportStatus(`⬅️ Loaded backup ${currentBackupIndex + 1}/${backupList.length}`, '');
         currentBackupIndex--;
-        if (currentBackupIndex < 0) {
-            currentBackupIndex = backupList.length - 1;
-        }
-        
+        if (currentBackupIndex < 0) currentBackupIndex = backupList.length - 1;
         calculateReportData();
     }
 
     function clearReportAll() {
-        const tbody = document.getElementById('reportBody');
-        tbody.innerHTML = '';
+        document.getElementById('reportBody').innerHTML = '';
         rowCounter = 0;
-
         addReportRow();
-
-        document.getElementById('reportTotalWeight').textContent = '0.00';
-        document.getElementById('reportTotalFine').textContent = '0.00';
-        document.getElementById('reportAvgReport').textContent = '0.00%';
-
+        calculateReportData();
         showReportStatus('🗑️ All rows cleared!', '');
     }
-
-    // ================================================================
-    // 13. REPORT - Status Message
-    // ================================================================
 
     function showReportStatus(msg, type = '') {
         const el = document.getElementById('reportStatusMsg');
         el.textContent = msg;
         el.className = 'status-msg' + (type === 'error' ? ' error' : '');
-        if (msg) {
-            setTimeout(() => {
-                if (el.textContent === msg) {
-                    el.textContent = '';
-                    el.className = 'status-msg';
-                }
-            }, 4000);
-        }
+        if (msg) setTimeout(() => { if (el.textContent === msg) el.textContent = ''; }, 4000);
     }
 
-    // ================================================================
-    // 14. INIT
-    // ================================================================
-
-    // Handle "Other" for Source %
+    // ============================================================
+    // INIT
+    // ============================================================
     document.getElementById('meltPercent').addEventListener('change', function() {
-        const otherInput = document.getElementById('meltPercentOther');
-        if (this.value === 'other') {
-            otherInput.style.display = 'inline-block';
-            otherInput.focus();
-        } else {
-            otherInput.style.display = 'none';
-        }
+        document.getElementById('meltPercentOther').style.display = this.value === 'other' ? 'inline-block' : 'none';
         calculateMelting();
     });
-
-    // Handle "Other" for Target %
     document.getElementById('meltTarget').addEventListener('change', function() {
-        const otherInput = document.getElementById('meltTargetOther');
-        if (this.value === 'other') {
-            otherInput.style.display = 'inline-block';
-            otherInput.focus();
-        } else {
-            otherInput.style.display = 'none';
-        }
+        document.getElementById('meltTargetOther').style.display = this.value === 'other' ? 'inline-block' : 'none';
         calculateMelting();
     });
 
-    document.getElementById('fineWeight').addEventListener('input', calculateMelting);
-
-    document.getElementById('selNumber').value = '000';
-    document.getElementById('selType').value = 'Regular';
-
-    // REPORT Init
     addReportRow();
     addReportRow();
     addReportRow();
 
-    updateNathResult();
-    calculateMelting();
+    console.log('✅ GoldMate loaded with Firebase!');
+</script>
 
-    console.log('✅ GoldMate loaded!');
-    console.log('📦 Out of Stock items (from localStorage):', OUT_OF_STOCK);
-    console.log('📌 Admin Panel changes auto-sync every 2 seconds');
+<!-- ============================================================ -->
+<!-- 🔄 PWA AUTO UPDATE - Service Worker Registration -->
+<!-- ============================================================ -->
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+                .then((registration) => {
+                    console.log('✅ Service Worker registered:', registration.scope);
+
+                    // 🔹 दर 1 तासाला update check
+                    setInterval(() => {
+                        registration.update();
+                        console.log('🔄 Checking for updates...');
+                    }, 60 * 60 * 1000);
+
+                    // 🔹 नवीन version सापडल्यावर
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        console.log('🆕 New version found!');
+
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                console.log('✨ New version ready! Refreshing...');
+                                
+                                const toast = document.getElementById('updateToast');
+                                if (toast) {
+                                    toast.classList.add('show');
+                                    setTimeout(() => toast.classList.remove('show'), 2000);
+                                }
+                                
+                                setTimeout(() => {
+                                    window.location.reload();
+                                }, 1000);
+                            }
+                        });
+                    });
+                })
+                .catch((error) => {
+                    console.log('❌ Service Worker registration failed:', error);
+                });
+
+            // 🔹 Controller change वर reload
+            let refreshing = false;
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                if (!refreshing) {
+                    refreshing = true;
+                    console.log('🔄 Controller changed - reloading...');
+                    window.location.reload();
+                }
+            });
+        });
+    } else {
+        console.log('⚠️ Service Worker not supported');
+    }
 </script>
 
 </body>
