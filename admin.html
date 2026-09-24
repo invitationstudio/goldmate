@@ -57,7 +57,6 @@
             color: #5a3f0a; text-align: center;
             margin-bottom: 12px;
         }
-        /* SEARCH BAR */
         .search-bar {
             width: 100%; padding: 10px 14px;
             margin-bottom: 12px;
@@ -144,7 +143,6 @@
             box-shadow: 0 3px 0 #660000; cursor: pointer;
         }
 
-        /* USER CARD */
         .user-card {
             background: #f5e6c8; border-radius: 12px;
             padding: 10px 12px; border: 1px solid #d4b48c;
@@ -212,13 +210,9 @@
     <a href="index.html" class="back-btn">⬅️ Back</a>
     <button class="logout-btn" onclick="adminLogout()">🚪 Logout</button>
 
-    <!-- USER MANAGEMENT -->
     <div class="admin-section">
         <div class="section-title">👥 User Management</div>
-        
-        <!-- SEARCH BAR -->
         <input type="text" id="userSearch" class="search-bar" placeholder="🔍 Search by name or email..." oninput="filterUsers()" />
-        
         <div id="userList" class="oos-list">
             <div class="empty-msg">Loading users...</div>
         </div>
@@ -227,7 +221,6 @@
         </div>
     </div>
 
-    <!-- OUT OF STOCK -->
     <div class="admin-section">
         <div class="section-title">➕ Add Out of Stock</div>
         <div class="select-row">
@@ -260,12 +253,11 @@
         <div class="status-msg" id="adminStatusMsg"></div>
     </div>
 
-    <!-- CURRENT OUT OF STOCK -->
     <div class="admin-section">
         <div class="section-title">📋 Current Out of Stock</div>
         <div class="oos-list" id="oosList"></div>
         <div class="btn-group">
-            <button class="btn-gold-sm blue" onclick="renderList()">🔄 Refresh</button>
+            <button class="btn-gold-sm blue" onclick="loadOutOfStockFromFirestore()">🔄 Refresh</button>
             <button class="btn-gold-sm red" onclick="clearAllOutOfStock()">🗑️ Clear All</button>
         </div>
     </div>
@@ -285,7 +277,7 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, doc, getDoc, collection, getDocs, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, doc, getDoc, setDoc, collection, getDocs, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyC_Lzy7_WLyiRdR0O6u2CDRnyHcd1FT7Kc",
@@ -305,6 +297,7 @@
     window.fbSignOut = signOut;
     window.fbDoc = doc;
     window.fbGetDoc = getDoc;
+    window.fbSetDoc = setDoc;
     window.fbCollection = collection;
     window.fbGetDocs = getDocs;
     window.fbUpdateDoc = updateDoc;
@@ -324,7 +317,7 @@
                 document.getElementById('adminApp').style.display = 'block';
                 document.getElementById('noAccess').style.display = 'none';
                 loadUsers();
-                renderList();
+                loadOutOfStockFromFirestore();
                 console.log('✅ Admin access granted');
             } else {
                 document.getElementById('adminApp').style.display = 'none';
@@ -341,64 +334,88 @@
 
 <!-- ADMIN LOGIC -->
 <script>
-    // OUT OF STOCK
-    const STORAGE_KEY = 'goldmate_out_of_stock';
+    // ============================================================
+    // 🔥 OUT OF STOCK - Firestore Management
+    // ============================================================
+    const OUT_OF_STOCK_DOC = 'out_of_stock';
+    const SETTINGS_COLLECTION = 'settings';
 
-    function getOutOfStockList() {
+    let outOfStockList = [];
+
+    async function loadOutOfStockFromFirestore() {
         try {
-            const data = localStorage.getItem(STORAGE_KEY);
-            if (data) return JSON.parse(data);
-        } catch (e) {}
-        return [];
+            const docRef = window.fbDoc(window.fbDB, SETTINGS_COLLECTION, OUT_OF_STOCK_DOC);
+            const docSnap = await window.fbGetDoc(docRef);
+            
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                outOfStockList = data.items || [];
+                console.log('📦 Loaded from Firestore:', outOfStockList);
+            } else {
+                await window.fbSetDoc(docRef, { items: [] });
+                outOfStockList = [];
+                console.log('📦 Created new out_of_stock document');
+            }
+            renderList();
+        } catch (error) {
+            console.error('❌ Error loading out of stock:', error);
+        }
     }
 
-    function saveOutOfStockList(list) {
-        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch (e) {}
+    async function saveOutOfStockToFirestore(list) {
+        try {
+            const docRef = window.fbDoc(window.fbDB, SETTINGS_COLLECTION, OUT_OF_STOCK_DOC);
+            await window.fbSetDoc(docRef, { 
+                items: list,
+                updatedAt: new Date().toISOString()
+            });
+            console.log('✅ Saved to Firestore:', list);
+        } catch (error) {
+            console.error('❌ Error saving out of stock:', error);
+            showAdminStatus('❌ Failed to save. Check permissions.', 'error');
+        }
     }
 
-    function addOutOfStock() {
+    async function addOutOfStock() {
         const number = document.getElementById('adminNumber').value;
         const type = document.getElementById('adminType').value;
         const key = number + '|' + type;
-        const list = getOutOfStockList();
-        if (list.includes(key)) {
+
+        if (outOfStockList.includes(key)) {
             showAdminStatus(`⚠️ ${number} | ${type} is already OUT OF STOCK!`, 'error');
             return;
         }
-        list.push(key);
-        saveOutOfStockList(list);
+
+        outOfStockList.push(key);
+        await saveOutOfStockToFirestore(outOfStockList);
         renderList();
         showAdminStatus(`✅ ${number} | ${type} marked as OUT OF STOCK`, '');
-        try { localStorage.setItem('goldmate_admin_changed', Date.now().toString()); } catch (e) {}
     }
 
-    function removeOutOfStock(key) {
-        let list = getOutOfStockList();
-        list = list.filter(item => item !== key);
-        saveOutOfStockList(list);
+    async function removeOutOfStock(key) {
+        outOfStockList = outOfStockList.filter(item => item !== key);
+        await saveOutOfStockToFirestore(outOfStockList);
         renderList();
         showAdminStatus(`✅ Removed from OUT OF STOCK`, '');
-        try { localStorage.setItem('goldmate_admin_changed', Date.now().toString()); } catch (e) {}
     }
 
-    function clearAllOutOfStock() {
+    async function clearAllOutOfStock() {
         if (confirm('Are you sure you want to remove all OUT OF STOCK items?')) {
-            saveOutOfStockList([]);
+            outOfStockList = [];
+            await saveOutOfStockToFirestore(outOfStockList);
             renderList();
             showAdminStatus('🗑️ All OUT OF STOCK items cleared!', '');
-            try { localStorage.setItem('goldmate_admin_changed', Date.now().toString()); } catch (e) {}
         }
     }
 
     function renderList() {
-        const list = getOutOfStockList();
         const container = document.getElementById('oosList');
         container.innerHTML = '';
-        if (list.length === 0) {
+        if (outOfStockList.length === 0) {
             container.innerHTML = `<div class="empty-msg">✅ No items out of stock</div>`;
             return;
         }
-        list.forEach(key => {
+        outOfStockList.forEach(key => {
             const [number, type] = key.split('|');
             const div = document.createElement('div');
             div.className = 'oos-item';
@@ -413,7 +430,9 @@
         });
     }
 
+    // ============================================================
     // USER MANAGEMENT
+    // ============================================================
     let allUsers = [];
 
     async function loadUsers() {
@@ -432,10 +451,7 @@
 
             snapshot.forEach(docSnap => {
                 const data = docSnap.data();
-                allUsers.push({
-                    id: docSnap.id,
-                    ...data
-                });
+                allUsers.push({ id: docSnap.id, ...data });
             });
 
             renderUsers(allUsers);
@@ -445,7 +461,7 @@
         }
     }
 
-        function renderUsers(users) {
+    function renderUsers(users) {
         const container = document.getElementById('userList');
         container.innerHTML = '';
 
@@ -504,7 +520,6 @@
             update[field] = value;
             await window.fbUpdateDoc(userRef, update);
             showAdminStatus(`✅ ${field.toUpperCase()} ${value ? 'ON' : 'OFF'}`, '');
-            // Update local list
             const user = allUsers.find(u => u.id === userId);
             if (user) user[field] = value;
             filterUsers();
@@ -514,30 +529,17 @@
         }
     }
 
-        // ============================================================
-    // 👑 TOGGLE ADMIN - Make/Remove Admin
-    // ============================================================
     async function toggleAdmin(userId, makeAdmin) {
         const user = allUsers.find(u => u.id === userId);
         const userEmail = user?.email || 'this user';
-        
         const action = makeAdmin ? 'Make Admin' : 'Remove Admin';
         
-        if (!confirm(`${action}: ${userEmail}?\n\n${makeAdmin 
-            ? '✅ हा user Admin बनेल आणि Admin Panel वापरू शकेल!' 
-            : '⚠️ हा user पासून Admin अधिकार काढले जातील!'}`)) {
-            return;
-        }
+        if (!confirm(`${action}: ${userEmail}?`)) return;
 
         try {
             const userRef = window.fbDoc(window.fbDB, 'users', userId);
-            await window.fbUpdateDoc(userRef, {
-                isAdmin: makeAdmin
-            });
-            
-            // Update local list
+            await window.fbUpdateDoc(userRef, { isAdmin: makeAdmin });
             if (user) user.isAdmin = makeAdmin;
-            
             filterUsers();
             showAdminStatus(`✅ ${userEmail} ${makeAdmin ? 'is now Admin 👑' : 'is no longer Admin'}`, '');
         } catch (error) {
@@ -547,18 +549,12 @@
     }
 
     async function deleteUser(userId, email) {
-        if (!confirm(`Delete user ${email}?\n\nThis will remove their data from Firestore.\nTheir login account must be deleted manually from Firebase Console.`)) {
-            return;
-        }
-
+        if (!confirm(`Delete user ${email}?`)) return;
         try {
             const userRef = window.fbDoc(window.fbDB, 'users', userId);
             await window.fbDeleteDoc(userRef);
-            
-            // Remove from local list
             allUsers = allUsers.filter(u => u.id !== userId);
             filterUsers();
-            
             showAdminStatus(`✅ User ${email} deleted from Firestore`, '');
         } catch (error) {
             console.error(error);
@@ -579,7 +575,14 @@
         }
     }
 
-    console.log('✅ Admin logic loaded');
+    // 🔹 Auto-refresh users every 5 seconds
+    setInterval(() => {
+        if (document.getElementById('adminApp').style.display !== 'none') {
+            loadUsers();
+        }
+    }, 5000);
+
+    console.log('✅ Admin logic loaded with Firestore');
 </script>
 
 </body>

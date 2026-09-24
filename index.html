@@ -101,7 +101,6 @@
         }
         .page-heading .icon-img { width: 50px; height: 50px; object-fit: contain; }
 
-        /* NATH */
         .rate-box {
             background: #fffbf0; border-radius: 60px;
             padding: 8px 20px; display: flex; align-items: center;
@@ -170,15 +169,13 @@
         .result-row:last-child { border-bottom: none; }
         .result-row .label { font-weight: 700; color: #3d2b06; font-size: 16px; }
         .result-row .value { font-weight: 800; color: #2c1a05; font-size: 20px; }
-        .result-row .value.price { color: #8b6914; font-size: 24px; }
         .result-row .value.no-weight { color: #666; font-style: italic; font-size: 16px; }
-                /* 🔹 NATH Price - Green + Blink */
         .result-row .value.price {
             color: #096426;
             font-weight: 900;
+            font-size: 24px;
             animation: greenPriceBlink 1.5s ease-in-out infinite;
         }
-
         @keyframes greenPriceBlink {
             0%, 100% { 
                 color: #023313;
@@ -220,20 +217,17 @@
             font-size: 20px; font-weight: 800;
             color: #2c1a05; margin-top: 2px;
         }
-                /* 🔹 Silver & Copper Boxes - Box समान, फक्त Text/Value Green + Blink */
         .melting-result .res-card.silver-copper .label {
             color: #1e5a32;
             font-weight: 800;
             animation: greenTextBlink 1.5s ease-in-out infinite;
         }
-
         .melting-result .res-card.silver-copper .value {
             color: #2d7d46;
             font-weight: 900;
             font-size: 22px;
             animation: greenTextBlink 1.5s ease-in-out infinite;
         }
-
         @keyframes greenTextBlink {
             0%, 100% { 
                 color: #1e5a32;
@@ -322,28 +316,15 @@
         }
         .result-box .res-item .value { font-size: 20px; font-weight: 800; color: #8b6914; }
         .result-box .res-item.highlight {
-            background: linear-gradient(145deg, #2d7d46, #1e5a32);
-            border-color: #0f3a1e;
-        }
-        .result-box .res-item.highlight .label { color: #fff; }
-        .result-box .res-item.highlight .value { color: #fff; font-size: 24px; }
-
-        .status-msg { text-align: center; font-size: 13px; font-weight: 700; color: #1e5a32; margin-top: 6px; min-height: 24px; }
-        .status-msg.error { color: #990000; }
-
-                /* 🔹 AVG REPORT - Green + Blink */
-        .result-box .res-item.highlight {
             background: linear-gradient(145deg, #f5e6c8, #e8d5b0);
             border-color: #b8860b;
             animation: none;
         }
-
         .result-box .res-item.highlight .label {
             color: #1e5a32;
             font-weight: 800;
             animation: greenTextBlink 1.5s ease-in-out infinite;
         }
-
         .result-box .res-item.highlight .value {
             color: #2d7d46;
             font-weight: 900;
@@ -351,19 +332,10 @@
             animation: greenTextBlink 1.5s ease-in-out infinite;
         }
 
-        @keyframes greenTextBlink {
-            0%, 100% { 
-                color: #1e5a32;
-                text-shadow: 0 0 2px rgba(45, 125, 70, 0.3);
-            }
-            50% { 
-                color: #2d7d46;
-                text-shadow: 0 0 15px rgba(45, 125, 70, 0.9),
-                             0 0 25px rgba(45, 125, 70, 0.5);
-            }
-        }
+        .status-msg { text-align: center; font-size: 13px; font-weight: 700; color: #1e5a32; margin-top: 6px; min-height: 24px; }
+        .status-msg.error { color: #990000; }
 
-        /* ===== ATTRACTIVE CUSTOMER LOGIN MODAL WITH LAMP ===== */
+        /* LOGIN MODAL */
         .modal-overlay {
             display: none; position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -666,7 +638,6 @@
                 align-items: center;
                 overflow-y: auto;
             }
-
             .lamp-section {
                 margin-top: 10px;
                 margin-bottom: 20px;
@@ -674,37 +645,29 @@
                 flex-direction: column;
                 align-items: center;
             }
-
             .lamp-wrapper {
                 width: 155px !important;
                 height: 155px !important;
             }
-
             .lamp {
                 width: 150px !important;
                 max-width: 150px !important;
             }
-
             .lamp-glow {
                 width: 320px !important;
                 height: 320px !important;
                 filter: blur(30px) !important;
             }
-
             #lampHint {
                 font-size: 13px !important;
                 margin-top: 40px !important;
                 align-self: center !important;
             }
-
-            .sparkle {
-                font-size: 10px;
-            }
+            .sparkle { font-size: 10px; }
             .sparkle.s1 { top: 5%; left: 5%; }
             .sparkle.s2 { top: 10%; right: 8%; font-size: 8px; }
             .sparkle.s3 { bottom: 10%; left: 10%; font-size: 9px; }
             .sparkle.s4 { bottom: 5%; right: 5%; font-size: 11px; }
-
             .login-box {
                 padding: 16px 14px 12px;
                 max-width: 300px;
@@ -712,7 +675,6 @@
                 border-radius: 20px;
                 margin-bottom: 15px;
             }
-
             .login-logo { font-size: 30px; margin-bottom: 2px; }
             .login-box h3 { font-size: 19px; margin-bottom: 3px; padding-bottom: 6px; }
             .login-box h3::after { width: 40px; height: 2px; }
@@ -742,7 +704,6 @@
             }
         }
 
-        /* 🔔 Update Toast */
         .update-toast {
             position: fixed;
             bottom: 20px;
@@ -765,10 +726,9 @@
 </head>
 <body>
 
-<!-- ===== ATTRACTIVE CUSTOMER LOGIN MODAL WITH LAMP ===== -->
+<!-- ===== LOGIN MODAL ===== -->
 <div class="modal-overlay active" id="loginModal">
     <div class="login-wrapper">
-        <!-- Lamp Section -->
         <div class="lamp-section" id="lampSection">
             <div class="lamp-wrapper">
                 <div class="lamp-glow"></div>
@@ -783,7 +743,6 @@
             <div id="lampHint">👆 Tap the Lamp</div>
         </div>
 
-        <!-- Login Card -->
         <div class="login-box" id="loginBox">
             <div class="login-logo">🔐</div>
             <h3>GoldMate</h3>
@@ -823,7 +782,6 @@
         <button class="logout-btn" onclick="doLogout()">Logout</button>
     </div>
 
-    <!-- 🔐 Admin Panel Button - फक्त Admin ला दिसेल -->
     <div class="admin-link" id="adminPanelBtn" style="display:none;">
         <a href="admin.html">👑 Admin Panel</a>
     </div>
@@ -998,7 +956,6 @@
 
 </div>
 
-<!-- 🔔 Update Toast -->
 <div class="update-toast" id="updateToast">✨ New version available! Refreshing...</div>
 
 <!-- FIREBASE SDK -->
@@ -1090,7 +1047,7 @@
 <!-- MAIN LOGIC -->
 <script>
     // ============================================================
-    // LAMP - Click to show/hide Login Card
+    // LAMP
     // ============================================================
     let lampLightOn = false;
 
@@ -1180,10 +1137,6 @@
         }
     }
 
-    // ============================================================
-    // ⌨️ ENTER KEY NAVIGATION
-    // Email → Password → Login
-    // ============================================================
     document.addEventListener('DOMContentLoaded', function() {
         const emailInput = document.getElementById('loginEmail');
         const passwordInput = document.getElementById('loginPassword');
@@ -1301,6 +1254,46 @@
     }
 
     // ============================================================
+    // 🔥 OUT OF STOCK - Firestore Sync
+    // ============================================================
+    function getDefaultOutOfStock() {
+        return ['000|D.Tik', '00|D.Tik', '3|Regular', '4|Puneri', '5|Jad Dandi'];
+    }
+
+    let OUT_OF_STOCK = getDefaultOutOfStock();
+    let outOfStockLoaded = false;
+
+    async function loadOutOfStockFromFirestore() {
+        try {
+            const docRef = window.fbDoc(window.fbDB, 'settings', 'out_of_stock');
+            const docSnap = await window.fbGetDoc(docRef);
+            
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                const newList = data.items || [];
+                const newListStr = JSON.stringify(newList);
+                const oldListStr = JSON.stringify(OUT_OF_STOCK);
+                
+                if (newListStr !== oldListStr || !outOfStockLoaded) {
+                    OUT_OF_STOCK = newList;
+                    updateNathResult();
+                    console.log('🔄 Out of Stock updated from Firestore:', OUT_OF_STOCK);
+                }
+                outOfStockLoaded = true;
+            }
+        } catch (error) {
+            console.error('❌ Error loading out of stock:', error);
+        }
+    }
+
+    function checkAdminChanges() {
+        loadOutOfStockFromFirestore();
+    }
+    setInterval(checkAdminChanges, 3000);
+
+    loadOutOfStockFromFirestore();
+
+    // ============================================================
     // NATH
     // ============================================================
     const WEIGHT_MAP = {
@@ -1314,26 +1307,6 @@
         '5|Regular': 0.550, '5|D.Tik': 0.000, '5|Jad Dandi': 0.730, '5|Puneri': 0.560
     };
 
-    const STORAGE_KEY = 'goldmate_out_of_stock';
-
-    function getOutOfStockList() {
-        try {
-            const data = localStorage.getItem(STORAGE_KEY);
-            if (data) return JSON.parse(data);
-        } catch (e) {}
-        return [];
-    }
-
-    function getDefaultOutOfStock() {
-        return ['000|D.Tik', '00|D.Tik', '3|Regular', '4|Puneri', '5|Jad Dandi'];
-    }
-
-    let OUT_OF_STOCK = getOutOfStockList();
-    if (OUT_OF_STOCK.length === 0) {
-        OUT_OF_STOCK = getDefaultOutOfStock();
-        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(OUT_OF_STOCK)); } catch (e) {}
-    }
-
     const SHOW_WEIGHT_FOR = ['Regular', 'Jad Dandi', 'Puneri'];
 
     function getWeight(number, type) {
@@ -1343,19 +1316,6 @@
     function isOutOfStock(number, type) {
         return OUT_OF_STOCK.includes(number + '|' + type);
     }
-
-    function checkAdminChanges() {
-        try {
-            const changed = localStorage.getItem('goldmate_admin_changed');
-            if (changed) {
-                const newList = getOutOfStockList();
-                OUT_OF_STOCK = newList.length > 0 ? newList : getDefaultOutOfStock();
-                localStorage.removeItem('goldmate_admin_changed');
-                updateNathResult();
-            }
-        } catch (e) {}
-    }
-    setInterval(checkAdminChanges, 2000);
 
     function calculateNathPrice(type, weight, rate, number) {
         if (rate <= 0) return 0;
@@ -1669,41 +1629,30 @@
     addReportRow();
     addReportRow();
 
-    console.log('✅ GoldMate loaded with Firebase!');
+    console.log('✅ GoldMate loaded with Firestore Sync!');
 </script>
 
-<!-- ============================================================ -->
-<!-- 🔄 PWA AUTO UPDATE - Service Worker Registration -->
-<!-- ============================================================ -->
+<!-- PWA AUTO UPDATE -->
 <script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('sw.js')
                 .then((registration) => {
                     console.log('✅ Service Worker registered:', registration.scope);
-
                     setInterval(() => {
                         registration.update();
-                        console.log('🔄 Checking for updates...');
                     }, 60 * 60 * 1000);
 
                     registration.addEventListener('updatefound', () => {
                         const newWorker = registration.installing;
-                        console.log('🆕 New version found!');
-
                         newWorker.addEventListener('statechange', () => {
                             if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                console.log('✨ New version ready! Refreshing...');
-                                
                                 const toast = document.getElementById('updateToast');
                                 if (toast) {
                                     toast.classList.add('show');
                                     setTimeout(() => toast.classList.remove('show'), 2000);
                                 }
-                                
-                                setTimeout(() => {
-                                    window.location.reload();
-                                }, 1000);
+                                setTimeout(() => { window.location.reload(); }, 1000);
                             }
                         });
                     });
@@ -1716,13 +1665,10 @@
             navigator.serviceWorker.addEventListener('controllerchange', () => {
                 if (!refreshing) {
                     refreshing = true;
-                    console.log('🔄 Controller changed - reloading...');
                     window.location.reload();
                 }
             });
         });
-    } else {
-        console.log('⚠️ Service Worker not supported');
     }
 </script>
 
