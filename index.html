@@ -92,14 +92,14 @@
             100% { opacity: 1; transform: translateY(0); }
         }
         .page-heading {
-            text-align: center; font-size: 26px; font-weight: 800;
+            text-align: center; font-size: 35px; font-weight: 800;
             color: #3d2b06;
             background: linear-gradient(90deg, #f5e6c8, #d4b48c, #f5e6c8);
             padding: 8px 0; border-radius: 60px; margin: 6px 0 16px;
             letter-spacing: 3px; border: 1px solid #b8860b;
             display: flex; align-items: center; justify-content: center; gap: 12px;
         }
-        .page-heading .icon-img { width: 30px; height: 30px; object-fit: contain; }
+        .page-heading .icon-img { width: 50px; height: 50px; object-fit: contain; }
 
         /* NATH */
         .rate-box {
@@ -172,6 +172,24 @@
         .result-row .value { font-weight: 800; color: #2c1a05; font-size: 20px; }
         .result-row .value.price { color: #8b6914; font-size: 24px; }
         .result-row .value.no-weight { color: #666; font-style: italic; font-size: 16px; }
+                /* 🔹 NATH Price - Green + Blink */
+        .result-row .value.price {
+            color: #096426;
+            font-weight: 900;
+            animation: greenPriceBlink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes greenPriceBlink {
+            0%, 100% { 
+                color: #023313;
+                text-shadow: 0 0 2px rgba(45, 125, 70, 0.3);
+            }
+            50% { 
+                color: #2d7d46;
+                text-shadow: 0 0 15px rgba(45, 125, 70, 0.9),
+                             0 0 25px rgba(45, 125, 70, 0.5);
+            }
+        }
 
         /* MELTING */
         .melting-grid { display: flex; flex-direction: column; gap: 14px; }
@@ -201,6 +219,31 @@
         .melting-result .res-card .value {
             font-size: 20px; font-weight: 800;
             color: #2c1a05; margin-top: 2px;
+        }
+                /* 🔹 Silver & Copper Boxes - Box समान, फक्त Text/Value Green + Blink */
+        .melting-result .res-card.silver-copper .label {
+            color: #1e5a32;
+            font-weight: 800;
+            animation: greenTextBlink 1.5s ease-in-out infinite;
+        }
+
+        .melting-result .res-card.silver-copper .value {
+            color: #2d7d46;
+            font-weight: 900;
+            font-size: 22px;
+            animation: greenTextBlink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes greenTextBlink {
+            0%, 100% { 
+                color: #1e5a32;
+                text-shadow: 0 0 2px rgba(45, 125, 70, 0.3);
+            }
+            50% { 
+                color: #2d7d46;
+                text-shadow: 0 0 15px rgba(45, 125, 70, 0.9),
+                             0 0 25px rgba(45, 125, 70, 0.5);
+            }
         }
 
         /* REPORT */
@@ -288,6 +331,38 @@
         .status-msg { text-align: center; font-size: 13px; font-weight: 700; color: #1e5a32; margin-top: 6px; min-height: 24px; }
         .status-msg.error { color: #990000; }
 
+                /* 🔹 AVG REPORT - Green + Blink */
+        .result-box .res-item.highlight {
+            background: linear-gradient(145deg, #f5e6c8, #e8d5b0);
+            border-color: #b8860b;
+            animation: none;
+        }
+
+        .result-box .res-item.highlight .label {
+            color: #1e5a32;
+            font-weight: 800;
+            animation: greenTextBlink 1.5s ease-in-out infinite;
+        }
+
+        .result-box .res-item.highlight .value {
+            color: #2d7d46;
+            font-weight: 900;
+            font-size: 24px;
+            animation: greenTextBlink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes greenTextBlink {
+            0%, 100% { 
+                color: #1e5a32;
+                text-shadow: 0 0 2px rgba(45, 125, 70, 0.3);
+            }
+            50% { 
+                color: #2d7d46;
+                text-shadow: 0 0 15px rgba(45, 125, 70, 0.9),
+                             0 0 25px rgba(45, 125, 70, 0.5);
+            }
+        }
+
         /* ===== ATTRACTIVE CUSTOMER LOGIN MODAL WITH LAMP ===== */
         .modal-overlay {
             display: none; position: fixed;
@@ -314,6 +389,7 @@
 
         .lamp-section {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             flex-shrink: 0;
@@ -384,6 +460,15 @@
         }
 
         .lamp-section.light-on .sparkle { opacity: 1; }
+
+        #lampHint {
+            text-align: center;
+            color: #ffd700;
+            font-size: 14px;
+            font-weight: 800;
+            margin-top: 30px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
 
         .login-box {
             background: linear-gradient(180deg, #faf3e0 0%, #f0ddb8 100%);
@@ -620,7 +705,7 @@
             .sparkle.s3 { bottom: 10%; left: 10%; font-size: 9px; }
             .sparkle.s4 { bottom: 5%; right: 5%; font-size: 11px; }
 
-                        .login-box {
+            .login-box {
                 padding: 16px 14px 12px;
                 max-width: 300px;
                 width: 90%;
@@ -628,75 +713,28 @@
                 margin-bottom: 15px;
             }
 
-            .login-logo {
-                font-size: 30px;
-                margin-bottom: 2px;
-            }
-
-            .login-box h3 {
-                font-size: 19px;
-                margin-bottom: 3px;
-                padding-bottom: 6px;
-            }
-
-            .login-box h3::after {
-                width: 40px;
-                height: 2px;
-            }
-
-            .login-subtitle {
-                font-size: 10px;
-                margin-bottom: 12px;
-                letter-spacing: 1px;
-            }
-
-            .input-group {
-                margin-bottom: 8px;
-            }
-
-            .input-group .input-icon {
-                font-size: 12px;
-                left: 10px;
-            }
-
-            .login-box input {
-                padding: 9px 10px 9px 32px;
-                font-size: 12px;
-                border-radius: 11px;
-            }
-
+            .login-logo { font-size: 30px; margin-bottom: 2px; }
+            .login-box h3 { font-size: 19px; margin-bottom: 3px; padding-bottom: 6px; }
+            .login-box h3::after { width: 40px; height: 2px; }
+            .login-subtitle { font-size: 10px; margin-bottom: 12px; letter-spacing: 1px; }
+            .input-group { margin-bottom: 8px; }
+            .input-group .input-icon { font-size: 12px; left: 10px; }
+            .login-box input { padding: 9px 10px 9px 32px; font-size: 12px; border-radius: 11px; }
             .login-box .login-btn {
-                padding: 10px;
-                font-size: 13px;
-                border-radius: 22px;
+                padding: 10px; font-size: 13px; border-radius: 22px;
                 margin-bottom: 8px;
                 box-shadow: 0 3px 0 #3d2b06, 0 5px 12px rgba(90, 63, 10, 0.4);
             }
-
-            .login-box .signup-btn {
-                padding: 9px;
-                font-size: 11px;
-                border-radius: 22px;
-            }
-
-            .login-error {
-                font-size: 10px;
-                margin-top: 6px;
-                padding: 4px 5px;
-            }
-
-            .login-footer {
-                font-size: 9px;
-                margin-top: 8px;
-            }
-
+            .login-box .signup-btn { padding: 9px; font-size: 11px; border-radius: 22px; }
+            .login-error { font-size: 10px; margin-top: 6px; padding: 4px 5px; }
+            .login-footer { font-size: 9px; margin-top: 8px; }
         }
 
         @media (max-width: 400px) {
             .app-container { padding: 14px 10px 20px; }
             .main-heading { font-size: 22px; }
             .btn-gold { font-size: 13px; padding: 8px 3px; }
-            .page-heading { font-size: 21px; }
+            .page-heading { font-size: 25px; }
             .result-box { grid-template-columns: 1fr 1fr; }
             .result-box .res-item.highlight {
                 grid-column: span 2; width: 65%; max-width: 220px;
@@ -742,7 +780,7 @@
                      onerror="this.style.display='none'; document.getElementById('lampFallback').style.display='block';" />
                 <div id="lampFallback" style="display:none; font-size:90px; text-align:center; cursor:pointer;">💡</div>
             </div>
-            <div style="text-align:center; color:#ffd700; font-size:13px; font-weight:800; margin-top:-10px; text-shadow: 0 0 10px rgba(255,215,0,0.6);" id="lampHint">👆 Tap the Lamp</div>
+            <div id="lampHint">👆 Tap the Lamp</div>
         </div>
 
         <!-- Login Card -->
@@ -775,7 +813,7 @@
     <div class="main-heading">
         <div style="display:flex; align-items:center; justify-content:center; gap:12px;">
             <img src="images/left-icon.png" style="width:36px; height:36px; object-fit:contain;" />
-            ✨ Gold<span>Mate</span> ✨
+             Gold<span>Mate</span> 
             <img src="images/right-icon.png" style="width:36px; height:36px; object-fit:contain;" />
         </div>
     </div>
@@ -785,8 +823,9 @@
         <button class="logout-btn" onclick="doLogout()">Logout</button>
     </div>
 
-    <div class="admin-link">
-        <a href="login.html">🔐 Admin Login</a>
+    <!-- 🔐 Admin Panel Button - फक्त Admin ला दिसेल -->
+    <div class="admin-link" id="adminPanelBtn" style="display:none;">
+        <a href="admin.html">👑 Admin Panel</a>
     </div>
 
     <div class="btn-group">
@@ -797,7 +836,11 @@
 
     <!-- NATH PAGE -->
     <div class="page" id="pageNath">
-        <div class="page-heading" id="headingNath">🔶 NATH 🔶</div>
+        <div class="page-heading" id="headingNath">
+            <img src="images/nath-icon.png" class="icon-img" alt="nath" />
+            NATH
+            <img src="images/nath-icon-2.png" class="icon-img" alt="nath" />
+        </div>
 
         <div class="rate-box">
             <label>📊 Rate</label>
@@ -854,7 +897,11 @@
 
     <!-- MELTING PAGE -->
     <div class="page" id="pageMelting">
-        <div class="page-heading" id="headingMelting">🔥 Melting 🔥</div>
+        <div class="page-heading" id="headingMelting">
+            <img src="images/melt-icon.png" class="icon-img" alt="melting" />
+            Melting
+            <img src="images/melt-icon-2.png" class="icon-img" alt="melting" />
+        </div>
         <div class="melting-grid">
             <div class="melting-row">
                 <label>🔸 Target %</label>
@@ -889,11 +936,11 @@
                     <div class="label">Total Mixer</div>
                     <div class="value" id="mTotalMixer">0.00</div>
                 </div>
-                <div class="res-card">
+                <div class="res-card silver-copper">
                     <div class="label">Silver(चांदी)</div>
                     <div class="value" id="mSilver">0.00</div>
                 </div>
-                <div class="res-card">
+                <div class="res-card silver-copper">
                     <div class="label">Copper(तांबे)</div>
                     <div class="value" id="mCopper">0.00</div>
                 </div>
@@ -903,7 +950,11 @@
 
     <!-- REPORT PAGE -->
     <div class="page" id="pageReport">
-        <div class="page-heading" id="headingReport">📊 Average Report</div>
+        <div class="page-heading" id="headingReport">
+            <img src="images/report-icon.png" class="icon-img" alt="report" />
+            Average Report
+            <img src="images/report-icon-2.png" class="icon-img" alt="report" />
+        </div>
         <div style="text-align:center; font-size:14px; font-weight:700; color:#3d2b06; margin-bottom:12px;">Weight × Report% = Fine</div>
 
         <div class="report-table-wrap">
@@ -1129,6 +1180,33 @@
         }
     }
 
+    // ============================================================
+    // ⌨️ ENTER KEY NAVIGATION
+    // Email → Password → Login
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', function() {
+        const emailInput = document.getElementById('loginEmail');
+        const passwordInput = document.getElementById('loginPassword');
+
+        if (emailInput) {
+            emailInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (passwordInput) passwordInput.focus();
+                }
+            });
+        }
+
+        if (passwordInput) {
+            passwordInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    doLogin();
+                }
+            });
+        }
+    });
+
     async function doSignup() {
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
@@ -1214,9 +1292,9 @@
         document.getElementById('headingMelting').style.display = perms.melting ? 'flex' : 'none';
         document.getElementById('headingReport').style.display = perms.report ? 'flex' : 'none';
 
-        const adminLink = document.querySelector('.admin-link');
-        if (adminLink) {
-            adminLink.style.display = perms.isAdmin ? 'block' : 'none';
+        const adminBtn = document.getElementById('adminPanelBtn');
+        if (adminBtn) {
+            adminBtn.style.display = perms.isAdmin ? 'block' : 'none';
         }
 
         showPage('nath');
@@ -1604,13 +1682,11 @@
                 .then((registration) => {
                     console.log('✅ Service Worker registered:', registration.scope);
 
-                    // 🔹 दर 1 तासाला update check
                     setInterval(() => {
                         registration.update();
                         console.log('🔄 Checking for updates...');
                     }, 60 * 60 * 1000);
 
-                    // 🔹 नवीन version सापडल्यावर
                     registration.addEventListener('updatefound', () => {
                         const newWorker = registration.installing;
                         console.log('🆕 New version found!');
@@ -1636,7 +1712,6 @@
                     console.log('❌ Service Worker registration failed:', error);
                 });
 
-            // 🔹 Controller change वर reload
             let refreshing = false;
             navigator.serviceWorker.addEventListener('controllerchange', () => {
                 if (!refreshing) {

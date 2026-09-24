@@ -445,7 +445,7 @@
         }
     }
 
-    function renderUsers(users) {
+        function renderUsers(users) {
         const container = document.getElementById('userList');
         container.innerHTML = '';
 
@@ -473,7 +473,11 @@
                         onclick="togglePerm('${userId}', 'report', ${!data.report})">
                         REPORT ${data.report ? '✓' : '✗'}
                     </button>
-                    ${isAdmin ? '' : `<button class="delete-btn" onclick="deleteUser('${userId}', '${data.email}')">🗑️ Delete</button>`}
+                    ${isAdmin 
+                        ? `<button class="perm-btn off" onclick="toggleAdmin('${userId}', false)" style="background:linear-gradient(145deg,#8b0000,#5a0000);">👑 Remove Admin</button>`
+                        : `<button class="perm-btn on" onclick="toggleAdmin('${userId}', true)" style="background:linear-gradient(145deg,#6a1a8a,#4a0f62);">👑 Make Admin</button>
+                           <button class="delete-btn" onclick="deleteUser('${userId}', '${data.email}')">🗑️ Delete</button>`
+                    }
                 </div>
             `;
             container.appendChild(div);
@@ -507,6 +511,38 @@
         } catch (error) {
             console.error(error);
             showAdminStatus('❌ Error updating permission', 'error');
+        }
+    }
+
+        // ============================================================
+    // 👑 TOGGLE ADMIN - Make/Remove Admin
+    // ============================================================
+    async function toggleAdmin(userId, makeAdmin) {
+        const user = allUsers.find(u => u.id === userId);
+        const userEmail = user?.email || 'this user';
+        
+        const action = makeAdmin ? 'Make Admin' : 'Remove Admin';
+        
+        if (!confirm(`${action}: ${userEmail}?\n\n${makeAdmin 
+            ? '✅ हा user Admin बनेल आणि Admin Panel वापरू शकेल!' 
+            : '⚠️ हा user पासून Admin अधिकार काढले जातील!'}`)) {
+            return;
+        }
+
+        try {
+            const userRef = window.fbDoc(window.fbDB, 'users', userId);
+            await window.fbUpdateDoc(userRef, {
+                isAdmin: makeAdmin
+            });
+            
+            // Update local list
+            if (user) user.isAdmin = makeAdmin;
+            
+            filterUsers();
+            showAdminStatus(`✅ ${userEmail} ${makeAdmin ? 'is now Admin 👑' : 'is no longer Admin'}`, '');
+        } catch (error) {
+            console.error(error);
+            showAdminStatus('❌ Error updating admin status', 'error');
         }
     }
 
