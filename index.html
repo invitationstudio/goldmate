@@ -728,8 +728,28 @@
         }
         .update-toast.show { opacity: 1; }
 
+        /* 🔹 Offline Badge */
+        .offline-badge {
+            display: none;
+            text-align: center;
+            background: linear-gradient(145deg, #cc0000, #990000);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 6px rgba(204, 0, 0, 0.4);
+            animation: offlinePulse 2s ease-in-out infinite;
+        }
+        .offline-badge.show { display: block; }
+        @keyframes offlinePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
         /* ============================================================ */
-        /* 🖨️ PRINT STYLES - Empty page टाळा, top वरून सुरू */
+        /* 🖨️ PRINT STYLES - 30+ entries साठी पण बरोबर */
         /* ============================================================ */
         @media print {
             @page {
@@ -737,7 +757,6 @@
                 margin: 8mm 6mm;
             }
             
-            /* 🔹 सगळं top वरून सुरू करा - empty page टाळा */
             html, body {
                 display: block !important;
                 justify-content: flex-start !important;
@@ -753,12 +772,10 @@
                 position: static !important;
             }
             
-            /* 🔹 Empty page टाळा - फक्त app-container दाखवा */
             body > *:not(.app-container) {
                 display: none !important;
             }
             
-            /* 🔹 Modal पूर्ण लपवा */
             .modal-overlay {
                 display: none !important;
                 position: static !important;
@@ -771,7 +788,6 @@
                 color-adjust: exact !important;
             }
             
-            /* 🔹 App Container - top वर */
             .app-container {
                 display: block !important;
                 position: static !important;
@@ -793,7 +809,6 @@
                 display: none !important;
             }
             
-            /* 🔹 सगळ्या pages - static */
             .page {
                 display: none !important;
                 position: static !important;
@@ -820,7 +835,6 @@
                 display: none !important;
             }
             
-            /* 🔹 लपवायचे elements */
             .main-heading,
             .user-info,
             .admin-link,
@@ -828,11 +842,11 @@
             .btn-group-sm,
             .update-toast,
             .modal-overlay,
-            .status-msg {
+            .status-msg,
+            .offline-badge {
                 display: none !important;
             }
             
-            /* 🔹 Report heading */
             #pageReport .page-heading {
                 display: flex !important;
                 background: #f5e6c8 !important;
@@ -857,7 +871,6 @@
                 margin-bottom: 10px !important;
             }
             
-            /* 🔹 Table */
             .report-table-wrap {
                 max-height: none !important;
                 overflow: visible !important;
@@ -866,31 +879,41 @@
                 padding: 0 !important;
                 background: #fff !important;
                 margin-bottom: 12px !important;
-                page-break-inside: avoid;
+                page-break-inside: auto !important;
             }
             
             .report-table-wrap table {
                 width: 100% !important;
                 min-width: 100% !important;
-                font-size: 12px !important;
+                font-size: 11px !important;
                 table-layout: fixed !important;
                 border-collapse: collapse !important;
+                page-break-inside: auto !important;
+            }
+            
+            .report-table-wrap table thead {
+                display: table-header-group !important;
+            }
+            
+            .report-table-wrap table tr {
+                page-break-inside: avoid !important;
+                page-break-after: auto !important;
             }
             
             .report-table-wrap table th {
                 background: #b8860b !important;
                 color: #fff !important;
-                padding: 6px 4px !important;
-                font-size: 12px !important;
+                padding: 5px 3px !important;
+                font-size: 11px !important;
                 border: 1px solid #000 !important;
                 font-weight: 800 !important;
             }
             
             .report-table-wrap table td {
-                padding: 5px 4px !important;
+                padding: 4px 3px !important;
                 border: 1px solid #000 !important;
                 color: #000 !important;
-                font-size: 12px !important;
+                font-size: 11px !important;
                 background: #fff !important;
                 font-weight: 700 !important;
             }
@@ -898,7 +921,7 @@
             .report-table-wrap table td input {
                 border: none !important;
                 background: transparent !important;
-                font-size: 12px !important;
+                font-size: 11px !important;
                 color: #000 !important;
                 text-align: center !important;
                 width: 100% !important;
@@ -918,7 +941,6 @@
                 display: none !important;
             }
             
-            /* 🔹 Result Box */
             .result-box {
                 display: grid !important;
                 grid-template-columns: 1fr 1fr 1fr !important;
@@ -928,7 +950,8 @@
                 border-radius: 0 !important;
                 padding: 10px !important;
                 margin-top: 12px !important;
-                page-break-inside: avoid;
+                page-break-inside: avoid !important;
+                page-break-before: auto !important;
             }
             
             .result-box .res-item {
@@ -1020,6 +1043,9 @@
             <img src="images/right-icon.png" style="width:36px; height:36px; object-fit:contain;" />
         </div>
     </div>
+
+    <!-- 🔹 Offline Badge -->
+    <div class="offline-badge" id="offlineBadge">📴 Offline Mode - Some features limited</div>
 
     <div class="user-info">
         <span id="userEmailDisplay">-</span>
@@ -1203,6 +1229,69 @@
 
 <div class="update-toast" id="updateToast">✨ New version available! Refreshing...</div>
 
+<!-- ============================================================ -->
+<!-- 🔹 OFFLINE DIRECT OPEN - आधी Firebase load व्हायच्या आधी -->
+<!-- ============================================================ -->
+<script>
+    // ============================================================
+    // 🔹 Offline Direct Open
+    // एकदा Login केल्यावर, पुढच्या वेळी Offline असल्यास direct open
+    // ============================================================
+    (function() {
+        const isLoggedIn = localStorage.getItem('goldmate_logged_in');
+        const userEmail = localStorage.getItem('goldmate_user_email');
+        const cachedPermissions = localStorage.getItem('goldmate_permissions');
+        const isOnline = navigator.onLine;
+        
+        console.log('📴 Offline check:', { isOnline, isLoggedIn, userEmail });
+        
+        if (!isOnline && isLoggedIn === 'true' && userEmail) {
+            console.log('📴 Offline mode - Opening app directly');
+            
+            // Offline असल्यास direct ऍप उघडा
+            window.addEventListener('DOMContentLoaded', () => {
+                setTimeout(() => {
+                    document.getElementById('loginModal').classList.remove('active');
+                    document.getElementById('mainApp').style.display = 'block';
+                    document.getElementById('userEmailDisplay').textContent = '👤 ' + userEmail + ' (Offline)';
+                    
+                    // Offline badge दाखवा
+                    const badge = document.getElementById('offlineBadge');
+                    if (badge) badge.classList.add('show');
+                    
+                    // Cached permissions load करा
+                    let perms = { nath: true, melting: false, report: false, isAdmin: false };
+                    if (cachedPermissions) {
+                        try {
+                            perms = JSON.parse(cachedPermissions);
+                        } catch (e) {}
+                    }
+                    window.userPermissions = perms;
+                    applyPermissions();
+                }, 500);
+            });
+        }
+    })();
+    
+    // 🔹 Online/Offline Event Listeners
+    window.addEventListener('online', () => {
+        console.log('🌐 Back online');
+        const badge = document.getElementById('offlineBadge');
+        if (badge) badge.classList.remove('show');
+        
+        // Firestore sync restart करा
+        if (typeof loadOutOfStockFromFirestore === 'function') {
+            loadOutOfStockFromFirestore();
+        }
+    });
+    
+    window.addEventListener('offline', () => {
+        console.log('📴 Went offline');
+        const badge = document.getElementById('offlineBadge');
+        if (badge) badge.classList.add('show');
+    });
+</script>
+
 <!-- FIREBASE SDK -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -1233,9 +1322,23 @@
 
     console.log('🔥 Firebase initialized');
 
+    // 🔹 Offline असल्यास Firebase auth state बदलू नका
+    const isOfflineMode = !navigator.onLine && localStorage.getItem('goldmate_logged_in') === 'true';
+
     onAuthStateChanged(auth, async (user) => {
+        if (isOfflineMode) {
+            // Offline mode - Firebase auth ignore करा
+            console.log('📴 Offline mode - Firebase auth skipped');
+            return;
+        }
+        
         if (user) {
             console.log('✅ Logged in:', user.email);
+            
+            // 🔹 Login flag save करा
+            localStorage.setItem('goldmate_logged_in', 'true');
+            localStorage.setItem('goldmate_user_email', user.email);
+            
             document.getElementById('loginModal').classList.remove('active');
             document.getElementById('mainApp').style.display = 'block';
             document.getElementById('userEmailDisplay').textContent = '👤 ' + user.email;
@@ -1252,6 +1355,9 @@
                         report: data.report === true,
                         isAdmin: data.isAdmin === true
                     };
+                    // 🔹 Permissions cache करा
+                    localStorage.setItem('goldmate_permissions', JSON.stringify(window.userPermissions));
+                    
                     console.log('Permissions:', window.userPermissions);
                     applyPermissions();
                 } else {
@@ -1265,16 +1371,37 @@
                         createdAt: new Date().toISOString()
                     });
                     window.userPermissions = { nath: true, melting: false, report: false, isAdmin: false };
+                    localStorage.setItem('goldmate_permissions', JSON.stringify(window.userPermissions));
                     applyPermissions();
                 }
             } catch (error) {
                 console.error('Error loading permissions:', error);
+                // Offline असल्यास cached permissions वापरा
+                if (!navigator.onLine) {
+                    const cached = localStorage.getItem('goldmate_permissions');
+                    if (cached) {
+                        window.userPermissions = JSON.parse(cached);
+                        applyPermissions();
+                    }
+                }
             }
         } else {
             console.log('❌ Logged out');
+            
+            // 🔹 Offline असल्यास logout करू नका
+            if (!navigator.onLine && localStorage.getItem('goldmate_logged_in') === 'true') {
+                console.log('📴 Offline - Skipping logout');
+                return;
+            }
+            
+            localStorage.removeItem('goldmate_logged_in');
+            localStorage.removeItem('goldmate_user_email');
+            localStorage.removeItem('goldmate_permissions');
+            
             document.getElementById('loginModal').classList.add('active');
             document.getElementById('mainApp').style.display = 'none';
             window.userPermissions = null;
+            
             const lampSection = document.getElementById('lampSection');
             const lampBox = document.getElementById('loginBox');
             const glow = document.querySelector('.lamp-glow');
@@ -1357,6 +1484,30 @@
             return;
         }
 
+        // 🔹 Offline असल्यास error
+        if (!navigator.onLine) {
+            // Offline login attempt - cached user तपासा
+            const cachedEmail = localStorage.getItem('goldmate_user_email');
+            if (cachedEmail === email && localStorage.getItem('goldmate_logged_in') === 'true') {
+                // Cached user - direct open
+                document.getElementById('loginModal').classList.remove('active');
+                document.getElementById('mainApp').style.display = 'block';
+                document.getElementById('userEmailDisplay').textContent = '👤 ' + email + ' (Offline)';
+                
+                const badge = document.getElementById('offlineBadge');
+                if (badge) badge.classList.add('show');
+                
+                const cached = localStorage.getItem('goldmate_permissions');
+                window.userPermissions = cached ? JSON.parse(cached) : { nath: true, melting: false, report: false, isAdmin: false };
+                applyPermissions();
+                errorEl.textContent = '';
+                return;
+            } else {
+                errorEl.textContent = '📴 Offline - Please connect to internet for first login';
+                return;
+            }
+        }
+
         try {
             await window.fbSignIn(window.fbAuth, email, password);
             errorEl.textContent = '';
@@ -1410,6 +1561,11 @@
         const password = document.getElementById('loginPassword').value;
         const errorEl = document.getElementById('loginError');
         errorEl.style.color = '#990000';
+
+        if (!navigator.onLine) {
+            errorEl.textContent = '📴 Signup requires internet connection';
+            return;
+        }
 
         if (!email && !password) {
             errorEl.textContent = '⚠️ Please enter Email and Password';
@@ -1467,7 +1623,19 @@
 
     async function doLogout() {
         if (confirm('Logout?')) {
-            await window.fbSignOut(window.fbAuth);
+            // 🔹 Cache clear करा
+            localStorage.removeItem('goldmate_logged_in');
+            localStorage.removeItem('goldmate_user_email');
+            localStorage.removeItem('goldmate_permissions');
+            
+            if (navigator.onLine) {
+                await window.fbSignOut(window.fbAuth);
+            } else {
+                // Offline असल्यास manually UI reset
+                document.getElementById('loginModal').classList.add('active');
+                document.getElementById('mainApp').style.display = 'none';
+                window.userPermissions = null;
+            }
         }
     }
 
@@ -1509,6 +1677,16 @@
     let outOfStockLoaded = false;
 
     async function loadOutOfStockFromFirestore() {
+        // 🔹 Offline असल्यास cached data वापरा
+        if (!navigator.onLine) {
+            const cached = localStorage.getItem('goldmate_out_of_stock_cache');
+            if (cached) {
+                OUT_OF_STOCK = JSON.parse(cached);
+                updateNathResult();
+            }
+            return;
+        }
+        
         try {
             const docRef = window.fbDoc(window.fbDB, 'settings', 'out_of_stock');
             const docSnap = await window.fbGetDoc(docRef);
@@ -1521,6 +1699,8 @@
                 
                 if (newListStr !== oldListStr || !outOfStockLoaded) {
                     OUT_OF_STOCK = newList;
+                    // 🔹 Cache मध्ये save करा
+                    localStorage.setItem('goldmate_out_of_stock_cache', JSON.stringify(newList));
                     updateNathResult();
                     console.log('🔄 Out of Stock updated from Firestore:', OUT_OF_STOCK);
                 }
@@ -1528,14 +1708,30 @@
             }
         } catch (error) {
             console.error('❌ Error loading out of stock:', error);
+            // Fallback to cache
+            const cached = localStorage.getItem('goldmate_out_of_stock_cache');
+            if (cached) {
+                OUT_OF_STOCK = JSON.parse(cached);
+                updateNathResult();
+            }
         }
     }
 
     function checkAdminChanges() {
-        loadOutOfStockFromFirestore();
+        if (navigator.onLine) {
+            loadOutOfStockFromFirestore();
+        }
     }
     setInterval(checkAdminChanges, 3000);
 
+    // 🔹 Initial load
+    // Cache मधून आधी load करा
+    const cachedOOS = localStorage.getItem('goldmate_out_of_stock_cache');
+    if (cachedOOS) {
+        try {
+            OUT_OF_STOCK = JSON.parse(cachedOOS);
+        } catch (e) {}
+    }
     loadOutOfStockFromFirestore();
 
     // ============================================================
@@ -1885,7 +2081,7 @@
     addReportRow();
     addReportRow();
 
-    console.log('✅ GoldMate loaded with Firestore Sync!');
+    console.log('✅ GoldMate loaded with Offline Support!');
 </script>
 
 <!-- PWA AUTO UPDATE -->
