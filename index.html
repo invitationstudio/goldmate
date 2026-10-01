@@ -728,7 +728,6 @@
         }
         .update-toast.show { opacity: 1; }
 
-        /* 🔹 Offline Badge */
         .offline-badge {
             display: none;
             text-align: center;
@@ -749,12 +748,12 @@
         }
 
         /* ============================================================ */
-        /* 🖨️ PRINT STYLES - 30+ entries साठी पण बरोबर */
+        /* 🖨️ PRINT STYLES - A4 वर मोठा clear */
         /* ============================================================ */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 8mm 6mm;
+                margin: 15mm 15mm;
             }
             
             html, body {
@@ -830,11 +829,326 @@
                 page-break-before: avoid !important;
             }
             
-            #pageNath,
+            #pageNath {
+                display: none !important;
+            }
+            
+            /* ============================================================ */
+            /* 🔹 MELTING PRINT - मोठा A4 format */
+            /* ============================================================ */
+            
+                        /* ============================================================ */
+            /* 🔹 MELTING PRINT - A4 मोठा format */
+            /* ============================================================ */
+            
             #pageMelting {
                 display: none !important;
             }
             
+            #pageMelting.active {
+                display: block !important;
+            }
+            
+            #pageMelting .page-heading {
+                display: flex !important;
+                background: #f5e6c8 !important;
+                border: 3px solid #000 !important;
+                color: #3d2b06 !important;
+                margin: 0 auto 25px auto !important;
+                padding: 15px 0 !important;
+                font-size: 32px !important;
+                border-radius: 10px !important;
+                max-width: 700px !important;
+                page-break-after: avoid;
+            }
+            
+            #pageMelting .page-heading .icon-img {
+                width: 45px !important;
+                height: 45px !important;
+            }
+            
+            /* 🔹 Grid - gap 35px प्रत्येक table दरम्यान */
+            #pageMelting .melting-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 35px !important;
+                padding: 30px 25px !important;
+                border: 3px solid #000 !important;
+                width: 100% !important;
+                max-width: 700px !important;
+                margin: 0 auto !important;
+                background: #fff !important;
+            }
+            
+            /* 🔹 Table 1 rows - एकत्र चिकटलेले */
+            #pageMelting .melting-grid > .melting-row {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 0 !important;
+                background: transparent !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                border: none !important;
+                width: 100% !important;
+                page-break-inside: avoid;
+            }
+            
+            /* 🔹 Rows एकत्र चिकटवण्यासाठी */
+            #pageMelting .melting-grid > .melting-row + .melting-row {
+                margin-top: -2px !important;
+            }
+            
+            /* 🔹 melting-result - एकत्र चिकटलेले */
+            #pageMelting .melting-result {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                page-break-inside: avoid;
+            }
+            
+            /* 🔹 Result rows एकत्र चिकटवण्यासाठी */
+            #pageMelting .melting-result .res-card + .res-card {
+                margin-top: -2px !important;
+            }
+            
+            #pageMelting .melting-result .res-card {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: center !important;
+                background: transparent !important;
+                border: none !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+                gap: 0 !important;
+            }
+            
+            #pageMelting .melting-row label {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border: 2px solid #000 !important;
+                border-right: none !important;
+                border-radius: 0 !important;
+                padding: 12px 20px !important;
+                font-size: 18px !important;
+                font-weight: 800 !important;
+                text-transform: uppercase !important;
+                background: #f5f5f5 !important;
+                color: #000 !important;
+                width: 50% !important;
+                min-width: 50% !important;
+                text-align: center !important;
+                margin: 0 !important;
+                height: auto !important;
+                white-space: nowrap !important;
+                flex-shrink: 0 !important;
+            }
+            
+            #pageMelting .melting-row input,
+            #pageMelting .melting-row select {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border: 2px solid #000 !important;
+                border-left: none !important;
+                border-radius: 0 !important;
+                padding: 12px 20px !important;
+                font-size: 18px !important;
+                font-weight: 800 !important;
+                background: #fff !important;
+                color: #000 !important;
+                text-align: center !important;
+                width: 50% !important;
+                min-width: 50% !important;
+                margin: 0 !important;
+                height: auto !important;
+                appearance: none !important;
+                -webkit-appearance: none !important;
+                -moz-appearance: none !important;
+                background-image: none !important;
+                box-shadow: none !important;
+                outline: none !important;
+            }
+            
+            #pageMelting .melting-result .res-card .label {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border: 2px solid #000 !important;
+                border-right: none !important;
+                border-bottom: none !important;
+                border-radius: 0 !important;
+                padding: 12px 20px !important;
+                font-size: 18px !important;
+                font-weight: 800 !important;
+                text-transform: uppercase !important;
+                background: #f5f5f5 !important;
+                color: #000 !important;
+                width: 50% !important;
+                min-width: 50% !important;
+                text-align: center !important;
+                margin: 0 !important;
+                height: auto !important;
+                animation: none !important;
+                text-shadow: none !important;
+                flex-shrink: 0 !important;
+            }
+            
+            #pageMelting .melting-result .res-card .value {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border: 2px solid #000 !important;
+                border-left: none !important;
+                border-bottom: none !important;
+                border-radius: 0 !important;
+                padding: 12px 20px !important;
+                font-size: 18px !important;
+                font-weight: 800 !important;
+                background: #fff !important;
+                color: #000 !important;
+                text-align: center !important;
+                width: 50% !important;
+                min-width: 50% !important;
+                margin: 0 !important;
+                height: auto !important;
+                animation: none !important;
+                text-shadow: none !important;
+            }
+            
+            /* 🔹 शेवटच्या row ला bottom border द्या */
+            #pageMelting .melting-grid > .melting-row:last-of-type label,
+            #pageMelting .melting-grid > .melting-row:last-of-type input,
+            #pageMelting .melting-grid > .melting-row:last-of-type select {
+                border-bottom: 2px solid #000 !important;
+            }
+            
+            #pageMelting .melting-result .res-card:last-child .label,
+            #pageMelting .melting-result .res-card:last-child .value {
+                border-bottom: 2px solid #000 !important;
+            }
+            
+            /* 🔹 "Enter %" inputs लपवा */
+            #pageMelting #meltTargetOther,
+            #pageMelting #meltPercentOther {
+                display: none !important;
+            }
+            
+            /* 🔹 "gm" span लपवा */
+            #pageMelting .melting-row span {
+                display: none !important;
+            }
+            
+            /* 🔹 Table 2: Results (Total Weight, Total Mixer) */
+                        #pageMelting .melting-result {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                page-break-inside: avoid;
+            }
+            
+            /* 🔹 पहिला melting-result (Total Weight + Total Mixer) - खाली gap */
+            #pageMelting .melting-result:first-of-type {
+                margin-bottom: 35px !important;
+            }
+            
+            /* 🔹 दुसरा melting-result (Silver + Copper) */
+            #pageMelting .melting-result:last-of-type {
+                margin-top: 0 !important;
+            }
+            
+            /* 🔹 Total Mixer नंतर मोठा gap */
+            #pageMelting .melting-result + .melting-result {
+                margin-top: 35px !important;
+            }
+            
+            #pageMelting .melting-result .res-card {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: center !important;
+                background: transparent !important;
+                border: none !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+                gap: 0 !important;
+            }
+            
+            #pageMelting .melting-result .res-card .label {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border: 2px solid #000 !important;
+                border-right: none !important;
+                border-bottom: none !important;
+                border-radius: 0 !important;
+                padding: 12px 20px !important;
+                font-size: 18px !important;
+                font-weight: 800 !important;
+                text-transform: uppercase !important;
+                background: #f5f5f5 !important;
+                color: #000 !important;
+                width: 50% !important;
+                min-width: 50% !important;
+                text-align: center !important;
+                margin: 0 !important;
+                height: auto !important;
+                animation: none !important;
+                text-shadow: none !important;
+                flex-shrink: 0 !important;
+            }
+            
+            #pageMelting .melting-result .res-card .value {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border: 2px solid #000 !important;
+                border-left: none !important;
+                border-bottom: none !important;
+                border-radius: 0 !important;
+                padding: 12px 20px !important;
+                font-size: 18px !important;
+                font-weight: 800 !important;
+                background: #fff !important;
+                color: #000 !important;
+                text-align: center !important;
+                width: 50% !important;
+                min-width: 50% !important;
+                margin: 0 !important;
+                height: auto !important;
+                animation: none !important;
+                text-shadow: none !important;
+            }
+            
+            /* 🔹 शेवटच्या row ला bottom border द्या */
+            #pageMelting .melting-grid > .melting-row:last-of-type label,
+            #pageMelting .melting-grid > .melting-row:last-of-type input,
+            #pageMelting .melting-grid > .melting-row:last-of-type select {
+                border-bottom: 2px solid #000 !important;
+            }
+            
+            #pageMelting .melting-result .res-card:last-child .label,
+            #pageMelting .melting-result .res-card:last-child .value {
+                border-bottom: 2px solid #000 !important;
+            }
+            
+            /* 🔹 लपवायचे elements */
             .main-heading,
             .user-info,
             .admin-link,
@@ -847,6 +1161,9 @@
                 display: none !important;
             }
             
+            /* ============================================================ */
+            /* 🔹 REPORT PRINT */
+            /* ============================================================ */
             #pageReport .page-heading {
                 display: flex !important;
                 background: #f5e6c8 !important;
@@ -1044,7 +1361,6 @@
         </div>
     </div>
 
-    <!-- 🔹 Offline Badge -->
     <div class="offline-badge" id="offlineBadge">📴 Offline Mode - Some features limited</div>
 
     <div class="user-info">
@@ -1151,7 +1467,7 @@
                 <input type="number" id="meltPercentOther" placeholder="Enter %" style="display:none;" oninput="calculateMelting()" />
             </div>
             <div class="melting-row">
-                <label>⚖️ Fine Weight</label>
+                <label>⚖️ GOLD WEIGHT</label>
                 <input type="number" id="fineWeight" value="10" step="0.01" oninput="calculateMelting()" />
                 <span style="font-weight:700; color:#3d2b06;">gm</span>
             </div>
@@ -1164,6 +1480,8 @@
                     <div class="label">Total Mixer</div>
                     <div class="value" id="mTotalMixer">0.00</div>
                 </div>
+            </div>
+            <div class="melting-result">
                 <div class="res-card silver-copper">
                     <div class="label">Silver(चांदी)</div>
                     <div class="value" id="mSilver">0.00</div>
@@ -1173,6 +1491,10 @@
                     <div class="value" id="mCopper">0.00</div>
                 </div>
             </div>
+        </div>
+
+        <div class="btn-group-sm">
+            <button class="btn-gold-sm" style="background: linear-gradient(145deg, #6a1a8a, #4a0f62); box-shadow: 0 4px 0 #2f083f;" onclick="printMelting()">🖨️ Print</button>
         </div>
     </div>
 
@@ -1229,37 +1551,24 @@
 
 <div class="update-toast" id="updateToast">✨ New version available! Refreshing...</div>
 
-<!-- ============================================================ -->
-<!-- 🔹 OFFLINE DIRECT OPEN - आधी Firebase load व्हायच्या आधी -->
-<!-- ============================================================ -->
+<!-- 🔹 OFFLINE DIRECT OPEN -->
 <script>
-    // ============================================================
-    // 🔹 Offline Direct Open
-    // एकदा Login केल्यावर, पुढच्या वेळी Offline असल्यास direct open
-    // ============================================================
     (function() {
         const isLoggedIn = localStorage.getItem('goldmate_logged_in');
         const userEmail = localStorage.getItem('goldmate_user_email');
         const cachedPermissions = localStorage.getItem('goldmate_permissions');
         const isOnline = navigator.onLine;
         
-        console.log('📴 Offline check:', { isOnline, isLoggedIn, userEmail });
-        
         if (!isOnline && isLoggedIn === 'true' && userEmail) {
-            console.log('📴 Offline mode - Opening app directly');
-            
-            // Offline असल्यास direct ऍप उघडा
             window.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     document.getElementById('loginModal').classList.remove('active');
                     document.getElementById('mainApp').style.display = 'block';
                     document.getElementById('userEmailDisplay').textContent = '👤 ' + userEmail + ' (Offline)';
                     
-                    // Offline badge दाखवा
                     const badge = document.getElementById('offlineBadge');
                     if (badge) badge.classList.add('show');
                     
-                    // Cached permissions load करा
                     let perms = { nath: true, melting: false, report: false, isAdmin: false };
                     if (cachedPermissions) {
                         try {
@@ -1273,20 +1582,16 @@
         }
     })();
     
-    // 🔹 Online/Offline Event Listeners
     window.addEventListener('online', () => {
-        console.log('🌐 Back online');
         const badge = document.getElementById('offlineBadge');
         if (badge) badge.classList.remove('show');
         
-        // Firestore sync restart करा
         if (typeof loadOutOfStockFromFirestore === 'function') {
             loadOutOfStockFromFirestore();
         }
     });
     
     window.addEventListener('offline', () => {
-        console.log('📴 Went offline');
         const badge = document.getElementById('offlineBadge');
         if (badge) badge.classList.add('show');
     });
@@ -1322,12 +1627,10 @@
 
     console.log('🔥 Firebase initialized');
 
-    // 🔹 Offline असल्यास Firebase auth state बदलू नका
     const isOfflineMode = !navigator.onLine && localStorage.getItem('goldmate_logged_in') === 'true';
 
     onAuthStateChanged(auth, async (user) => {
         if (isOfflineMode) {
-            // Offline mode - Firebase auth ignore करा
             console.log('📴 Offline mode - Firebase auth skipped');
             return;
         }
@@ -1335,7 +1638,6 @@
         if (user) {
             console.log('✅ Logged in:', user.email);
             
-            // 🔹 Login flag save करा
             localStorage.setItem('goldmate_logged_in', 'true');
             localStorage.setItem('goldmate_user_email', user.email);
             
@@ -1355,10 +1657,7 @@
                         report: data.report === true,
                         isAdmin: data.isAdmin === true
                     };
-                    // 🔹 Permissions cache करा
                     localStorage.setItem('goldmate_permissions', JSON.stringify(window.userPermissions));
-                    
-                    console.log('Permissions:', window.userPermissions);
                     applyPermissions();
                 } else {
                     await setDoc(doc(db, 'users', user.uid), {
@@ -1376,7 +1675,6 @@
                 }
             } catch (error) {
                 console.error('Error loading permissions:', error);
-                // Offline असल्यास cached permissions वापरा
                 if (!navigator.onLine) {
                     const cached = localStorage.getItem('goldmate_permissions');
                     if (cached) {
@@ -1388,7 +1686,6 @@
         } else {
             console.log('❌ Logged out');
             
-            // 🔹 Offline असल्यास logout करू नका
             if (!navigator.onLine && localStorage.getItem('goldmate_logged_in') === 'true') {
                 console.log('📴 Offline - Skipping logout');
                 return;
@@ -1418,9 +1715,7 @@
 
 <!-- MAIN LOGIC -->
 <script>
-    // ============================================================
     // LAMP
-    // ============================================================
     let lampLightOn = false;
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -1462,9 +1757,7 @@
         if (lampFallback) lampFallback.addEventListener('click', toggleLamp);
     });
 
-    // ============================================================
     // LOGIN / SIGNUP / LOGOUT
-    // ============================================================
     async function doLogin() {
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
@@ -1484,12 +1777,9 @@
             return;
         }
 
-        // 🔹 Offline असल्यास error
         if (!navigator.onLine) {
-            // Offline login attempt - cached user तपासा
             const cachedEmail = localStorage.getItem('goldmate_user_email');
             if (cachedEmail === email && localStorage.getItem('goldmate_logged_in') === 'true') {
-                // Cached user - direct open
                 document.getElementById('loginModal').classList.remove('active');
                 document.getElementById('mainApp').style.display = 'block';
                 document.getElementById('userEmailDisplay').textContent = '👤 ' + email + ' (Offline)';
@@ -1623,7 +1913,6 @@
 
     async function doLogout() {
         if (confirm('Logout?')) {
-            // 🔹 Cache clear करा
             localStorage.removeItem('goldmate_logged_in');
             localStorage.removeItem('goldmate_user_email');
             localStorage.removeItem('goldmate_permissions');
@@ -1631,7 +1920,6 @@
             if (navigator.onLine) {
                 await window.fbSignOut(window.fbAuth);
             } else {
-                // Offline असल्यास manually UI reset
                 document.getElementById('loginModal').classList.add('active');
                 document.getElementById('mainApp').style.display = 'none';
                 window.userPermissions = null;
@@ -1639,9 +1927,7 @@
         }
     }
 
-    // ============================================================
     // PERMISSIONS
-    // ============================================================
     function applyPermissions() {
         const perms = window.userPermissions || { nath: true, melting: false, report: false, isAdmin: false };
         
@@ -1666,9 +1952,7 @@
         showPage('nath');
     }
 
-    // ============================================================
-    // 🔥 OUT OF STOCK - Firestore Sync
-    // ============================================================
+    // OUT OF STOCK - Firestore Sync
     function getDefaultOutOfStock() {
         return ['000|D.Tik', '00|D.Tik', '3|Regular', '4|Puneri', '5|Jad Dandi'];
     }
@@ -1677,7 +1961,6 @@
     let outOfStockLoaded = false;
 
     async function loadOutOfStockFromFirestore() {
-        // 🔹 Offline असल्यास cached data वापरा
         if (!navigator.onLine) {
             const cached = localStorage.getItem('goldmate_out_of_stock_cache');
             if (cached) {
@@ -1699,16 +1982,13 @@
                 
                 if (newListStr !== oldListStr || !outOfStockLoaded) {
                     OUT_OF_STOCK = newList;
-                    // 🔹 Cache मध्ये save करा
                     localStorage.setItem('goldmate_out_of_stock_cache', JSON.stringify(newList));
                     updateNathResult();
-                    console.log('🔄 Out of Stock updated from Firestore:', OUT_OF_STOCK);
                 }
                 outOfStockLoaded = true;
             }
         } catch (error) {
             console.error('❌ Error loading out of stock:', error);
-            // Fallback to cache
             const cached = localStorage.getItem('goldmate_out_of_stock_cache');
             if (cached) {
                 OUT_OF_STOCK = JSON.parse(cached);
@@ -1724,8 +2004,6 @@
     }
     setInterval(checkAdminChanges, 3000);
 
-    // 🔹 Initial load
-    // Cache मधून आधी load करा
     const cachedOOS = localStorage.getItem('goldmate_out_of_stock_cache');
     if (cachedOOS) {
         try {
@@ -1734,9 +2012,7 @@
     }
     loadOutOfStockFromFirestore();
 
-    // ============================================================
     // NATH
-    // ============================================================
     const WEIGHT_MAP = {
         '000|Regular': 0.340, '000|D.Tik': 0.000, '000|Jad Dandi': 0.000, '000|Puneri': 0.000,
         '00|Regular': 0.370, '00|D.Tik': 0.000, '00|Jad Dandi': 0.500, '00|Puneri': 0.380,
@@ -1808,9 +2084,7 @@
         priceEl.textContent = '₹ ' + price.toFixed(2);
     }
 
-    // ============================================================
     // MELTING
-    // ============================================================
     function getPercentValue(selectId, otherId) {
         const select = document.getElementById(selectId);
         const other = document.getElementById(otherId);
@@ -1847,9 +2121,7 @@
         document.getElementById('mCopper').textContent = copper.toFixed(3);
     }
 
-    // ============================================================
     // PAGE SWITCHING
-    // ============================================================
     function showPage(page) {
         const perms = window.userPermissions || { nath: true, melting: false, report: false };
         
@@ -1878,9 +2150,7 @@
         }
     }
 
-    // ============================================================
     // REPORT
-    // ============================================================
     const MAX_BACKUPS = 5;
     let backupList = [];
     let currentBackupIndex = -1;
@@ -2054,9 +2324,7 @@
         if (msg) setTimeout(() => { if (el.textContent === msg) el.textContent = ''; }, 4000);
     }
 
-    // ============================================================
     // 🖨️ PRINT REPORT
-    // ============================================================
     function printReport() {
         if (!document.getElementById('pageReport').classList.contains('active')) {
             showReportStatus('⚠️ Please open Report page first', 'error');
@@ -2065,9 +2333,16 @@
         window.print();
     }
 
-    // ============================================================
+    // 🖨️ PRINT MELTING
+    function printMelting() {
+        if (!document.getElementById('pageMelting').classList.contains('active')) {
+            alert('⚠️ Please open Melting page first');
+            return;
+        }
+        window.print();
+    }
+
     // INIT
-    // ============================================================
     document.getElementById('meltPercent').addEventListener('change', function() {
         document.getElementById('meltPercentOther').style.display = this.value === 'other' ? 'inline-block' : 'none';
         calculateMelting();
@@ -2081,7 +2356,7 @@
     addReportRow();
     addReportRow();
 
-    console.log('✅ GoldMate loaded with Offline Support!');
+    console.log('✅ GoldMate loaded!');
 </script>
 
 <!-- PWA AUTO UPDATE -->
@@ -2090,7 +2365,6 @@
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('sw.js')
                 .then((registration) => {
-                    console.log('✅ Service Worker registered:', registration.scope);
                     setInterval(() => {
                         registration.update();
                     }, 60 * 60 * 1000);
