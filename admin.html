@@ -473,6 +473,7 @@
         users.forEach(data => {
             const userId = data.id;
             const isAdmin = data.isAdmin === true;
+            const hasNath = data.nath !== false;   // ← जुन्या users साठी default ON
 
             const div = document.createElement('div');
             div.className = 'user-card';
@@ -480,7 +481,10 @@
                 <div class="user-name">${data.name || 'User'} ${isAdmin ? '👑' : ''}</div>
                 <div class="user-email">${data.email || ''}</div>
                 <div class="perm-buttons">
-                    <button class="perm-btn on" style="cursor:default;">NATH ✓</button>
+                    <button class="perm-btn ${hasNath ? 'on' : 'off'}" 
+                        onclick="togglePerm('${userId}', 'nath', ${!hasNath})">
+                        NATH ${hasNath ? '✓' : '✗'}
+                    </button>
                     <button class="perm-btn ${data.melting ? 'on' : 'off'}" 
                         onclick="togglePerm('${userId}', 'melting', ${!data.melting})">
                         MELT ${data.melting ? '✓' : '✗'}
