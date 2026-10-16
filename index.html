@@ -833,14 +833,6 @@
                 display: none !important;
             }
             
-            /* ============================================================ */
-            /* 🔹 MELTING PRINT - मोठा A4 format */
-            /* ============================================================ */
-            
-                        /* ============================================================ */
-            /* 🔹 MELTING PRINT - A4 मोठा format */
-            /* ============================================================ */
-            
             #pageMelting {
                 display: none !important;
             }
@@ -867,7 +859,6 @@
                 height: 45px !important;
             }
             
-            /* 🔹 Grid - gap 35px प्रत्येक table दरम्यान */
             #pageMelting .melting-grid {
                 display: flex !important;
                 flex-direction: column !important;
@@ -881,7 +872,6 @@
                 background: #fff !important;
             }
             
-            /* 🔹 Table 1 rows - एकत्र चिकटलेले */
             #pageMelting .melting-grid > .melting-row {
                 display: flex !important;
                 flex-direction: row !important;
@@ -896,12 +886,10 @@
                 page-break-inside: avoid;
             }
             
-            /* 🔹 Rows एकत्र चिकटवण्यासाठी */
             #pageMelting .melting-grid > .melting-row + .melting-row {
                 margin-top: -2px !important;
             }
             
-            /* 🔹 melting-result - एकत्र चिकटलेले */
             #pageMelting .melting-result {
                 display: flex !important;
                 flex-direction: column !important;
@@ -913,7 +901,6 @@
                 page-break-inside: avoid;
             }
             
-            /* 🔹 Result rows एकत्र चिकटवण्यासाठी */
             #pageMelting .melting-result .res-card + .res-card {
                 margin-top: -2px !important;
             }
@@ -1026,7 +1013,6 @@
                 text-shadow: none !important;
             }
             
-            /* 🔹 शेवटच्या row ला bottom border द्या */
             #pageMelting .melting-grid > .melting-row:last-of-type label,
             #pageMelting .melting-grid > .melting-row:last-of-type input,
             #pageMelting .melting-grid > .melting-row:last-of-type select {
@@ -1038,117 +1024,27 @@
                 border-bottom: 2px solid #000 !important;
             }
             
-            /* 🔹 "Enter %" inputs लपवा */
             #pageMelting #meltTargetOther,
             #pageMelting #meltPercentOther {
                 display: none !important;
             }
             
-            /* 🔹 "gm" span लपवा */
             #pageMelting .melting-row span {
                 display: none !important;
             }
             
-            /* 🔹 Table 2: Results (Total Weight, Total Mixer) */
-                        #pageMelting .melting-result {
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: stretch !important;
-                gap: 0 !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                width: 100% !important;
-                page-break-inside: avoid;
-            }
-            
-            /* 🔹 पहिला melting-result (Total Weight + Total Mixer) - खाली gap */
             #pageMelting .melting-result:first-of-type {
                 margin-bottom: 35px !important;
             }
             
-            /* 🔹 दुसरा melting-result (Silver + Copper) */
             #pageMelting .melting-result:last-of-type {
                 margin-top: 0 !important;
             }
             
-            /* 🔹 Total Mixer नंतर मोठा gap */
             #pageMelting .melting-result + .melting-result {
                 margin-top: 35px !important;
             }
             
-            #pageMelting .melting-result .res-card {
-                display: flex !important;
-                flex-direction: row !important;
-                align-items: center !important;
-                justify-content: center !important;
-                background: transparent !important;
-                border: none !important;
-                border-radius: 0 !important;
-                padding: 0 !important;
-                margin: 0 !important;
-                width: 100% !important;
-                gap: 0 !important;
-            }
-            
-            #pageMelting .melting-result .res-card .label {
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                border: 2px solid #000 !important;
-                border-right: none !important;
-                border-bottom: none !important;
-                border-radius: 0 !important;
-                padding: 12px 20px !important;
-                font-size: 18px !important;
-                font-weight: 800 !important;
-                text-transform: uppercase !important;
-                background: #f5f5f5 !important;
-                color: #000 !important;
-                width: 50% !important;
-                min-width: 50% !important;
-                text-align: center !important;
-                margin: 0 !important;
-                height: auto !important;
-                animation: none !important;
-                text-shadow: none !important;
-                flex-shrink: 0 !important;
-            }
-            
-            #pageMelting .melting-result .res-card .value {
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                border: 2px solid #000 !important;
-                border-left: none !important;
-                border-bottom: none !important;
-                border-radius: 0 !important;
-                padding: 12px 20px !important;
-                font-size: 18px !important;
-                font-weight: 800 !important;
-                background: #fff !important;
-                color: #000 !important;
-                text-align: center !important;
-                width: 50% !important;
-                min-width: 50% !important;
-                margin: 0 !important;
-                height: auto !important;
-                animation: none !important;
-                text-shadow: none !important;
-            }
-            
-            /* 🔹 शेवटच्या row ला bottom border द्या */
-            #pageMelting .melting-grid > .melting-row:last-of-type label,
-            #pageMelting .melting-grid > .melting-row:last-of-type input,
-            #pageMelting .melting-grid > .melting-row:last-of-type select {
-                border-bottom: 2px solid #000 !important;
-            }
-            
-            #pageMelting .melting-result .res-card:last-child .label,
-            #pageMelting .melting-result .res-card:last-child .value {
-                border-bottom: 2px solid #000 !important;
-            }
-            
-            /* 🔹 लपवायचे elements */
             .main-heading,
             .user-info,
             .admin-link,
@@ -1161,9 +1057,6 @@
                 display: none !important;
             }
             
-            /* ============================================================ */
-            /* 🔹 REPORT PRINT */
-            /* ============================================================ */
             #pageReport .page-heading {
                 display: flex !important;
                 background: #f5e6c8 !important;
@@ -1411,6 +1304,7 @@
                 <label>📂 Type</label>
                 <select id="selType" onchange="updateNathResult()">
                     <option value="Regular">Regular</option>
+                    <option value="Chap">Chap</option>
                     <option value="D.Tik">D.Tik</option>
                     <option value="Jad Dandi">Jad Dandi</option>
                     <option value="Puneri">Puneri</option>
@@ -1430,7 +1324,7 @@
             </div>
             <div class="result-row">
                 <span class="label">⚖️ Weight (gm)</span>
-                <span class="value" id="resultWeight">0.340</span>
+                <span class="value" id="resultWeight">0.350</span>
             </div>
             <div class="result-row">
                 <span class="label">💰 Price (₹)</span>
@@ -2012,19 +1906,34 @@
     }
     loadOutOfStockFromFirestore();
 
-    // NATH
+    // ============================================================
+    // NATH - WEIGHT MAP (Updated)
+    // ============================================================
+    // Chap चे weights: 90% हिशोबासाठी
+    // Regular: 000 → 0.350, 5 → 0.560 (बदलले), बाकी तसेच
     const WEIGHT_MAP = {
-        '000|Regular': 0.340, '000|D.Tik': 0.000, '000|Jad Dandi': 0.000, '000|Puneri': 0.000,
-        '00|Regular': 0.370, '00|D.Tik': 0.000, '00|Jad Dandi': 0.500, '00|Puneri': 0.380,
-        '0|Regular': 0.400, '0|D.Tik': 0.000, '0|Jad Dandi': 0.520, '0|Puneri': 0.410,
-        '1|Regular': 0.430, '1|D.Tik': 0.000, '1|Jad Dandi': 0.550, '1|Puneri': 0.440,
-        '2|Regular': 0.460, '2|D.Tik': 0.000, '2|Jad Dandi': 0.610, '2|Puneri': 0.470,
-        '3|Regular': 0.490, '3|D.Tik': 0.000, '3|Jad Dandi': 0.630, '3|Puneri': 0.500,
-        '4|Regular': 0.520, '4|D.Tik': 0.000, '4|Jad Dandi': 0.660, '4|Puneri': 0.530,
-        '5|Regular': 0.550, '5|D.Tik': 0.000, '5|Jad Dandi': 0.730, '5|Puneri': 0.560
+        // Regular
+        '000|Regular': 0.350, '00|Regular': 0.370, '0|Regular': 0.400, '1|Regular': 0.430,
+        '2|Regular': 0.460, '3|Regular': 0.490, '4|Regular': 0.520, '5|Regular': 0.560,
+        
+        // Chap (NEW) - 90% हिशोब
+        '000|Chap': 0.450, '00|Chap': 0.470, '0|Chap': 0.540, '1|Chap': 0.565,
+        '2|Chap': 0.620, '3|Chap': 0.660, '4|Chap': 0.000, '5|Chap': 0.000,
+        
+        // D.Tik (Regular वर आधारित, weight 0)
+        '000|D.Tik': 0.000, '00|D.Tik': 0.000, '0|D.Tik': 0.000, '1|D.Tik': 0.000,
+        '2|D.Tik': 0.000, '3|D.Tik': 0.000, '4|D.Tik': 0.000, '5|D.Tik': 0.000,
+        
+        // Jad Dandi
+        '000|Jad Dandi': 0.000, '00|Jad Dandi': 0.500, '0|Jad Dandi': 0.520, '1|Jad Dandi': 0.550,
+        '2|Jad Dandi': 0.610, '3|Jad Dandi': 0.630, '4|Jad Dandi': 0.660, '5|Jad Dandi': 0.730,
+        
+        // Puneri
+        '000|Puneri': 0.000, '00|Puneri': 0.380, '0|Puneri': 0.410, '1|Puneri': 0.440,
+        '2|Puneri': 0.470, '3|Puneri': 0.500, '4|Puneri': 0.530, '5|Puneri': 0.560
     };
 
-    const SHOW_WEIGHT_FOR = ['Regular', 'Jad Dandi', 'Puneri'];
+    const SHOW_WEIGHT_FOR = ['Regular', 'Chap', 'Jad Dandi', 'Puneri'];
 
     function getWeight(number, type) {
         return WEIGHT_MAP[number + '|' + type] || 0;
@@ -2034,12 +1943,25 @@
         return OUT_OF_STOCK.includes(number + '|' + type);
     }
 
+    // ============================================================
+    // NATH - PRICE CALCULATION
+    // ============================================================
+    // Regular / Jad Dandi / Puneri → weight × 0.88 × rate + 150
+    // Chap → weight × 0.90 × rate + 150  (NEW)
+    // D.Tik → Regular वर आधारित × 0.88 + 150, + 150 extra
     function calculateNathPrice(type, weight, rate, number) {
         if (rate <= 0) return 0;
         let price = 0;
+        
         if (type === 'Regular' || type === 'Jad Dandi' || type === 'Puneri') {
             if (weight <= 0) return 0;
             const base = weight * 0.88 * rate;
+            price = base + 150;
+            price = Math.round(price / 100) * 100;
+        } else if (type === 'Chap') {
+            // 🔥 Chap - 90% हिशोब
+            if (weight <= 0) return 0;
+            const base = weight * 0.90 * rate;
             price = base + 150;
             price = Math.round(price / 100) * 100;
         } else if (type === 'D.Tik') {
@@ -2356,7 +2278,7 @@
     addReportRow();
     addReportRow();
 
-    console.log('✅ GoldMate loaded!');
+    console.log('✅ GoldMate loaded with Chap type!');
 </script>
 
 <!-- PWA AUTO UPDATE -->
